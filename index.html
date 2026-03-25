@@ -510,16 +510,16 @@ function buildConclusiones(){
   el.innerHTML=`
     <div style="margin-bottom:1rem;">
       <div style="font-size:13px;color:var(--txt2);line-height:1.7;">
-        Lo que los primeros 7 días del menú nuevo revelan — más allá de los números en la superficie.
+        Lo que los datos de los primeros 15 días de marzo confirman.
       </div>
     </div>
 
     <div class="ins insG">
-      <div class="it">El cliente gasta +${tktD}% más por visita — sin que lo estén empujando</div>
+      <div class="it">El ticket bruto subió +${tktD}% por visita — de ₡${fmt(vTkt)} a ₡${fmt(nTkt)}</div>
       <div class="ic">
-        El ticket promedio pasó de <strong>₡${fmt(vTkt)}</strong> a <strong>₡${fmt(nTkt)}</strong> por transacción.
-        Eso no es un aumento de precios — es que el menú nuevo tiene propuestas que el cliente elige y que tienen mayor valor percibido.
-        En 7 días el negocio captura <strong>₡${fmt((nTkt-vTkt)*nT)}</strong> adicionales solo por ese incremento de ticket.
+        Cada cliente que entra genera <strong>₡${fmt(nTkt-vTkt)} más</strong> en promedio con el menú nuevo vs el viejo.
+        Esto incluye el efecto combinado del nuevo menú y el ajuste de precios.
+        En 7 días eso representa <strong>₡${fmt(Math.round((nTkt-vTkt)*nT))}</strong> adicionales vs lo que hubiera generado al ticket anterior.
       </div>
     </div>
 
@@ -528,55 +528,41 @@ function buildConclusiones(){
       <div class="ic">
         Dom 22 (menú nuevo): <strong>₡${fmt(DIAS[12].bruto)}</strong> · ${DIAS[12].txn} clientes · ticket ₡${fmt(tktD22)}.<br>
         Dom 15 (menú viejo): <strong>₡${fmt(DIAS[5].bruto)}</strong> · ${DIAS[5].txn} clientes · ticket ₡${fmt(tktD15)}.<br>
-        Resultado: <strong>+${((DIAS[12].bruto-DIAS[5].bruto)/DIAS[5].bruto*100).toFixed(0)}% de bruto</strong> con menos gente. 
-        Eso es el efecto real del nuevo menú: cada persona que entra genera más.
+        <strong>+${((DIAS[12].bruto-DIAS[5].bruto)/DIAS[5].bruto*100).toFixed(0)}% de bruto</strong> con menos gente adentro. Cada persona que entró ese domingo generó más.
       </div>
     </div>
 
     <div class="ins insG">
-      <div class="it">El lunes es el nuevo viernes — el menú nuevo transformó los días de semana</div>
+      <div class="it">El bruto promedio por día subió +${pdD}% con el menú nuevo</div>
       <div class="ic">
-        Lun 23 (menú nuevo): <strong>₡${fmt(DIAS[13].bruto)}</strong> · ticket ₡${fmt(tktL23)}.<br>
-        Lun 16 (menú viejo): <strong>₡${fmt(DIAS[6].bruto)}</strong> · ticket ₡${fmt(tktL16)}.<br>
-        El lunes con menú nuevo casi iguala el mejor lunes del menú viejo y tiene un ticket <strong>+${((tktL23-tktL16)/tktL16*100).toFixed(0)}% mayor</strong>. 
-        Los días de semana tienen potencial no explotado.
+        Menú viejo: <strong>₡${fmt(vPD)}</strong> por día (8 días). Menú nuevo: <strong>₡${fmt(nPD)}</strong> por día (7 días).
+        Con un día menos de datos, el menú nuevo genera más por día en promedio.
       </div>
     </div>
 
     <div class="ins insG">
-      <div class="it">${(totalNV/totalIt*100).toFixed(0)}% de todo lo vendido ya es del menú nuevo — en solo 7 días</div>
+      <div class="it">Cocina pasó del 43% al 45.1% del bruto — la cocina gana peso en el negocio</div>
       <div class="ic">
-        De ${totalIt} ítems vendidos en la primera semana del menú nuevo, <strong>${totalNV} son productos completamente nuevos</strong>.
-        Eso significa que casi 1 de cada 4 cosas que pidió un cliente era algo que no existía antes del 18 de marzo.
-        La velocidad de adopción es alta para una propuesta gastronómica.
+        Con el menú viejo, cocina representaba el <strong>43.0%</strong> del bruto total (₡${fmt(VIE.reduce((a,d)=>a+d.cocB,0))}).
+        Con el menú nuevo subió a <strong>45.1%</strong> (₡${fmt(NUE.reduce((a,d)=>a+d.cocB,0))}).
+        Las cacerolas, waffles y tostadas están jalando más peso relativo dentro del negocio.
       </div>
     </div>
 
     <div class="ins insG">
-      <div class="it">Tostadas Francesas y Cacerola Ranchera: los dos productos que anclan el nuevo menú</div>
+      <div class="it">Tostadas Francesas y Cacerola Ranchera — los dos productos ancla del menú nuevo</div>
       <div class="ic">
-        <strong>Tostadas Francesas</strong>: ${tostadas.total} unidades en 7 días — vendió todos los días, con pico de 10 el sábado 21.
-        <strong>Cacerola Ranchera</strong>: ${ranchera.total} unidades — el único producto nuevo que vendió 6 unidades el último día (Mar 24), mostrando aceleración.
-        Son los dos productos a destacar en comunicación y redes.
+        <strong>Tostadas Francesas</strong>: ${tostadas.total} unidades en 7 días, presencia todos los días, pico de 10 el sábado 21.<br>
+        <strong>Cacerola Ranchera</strong>: ${ranchera.total} unidades, cerró el Mar 24 con 6 unidades — acelerando al final de la semana.<br>
+        Son los dos productos con más consistencia y tracción del nuevo menú.
       </div>
     </div>
 
     <div class="ins insG">
-      <div class="it">Mango Matcha tiene la mejor curva de adopción del menú — y apenas arranca</div>
+      <div class="it">Mango Matcha — curva de adopción creciente en bebidas</div>
       <div class="ic">
-        Arrancó despacio (1→0→1→1) y el domingo 22 explotó a 5 unidades. Luego mantuvo 3 y 2.
-        Esa curva — lenta al inicio y acelerada después — es la firma de un producto que se adopta por recomendación.
-        Con <strong>${mango.total} unidades en 7 días</strong>, tiene todo para convertirse en el drink signature de la marca si se impulsa en redes.
-      </div>
-    </div>
-
-    <div class="ins insA">
-      <div class="it">El sábado 21 tuvo 38 clientes menos que el sábado 14 — eso es normal en lanzamientos</div>
-      <div class="ic">
-        Sáb 14: ₡${fmt(DIAS[4].bruto)} · <strong>98 clientes</strong>. Sáb 21: ₡${fmt(DIAS[11].bruto)} · <strong>60 clientes</strong>.
-        En cualquier cambio de menú el primer fin de semana la gente llega con más cautela.
-        Lo relevante: el ticket subió <strong>+${((DIAS[11].bruto/DIAS[11].txn-DIAS[4].bruto/DIAS[4].txn)/(DIAS[4].bruto/DIAS[4].txn)*100).toFixed(0)}%</strong> y el domingo ya mostró recuperación total.
-        Si el sábado 28 supera el sábado 14, el ciclo de adopción estaría completo.
+        Arrancó lento los primeros días y cerró la semana con 3 y 2 unidades diarias.
+        Con <strong>${mango.total} unidades en 7 días</strong> es el producto nuevo de bebidas con más tracción real.
       </div>
     </div>`;
 }
