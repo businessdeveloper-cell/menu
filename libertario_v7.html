@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libertario Coffee Roasters — Análisis Marzo 2026</title>
+<style>
+:root{
+  --bg:#1a1a1a;--bg2:#242424;--bg3:#2e2e2e;
+  --txt:#e8e6df;--txt2:#a0a09a;--txt3:#55554f;
+  --brd:rgba(255,255,255,.08);--brd2:rgba(255,255,255,.15);
+  --G:#1D9E75;--Gbg:rgba(29,158,117,.15);--Gtxt:#4fd4a8;
+  --R:#E24B4A;--Rbg:rgba(226,75,74,.15);--Rtxt:#f08080;
+  --B:#3B8BD4;--Bbg:rgba(59,139,212,.15);--Btxt:#7db8e8;
+  --A:#EF9F27;--Abg:rgba(239,159,39,.15);--Atxt:#f5c06a;
+  --rad:8px;--radL:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);padding:1.5rem;min-height:100vh;}
+h1{font-size:17px;font-weight:600;margin-bottom:3px;}
+.sub{font-size:12px;color:var(--txt2);margin-bottom:1.4rem;}
+.tabs{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap;}
+.tab{padding:5px 14px;font-size:12px;border:.5px solid var(--brd2);border-radius:20px;cursor:pointer;background:transparent;color:var(--txt2);transition:all .15s;white-space:nowrap;}
+.tab:hover{background:var(--bg2);color:var(--txt);}
+.tab.active{background:var(--bg3);color:var(--txt);border-color:rgba(255,255,255,.3);}
+.kgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.2rem;}
+.kpi{background:var(--bg2);border-radius:var(--rad);padding:.8rem 1rem;border:.5px solid var(--brd);}
+.kl{font-size:10px;color:var(--txt2);margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em;}
+.kv{font-size:18px;font-weight:600;color:var(--txt);line-height:1.2;}
+.ks{font-size:11px;color:var(--txt3);margin-top:3px;}
+.sec{font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em;margin:1.2rem 0 .5rem;}
+.tbl{width:100%;font-size:12px;border-collapse:collapse;}
+.tbl th{font-weight:500;color:var(--txt2);text-align:left;padding:5px 6px 5px 0;border-bottom:.5px solid var(--brd);font-size:10px;text-transform:uppercase;white-space:nowrap;}
+.tbl td{padding:6px 6px 6px 0;border-bottom:.5px solid var(--brd);color:var(--txt);vertical-align:middle;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr.ft td{border-top:1px solid var(--brd2);font-weight:600;border-bottom:none;}
+.badge{display:inline-flex;align-items:center;font-size:10px;padding:2px 7px;border-radius:20px;font-weight:600;white-space:nowrap;}
+.bG{background:var(--Gbg);color:var(--Gtxt);}
+.bR{background:var(--Rbg);color:var(--Rtxt);}
+.bB{background:var(--Bbg);color:var(--Btxt);}
+.bA{background:var(--Abg);color:var(--Atxt);}
+.cw{position:relative;width:100%;}
+.ley{display:flex;gap:14px;margin:5px 0 4px;font-size:11px;color:var(--txt2);flex-wrap:wrap;}
+.ley span{display:flex;align-items:center;gap:4px;}
+.ley i{width:10px;height:10px;border-radius:2px;display:inline-block;}
+.nota{background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--rad);padding:.7rem 1rem;font-size:12px;color:var(--txt2);line-height:1.6;margin-bottom:1rem;}
+.nota strong{color:var(--txt);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.bV{border:.5px solid rgba(239,159,39,.25);border-radius:var(--radL);padding:1rem;}
+.bN{border:.5px solid rgba(59,139,212,.25);border-radius:var(--radL);padding:1rem;}
+.ins{border-left:3px solid var(--B);padding:.7rem 1rem;margin-bottom:10px;border-radius:0 var(--rad) var(--rad) 0;background:var(--bg2);}
+.insG{border-left-color:var(--G);}
+.insA{border-left-color:var(--A);}
+.insR{border-left-color:var(--R);}
+.it{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:4px;}
+.ic{font-size:12px;color:var(--txt2);line-height:1.65;}
+.ic strong{color:var(--txt);}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;flex-shrink:0;vertical-align:middle;}
+.num-big{font-size:32px;font-weight:700;color:var(--txt);}
+.num-label{font-size:11px;color:var(--txt2);margin-top:2px;}
+@media(max-width:600px){.kgrid{grid-template-columns:1fr 1fr;}.g2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<h1>Libertario Coffee Roasters</h1>
+<p class="sub">Análisis operativo · Marzo 2026 · Nuevo menú lanzado el miércoles 18 de marzo</p>
+<div class="kgrid" id="kg"></div>
+
+<!-- PRESUPUESTO -->
+<div style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--radL);padding:1.1rem 1.2rem;margin-bottom:1.2rem;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:.9rem;">
+    <div>
+      <div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;">Presupuesto marzo 2026</div>
+      <div style="font-size:13px;color:var(--txt2);">15 días registrados de 31 · 1 día off (Mar 11)</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;">Proyección fin de mes</div>
+      <div style="font-size:20px;font-weight:700;color:var(--Gtxt);">₡18,462,950 <span style="font-size:12px;background:var(--Gbg);color:var(--Gtxt);padding:2px 8px;border-radius:20px;font-weight:600;">102.6% del ppto</span></div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1rem;">
+    <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
+      <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Bruto acumulado</div>
+      <div style="font-size:17px;font-weight:700;color:var(--txt);">₡8,945,765</div>
+      <div style="font-size:11px;color:var(--txt3);margin-top:2px;">49.7% del presupuesto</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
+      <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Neto acumulado</div>
+      <div style="font-size:17px;font-weight:700;color:var(--txt);">₡7,388,917</div>
+      <div style="font-size:11px;color:var(--txt3);margin-top:2px;">lo que es del negocio</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
+      <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Falta para el ppto</div>
+      <div style="font-size:17px;font-weight:700;color:var(--Atxt);">₡9,054,235</div>
+      <div style="font-size:11px;color:var(--txt3);margin-top:2px;">en 15 días restantes</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
+      <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Necesario/día</div>
+      <div style="font-size:17px;font-weight:700;color:var(--txt);">₡603,615</div>
+      <div style="font-size:11px;color:var(--Gtxt);margin-top:2px;">actual: ₡634,479/día ✓</div>
+    </div>
+  </div>
+
+  <!-- Barra de progreso -->
+  <div style="margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:11px;color:var(--txt2);">₡0</span>
+    <span style="font-size:11px;font-weight:600;color:var(--txt);">₡8,945,765 <span style="color:var(--txt2);font-weight:400;">de</span> ₡18,000,000</span>
+    <span style="font-size:11px;color:var(--txt2);">₡18,000,000</span>
+  </div>
+  <div style="background:rgba(255,255,255,.08);border-radius:6px;height:10px;overflow:hidden;position:relative;">
+    <div style="height:10px;border-radius:6px;width:49.7%;background:linear-gradient(90deg,#1D9E75,#3B8BD4);transition:width .5s;"></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;margin-top:5px;">
+    <span style="font-size:11px;color:var(--Gtxt);font-weight:600;">49.7% completado</span>
+    <span style="font-size:11px;color:var(--txt2);">Al ritmo actual del menú nuevo alcanzaría <strong style="color:var(--Gtxt);">₡18.46M</strong> — superando el presupuesto</span>
+  </div>
+</div>
+<div class="tabs">
+  <button class="tab active" onclick="sw('tendencia',this)">Tendencia</button>
+  <button class="tab" onclick="sw('categorias',this)">Categorías</button>
+  <button class="tab" onclick="sw('comparativa',this)">Menú viejo vs nuevo</button>
+  <button class="tab" onclick="sw('adopcion',this)">Adopción</button>
+  <button class="tab" onclick="sw('productos',this)">Productos nuevos</button>
+  <button class="tab" onclick="sw('conclusiones',this)">Conclusiones</button>
+</div>
+<div id="panel-tendencia"></div>
+<div id="panel-categorias"  style="display:none;"></div>
+<div id="panel-comparativa" style="display:none;"></div>
+<div id="panel-adopcion"    style="display:none;"></div>
+<div id="panel-productos"   style="display:none;"></div>
+<div id="panel-conclusiones"style="display:none;"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const gc='rgba(255,255,255,.06)',tc='#a0a09a';
+const fmt=n=>Math.round(n).toLocaleString('es-CR');
+const fk=n=>'₡'+fmt(Math.round(n/1000))+'k';
+
+// ── DATOS AUDITADOS ──────────────────────────────────────────────────────────
+// bruto = Session Total (con impuestos)
+// neto  = Tax excluded base (lo tuyo)
+// Nota: algunos días tienen ítems "Not Categorized" (Cajas Mágicas) que van en neto pero no en bev/coc/fil
+const DIAS=[
+  {d:'Lun 9', dow:'Lun',v:true, txn:41,bruto:364320, neto:301807,items:96, bevU:56,cocU:39,filU:1, bevB:176100,cocB:123919,filB:1789},
+  {d:'Mar 10',dow:'Mar',v:true, txn:24,bruto:170700, neto:139644,items:56, bevU:38,cocU:17,filU:1, bevB:88993, cocB:48862, filB:1789},
+  {d:'Jue 12',dow:'Jue',v:true, txn:39,bruto:382600, neto:319576,items:88, bevU:51,cocU:27,filU:10,bevB:189738,cocB:96748, filB:33090},
+  {d:'Vie 13',dow:'Vie',v:true, txn:50,bruto:490360, neto:403084,items:126,bevU:69,cocU:49,filU:8, bevB:191409,cocB:187366,filB:24309},
+  {d:'Sáb 14',dow:'Sáb',v:true, txn:98,bruto:982035, neto:808007,items:264,bevU:131,cocU:116,filU:17,bevB:370418,cocB:394012,filB:43577},
+  {d:'Dom 15',dow:'Dom',v:true, txn:91,bruto:913222, neto:751618,items:249,bevU:124,cocU:111,filU:14,bevB:346724,cocB:363268,filB:41626},
+  {d:'Lun 16',dow:'Lun',v:true, txn:68,bruto:726975, neto:599181,items:185,bevU:109,cocU:66,filU:9, bevB:330990,cocB:238760,filB:29460},
+  {d:'Mar 17',dow:'Mar',v:true, txn:41,bruto:474200, neto:395169,items:115,bevU:65,cocU:38,filU:7, bevB:230321,cocB:142764,filB:15447},
+  {d:'Mié 18',dow:'Mié',v:false,txn:35,bruto:527600, neto:439534,items:112,bevU:54,cocU:53,filU:5, bevB:220603,cocB:200720,filB:18211,nv:32},
+  {d:'Jue 19',dow:'Jue',v:false,txn:29,bruto:331404, neto:271700,items:92, bevU:50,cocU:38,filU:4, bevB:133039,cocB:128255,filB:10407,nv:23},
+  {d:'Vie 20',dow:'Vie',v:false,txn:51,bruto:521451, neto:431722,items:124,bevU:68,cocU:51,filU:5, bevB:232005,cocB:187034,filB:12683,nv:27},
+  {d:'Sáb 21',dow:'Sáb',v:false,txn:60,bruto:703343, neto:577094,items:174,bevU:87,cocU:77,filU:9, bevB:249730,cocB:296687,filB:29350,nv:47},
+  {d:'Dom 22',dow:'Dom',v:false,txn:83,bruto:1038342,neto:863329,items:238,bevU:141,cocU:88,filU:9, bevB:504419,cocB:333650,filB:25260,nv:39},
+  {d:'Lun 23',dow:'Lun',v:false,txn:55,bruto:705330, neto:585163,items:167,bevU:102,cocU:60,filU:2, bevB:334614,cocB:238374,filB:5447,nv:28},
+  {d:'Mar 24',dow:'Mar',v:false,txn:60,bruto:613883, neto:502289,items:161,bevU:84,cocU:71,filU:6, bevB:215597,cocB:269457,filB:17235,nv:25},
+];
+
+// Productos nuevos con ventas reales (7 días menú nuevo)
+const PRODS=[
+  {n:'Tostadas Francesas',           c:'Cocina', q:[1,2,2,10,2,1,5]},
+  {n:'Cacerola Huevos Cremosos',     c:'Cocina', q:[4,1,3,4,2,5,2]},
+  {n:'Cacerola Ranchera',            c:'Cocina', q:[6,1,2,2,3,2,6]},
+  {n:'Waffle de Frutas',             c:'Cocina', q:[0,1,1,2,3,4,1]},
+  {n:'Waffle de Chocolate',          c:'Cocina', q:[1,2,2,4,3,2,1]},
+  {n:'Cacerola Libertario',          c:'Cocina', q:[3,1,2,3,0,1,5]},
+  {n:'Rollo de Canela',              c:'Cocina', q:[0,1,0,3,2,4,1]},
+  {n:'Mango Matcha',                 c:'Bebidas',q:[1,0,1,1,5,3,2]},
+  {n:'Croissant Crumble Manzana',    c:'Cocina', q:[4,0,1,0,4,0,2]},
+  {n:'Almojábana',                   c:'Cocina', q:[2,3,6,1,0,0,2]},
+  {n:'Croissant de Crema',           c:'Cocina', q:[0,2,0,4,1,3,0]},
+  {n:'Croissant de Desayuno',        c:'Cocina', q:[0,1,2,3,1,0,1]},
+  {n:'Sandwich Pollo al Pesto',      c:'Cocina', q:[0,0,1,3,3,2,2]},
+  {n:'Sandwich Grill Cheese',        c:'Cocina', q:[0,1,0,2,2,2,2]},
+  {n:'Chia Pudding',                 c:'Cocina', q:[0,1,1,2,0,0,4]},
+  {n:'Bowl de Falafel',              c:'Cocina', q:[3,0,0,0,2,1,1]},
+  {n:'Cacerola Benedictinos',        c:'Cocina', q:[4,2,1,1,2,0,4]},
+  {n:'Bowl de Avena',                c:'Cocina', q:[2,0,1,0,2,2,2]},
+  {n:'Profiterol',                   c:'Cocina', q:[0,3,0,1,1,0,0]},
+  {n:'Queque de Amapola',            c:'Cocina', q:[0,0,0,0,1,1,1]},
+  {n:'Bowl Almuerzo',                c:'Cocina', q:[1,0,0,1,0,0,1]},
+  {n:'Crocante Alemán',              c:'Cocina', q:[0,1,1,0,0,0,0]},
+  {n:'Amber Brew',                   c:'Bebidas',q:[2,1,1,0,0,2,1]},
+  {n:'Soda Frutos Amarillos',        c:'Bebidas',q:[0,0,2,1,0,0,3]},
+  {n:'Cheesecake Libertario',        c:'Cocina', q:[0,1,0,0,1,0,1]},
+  {n:'Sandwich Jamón Serrano',       c:'Cocina', q:[0,0,1,0,0,2,2]},
+].map(p=>({...p,total:p.q.reduce((a,b)=>a+b,0)})).sort((a,b)=>b.total-a.total);
+
+const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
+const vB=VIE.reduce((a,d)=>a+d.bruto,0), nB=NUE.reduce((a,d)=>a+d.bruto,0);
+const vN=VIE.reduce((a,d)=>a+d.neto,0),  nN=NUE.reduce((a,d)=>a+d.neto,0);
+const vT=VIE.reduce((a,d)=>a+d.txn,0),   nT=NUE.reduce((a,d)=>a+d.txn,0);
+const vTkt=vB/vT, nTkt=nB/nT;
+const tktD=((nTkt-vTkt)/vTkt*100).toFixed(1);
+const vPD=vB/VIE.length, nPD=nB/NUE.length;
+const pdD=((nPD-vPD)/vPD*100).toFixed(1);
+
+// KPIs globales
+document.getElementById('kg').innerHTML=[
+  {l:'Ticket bruto — menú viejo',   v:'₡'+fmt(vTkt), s:'Promedio por transacción · 8 días'},
+  {l:'Ticket bruto — menú nuevo',   v:'₡'+fmt(nTkt), s:(tktD>0?'+':'')+tktD+'% vs menú viejo', badge:'bG', bt:'+'+tktD+'%'},
+  {l:'Bruto promedio por día — viejo', v:'₡'+fmt(vPD), s:'Lo que entró a caja en promedio cada día'},
+  {l:'Bruto promedio por día — nuevo', v:'₡'+fmt(nPD), s:(pdD>0?'+':'')+pdD+'% vs menú viejo', badge:'bG', bt:'+'+pdD+'%'},
+].map(k=>`<div class="kpi"><div class="kl">${k.l}</div><div class="kv">${k.v} ${k.badge?`<span class="badge ${k.badge}">${k.bt}</span>`:''}</div><div class="ks">${k.s}</div></div>`).join('');
+
+// ── TENDENCIA ────────────────────────────────────────────────────────────────
+function buildTendencia(){
+  const el=document.getElementById('panel-tendencia');
+  el.innerHTML=`
+    <div class="nota">
+      <strong>Bruto</strong> = todo lo que entró a caja ese día (incluye impuestos) &nbsp;·&nbsp;
+      <strong>Neto</strong> = lo que es del negocio (sin impuestos) &nbsp;·&nbsp;
+      Barras opacas = menú viejo &nbsp;·&nbsp; Barras sólidas = menú nuevo
+    </div>
+    <div class="ley">
+      <span><i style="background:rgba(59,139,212,.35)"></i>Bruto — menú viejo</span>
+      <span><i style="background:#3B8BD4"></i>Bruto — menú nuevo</span>
+      <span><i style="background:rgba(29,158,117,.3)"></i>Neto — menú viejo</span>
+      <span><i style="background:#1D9E75"></i>Neto — menú nuevo</span>
+    </div>
+    <div class="cw" style="height:240px;"><canvas id="c-bn"></canvas></div>
+    <div class="sec" style="margin-top:1rem;">Ticket bruto por transacción · cuánto gastó cada cliente en promedio</div>
+    <div class="ley">
+      <span><i style="background:rgba(239,159,39,.8)"></i>Menú viejo</span>
+      <span><i style="background:#3B8BD4"></i>Menú nuevo</span>
+      <span><i style="background:rgba(255,255,255,.2)"></i>Promedio menú viejo</span>
+    </div>
+    <div class="cw" style="height:190px;"><canvas id="c-tkt"></canvas></div>
+    <div class="sec" style="margin-top:1.2rem;">Detalle día a día</div>
+    <table class="tbl">
+      <tr>
+        <th>Día</th><th>Menú</th>
+        <th style="text-align:right">Bruto (entra a caja)</th>
+        <th style="text-align:right">Neto (del negocio)</th>
+        <th style="text-align:right">Transacciones</th>
+        <th style="text-align:right">Ticket bruto/cliente</th>
+      </tr>
+      ${DIAS.map(d=>`<tr>
+        <td style="font-weight:600;">${d.d}</td>
+        <td>${d.v?'<span class="badge bA">Viejo</span>':'<span class="badge bB">Nuevo</span>'}</td>
+        <td style="text-align:right;font-weight:600;">₡${fmt(d.bruto)}</td>
+        <td style="text-align:right;">₡${fmt(d.neto)}</td>
+        <td style="text-align:right;">${d.txn}</td>
+        <td style="text-align:right;">₡${fmt(d.bruto/d.txn)}</td>
+      </tr>`).join('')}
+    </table>`;
+
+  new Chart(document.getElementById('c-bn'),{type:'bar',data:{labels:DIAS.map(d=>d.d),datasets:[
+    {label:'Bruto',data:DIAS.map(d=>d.bruto),backgroundColor:DIAS.map(d=>d.v?'rgba(59,139,212,.35)':'#3B8BD4'),borderRadius:4},
+    {label:'Neto', data:DIAS.map(d=>d.neto), backgroundColor:DIAS.map(d=>d.v?'rgba(29,158,117,.3)':'#1D9E75'),borderRadius:4},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+
+  new Chart(document.getElementById('c-tkt'),{type:'line',data:{labels:DIAS.map(d=>d.d),datasets:[
+    {label:'Menú viejo',data:[...VIE.map(d=>Math.round(d.bruto/d.txn)),...new Array(NUE.length).fill(null)],borderColor:'rgba(239,159,39,.85)',pointBackgroundColor:'rgba(239,159,39,.85)',pointRadius:5,borderWidth:2,tension:.3,fill:false},
+    {label:'Menú nuevo',data:[...new Array(VIE.length).fill(null),...NUE.map(d=>Math.round(d.bruto/d.txn))],borderColor:'#3B8BD4',pointBackgroundColor:'#3B8BD4',pointRadius:5,borderWidth:2,tension:.3,fill:false},
+    {label:'Prom. viejo',data:DIAS.map(()=>Math.round(vTkt)),borderColor:'rgba(255,255,255,.15)',borderDash:[5,5],pointRadius:0,borderWidth:1.5,fill:false},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+}
+
+// ── CATEGORÍAS ───────────────────────────────────────────────────────────────
+function buildCategorias(){
+  const el=document.getElementById('panel-categorias');
+  const vbev=VIE.reduce((a,d)=>a+d.bevB,0),vcoc=VIE.reduce((a,d)=>a+d.cocB,0),vfil=VIE.reduce((a,d)=>a+d.filB,0);
+  const nbev=NUE.reduce((a,d)=>a+d.bevB,0),ncoc=NUE.reduce((a,d)=>a+d.cocB,0),nfil=NUE.reduce((a,d)=>a+d.filB,0);
+  const vT2=vbev+vcoc+vfil, nT2=nbev+ncoc+nfil;
+  const chg=(a,b)=>{const p=((b-a)/a*100).toFixed(0);return `<span class="badge ${b>a?'bG':'bR'}">${p>0?'+':''}${p}%</span>`;};
+  const totB=vbev+nbev,totC=vcoc+ncoc,totF=vfil+nfil,gran=totB+totC+totF;
+
+  el.innerHTML=`
+    <div class="nota">Bebidas incluye todas las bebidas calientes, frías y especiales. Cocina incluye todos los platos, postres y snacks. Filtrado/Retail incluye filtrados preparados y bolsas de café para llevar.</div>
+    <div class="g2" style="margin-bottom:1.2rem;">
+      <div>
+        <div class="sec" style="margin-top:0">Mix de ingresos — 15 días totales</div>
+        <div class="cw" style="height:200px;"><canvas id="c-donut"></canvas></div>
+      </div>
+      <div>
+        <div class="sec" style="margin-top:0">Ítems vendidos por categoría — día a día</div>
+        <div class="cw" style="height:200px;"><canvas id="c-cat"></canvas></div>
+      </div>
+    </div>
+
+    <div class="sec">Menú viejo · 9–17 Mar · 8 días (Mar 11 = día de capacitación)</div>
+    <table class="tbl" style="margin-bottom:1.4rem;">
+      <tr><th>Categoría</th>${VIE.map(d=>`<th style="text-align:right;font-size:9px;">${d.d}</th>`).join('')}<th style="text-align:right">Total uds</th><th style="text-align:right">Bruto total</th><th style="text-align:right">% del período</th></tr>
+      ${[{l:'Bebidas',c:'#3B8BD4',u:VIE.map(d=>d.bevU),b:VIE.map(d=>d.bevB),tU:VIE.reduce((a,d)=>a+d.bevU,0),tB:vbev},
+         {l:'Cocina', c:'#1D9E75',u:VIE.map(d=>d.cocU),b:VIE.map(d=>d.cocB),tU:VIE.reduce((a,d)=>a+d.cocU,0),tB:vcoc},
+         {l:'Filtrado/Retail',c:'#EF9F27',u:VIE.map(d=>d.filU),b:VIE.map(d=>d.filB),tU:VIE.reduce((a,d)=>a+d.filU,0),tB:vfil},
+      ].map(r=>`<tr>
+        <td><span class="dot" style="background:${r.c}"></span><strong>${r.l}</strong></td>
+        ${r.u.map((u,i)=>`<td style="text-align:right"><div style="font-weight:500;">${u}</div><div style="font-size:10px;color:var(--txt2);">${fk(r.b[i])}</div></td>`).join('')}
+        <td style="text-align:right;font-weight:600;">${r.tU}</td>
+        <td style="text-align:right;font-weight:600;">₡${fmt(r.tB)}</td>
+        <td style="text-align:right;">${(r.tB/vT2*100).toFixed(1)}%</td>
+      </tr>`).join('')}
+      <tr class="ft"><td>Total</td>${VIE.map(d=>`<td style="text-align:right"><div>${d.items}</div><div style="font-size:10px;color:var(--txt2);">${fk(d.bruto)}</div></td>`).join('')}<td style="text-align:right">${VIE.reduce((a,d)=>a+d.items,0)}</td><td style="text-align:right">₡${fmt(vT2)}</td><td style="text-align:right">100%</td></tr>
+    </table>
+
+    <div class="sec">Menú nuevo · 18–24 Mar · 7 días</div>
+    <table class="tbl" style="margin-bottom:1.4rem;">
+      <tr><th>Categoría</th>${NUE.map(d=>`<th style="text-align:right;font-size:9px;">${d.d}</th>`).join('')}<th style="text-align:right">Total uds</th><th style="text-align:right">Bruto total</th><th style="text-align:right">% del período</th></tr>
+      ${[{l:'Bebidas',c:'#3B8BD4',u:NUE.map(d=>d.bevU),b:NUE.map(d=>d.bevB),tU:NUE.reduce((a,d)=>a+d.bevU,0),tB:nbev},
+         {l:'Cocina', c:'#1D9E75',u:NUE.map(d=>d.cocU),b:NUE.map(d=>d.cocB),tU:NUE.reduce((a,d)=>a+d.cocU,0),tB:ncoc},
+         {l:'Filtrado/Retail',c:'#EF9F27',u:NUE.map(d=>d.filU),b:NUE.map(d=>d.filB),tU:NUE.reduce((a,d)=>a+d.filU,0),tB:nfil},
+      ].map(r=>`<tr>
+        <td><span class="dot" style="background:${r.c}"></span><strong>${r.l}</strong></td>
+        ${r.u.map((u,i)=>`<td style="text-align:right"><div style="font-weight:500;">${u}</div><div style="font-size:10px;color:var(--txt2);">${fk(r.b[i])}</div></td>`).join('')}
+        <td style="text-align:right;font-weight:600;">${r.tU}</td>
+        <td style="text-align:right;font-weight:600;">₡${fmt(r.tB)}</td>
+        <td style="text-align:right;">${(r.tB/nT2*100).toFixed(1)}%</td>
+      </tr>`).join('')}
+      <tr class="ft"><td>Total</td>${NUE.map(d=>`<td style="text-align:right"><div>${d.items}</div><div style="font-size:10px;color:var(--txt2);">${fk(d.bruto)}</div></td>`).join('')}<td style="text-align:right">${NUE.reduce((a,d)=>a+d.items,0)}</td><td style="text-align:right">₡${fmt(nT2)}</td><td style="text-align:right">100%</td></tr>
+    </table>
+
+    <div class="sec">Cambio entre menús — bruto promedio por día por categoría</div>
+    <table class="tbl">
+      <tr><th>Categoría</th><th style="text-align:right">Bruto/día — menú viejo</th><th style="text-align:right">Bruto/día — menú nuevo</th><th style="text-align:right">Cambio</th><th style="text-align:right">Mix viejo</th><th style="text-align:right">Mix nuevo</th></tr>
+      ${[{l:'Bebidas',c:'#3B8BD4',vB2:vbev,nB2:nbev},{l:'Cocina',c:'#1D9E75',vB2:vcoc,nB2:ncoc},{l:'Filtrado/Retail',c:'#EF9F27',vB2:vfil,nB2:nfil}].map(r=>`<tr>
+        <td><span class="dot" style="background:${r.c}"></span><strong>${r.l}</strong></td>
+        <td style="text-align:right;">₡${fmt(r.vB2/VIE.length)}</td>
+        <td style="text-align:right;font-weight:600;">₡${fmt(r.nB2/NUE.length)}</td>
+        <td style="text-align:right;">${chg(r.vB2/VIE.length,r.nB2/NUE.length)}</td>
+        <td style="text-align:right;">${(r.vB2/vT2*100).toFixed(1)}%</td>
+        <td style="text-align:right;font-weight:600;">${(r.nB2/nT2*100).toFixed(1)}%</td>
+      </tr>`).join('')}
+    </table>`;
+
+  new Chart(document.getElementById('c-donut'),{type:'doughnut',data:{labels:['Bebidas','Cocina','Filtrado/Retail'],datasets:[{data:[totB,totC,totF],backgroundColor:['#3B8BD4','#1D9E75','#EF9F27'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:11},padding:12,boxWidth:10}},tooltip:{callbacks:{label:c=>'₡'+fmt(c.raw)+' — '+(c.raw/gran*100).toFixed(1)+'%'}}}}});
+  new Chart(document.getElementById('c-cat'),{type:'bar',data:{labels:DIAS.map(d=>d.d),datasets:[
+    {label:'Bebidas', data:DIAS.map(d=>d.bevU),backgroundColor:DIAS.map(d=>d.v?'rgba(59,139,212,.35)':'#3B8BD4'),borderRadius:3,stack:'s'},
+    {label:'Cocina',  data:DIAS.map(d=>d.cocU),backgroundColor:DIAS.map(d=>d.v?'rgba(29,158,117,.3)':'#1D9E75'),borderRadius:3,stack:'s'},
+    {label:'Filtrado',data:DIAS.map(d=>d.filU),backgroundColor:DIAS.map(d=>d.v?'rgba(239,159,39,.3)':'#EF9F27'),borderRadius:3,stack:'s'},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:10}}}}}});
+}
+
+// ── COMPARATIVA ──────────────────────────────────────────────────────────────
+function buildComparativa(){
+  const el=document.getElementById('panel-comparativa');
+  const PARES=[
+    {dow:'Lunes', vie:DIAS[6],nue:DIAS[13]},
+    {dow:'Martes',vie:DIAS[7],nue:DIAS[14]},
+    {dow:'Jueves',vie:DIAS[2],nue:DIAS[9]},
+    {dow:'Viernes',vie:DIAS[3],nue:DIAS[10]},
+    {dow:'Sábado',vie:DIAS[4],nue:DIAS[11]},
+    {dow:'Domingo',vie:DIAS[5],nue:DIAS[12]},
+  ];
+  const chg=(a,b)=>{const p=((b-a)/a*100).toFixed(0);return `<span class="badge ${+p>0?'bG':'bR'}">${+p>0?'+':''}${p}%</span>`;};
+
+  el.innerHTML=`
+    <div class="nota">La comparativa más justa: el mismo día de semana enfrentado entre menú viejo y menú nuevo. Elimina el efecto natural de que los fines de semana venden más.</div>
+    <div class="g2" style="margin-bottom:1.2rem;">
+      <div class="bV">
+        <div style="font-size:10px;font-weight:600;color:var(--Atxt);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem;">Menú viejo · 9–17 Mar · 8 días</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="kpi"><div class="kl">Bruto total</div><div class="kv" style="font-size:15px;">₡${fmt(vB)}</div></div>
+          <div class="kpi"><div class="kl">Neto total</div><div class="kv" style="font-size:15px;">₡${fmt(vN)}</div></div>
+          <div class="kpi"><div class="kl">Bruto promedio/día</div><div class="kv" style="font-size:15px;">₡${fmt(vPD)}</div></div>
+          <div class="kpi"><div class="kl">Ticket bruto/cliente</div><div class="kv" style="font-size:15px;">₡${fmt(vTkt)}</div></div>
+          <div class="kpi"><div class="kl">Clientes/día</div><div class="kv" style="font-size:15px;">${Math.round(vT/VIE.length)}</div></div>
+          <div class="kpi"><div class="kl">Ítems/cliente</div><div class="kv" style="font-size:15px;">${(VIE.reduce((a,d)=>a+d.items,0)/vT).toFixed(1)}</div></div>
+        </div>
+      </div>
+      <div class="bN">
+        <div style="font-size:10px;font-weight:600;color:var(--Btxt);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem;">Menú nuevo · 18–24 Mar · 7 días</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="kpi"><div class="kl">Bruto total</div><div class="kv" style="font-size:15px;">₡${fmt(nB)}</div><div class="ks"><span class="badge bA">1 día menos</span></div></div>
+          <div class="kpi"><div class="kl">Neto total</div><div class="kv" style="font-size:15px;">₡${fmt(nN)}</div></div>
+          <div class="kpi"><div class="kl">Bruto promedio/día</div><div class="kv" style="font-size:15px;">₡${fmt(nPD)}</div><div class="ks"><span class="badge bG">+${pdD}%</span></div></div>
+          <div class="kpi"><div class="kl">Ticket bruto/cliente</div><div class="kv" style="font-size:15px;">₡${fmt(nTkt)}</div><div class="ks"><span class="badge bG">+${tktD}%</span></div></div>
+          <div class="kpi"><div class="kl">Clientes/día</div><div class="kv" style="font-size:15px;">${Math.round(nT/NUE.length)}</div><div class="ks"><span class="badge ${nT/NUE.length>vT/VIE.length?'bG':'bR'}">${((nT/NUE.length-vT/VIE.length)/(vT/VIE.length)*100).toFixed(0)}%</span></div></div>
+          <div class="kpi"><div class="kl">Ítems/cliente</div><div class="kv" style="font-size:15px;">${(NUE.reduce((a,d)=>a+d.items,0)/nT).toFixed(1)}</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="ley"><span><i style="background:rgba(239,159,39,.7)"></i>Menú viejo</span><span><i style="background:#3B8BD4"></i>Menú nuevo</span></div>
+    <div class="sec" style="margin-top:.5rem;">Ticket bruto por cliente — mismo día de semana</div>
+    <div class="cw" style="height:200px;"><canvas id="c-ptkt"></canvas></div>
+    <div class="sec" style="margin-top:.8rem;">Bruto total del día — mismo día de semana</div>
+    <div class="cw" style="height:200px;"><canvas id="c-pbru"></canvas></div>
+    <div class="sec" style="margin-top:.8rem;">Detalle</div>
+    <table class="tbl">
+      <tr><th>Día</th><th>Fecha viejo</th><th style="text-align:right">Clientes</th><th style="text-align:right">Bruto</th><th style="text-align:right">Ticket</th><th>Fecha nuevo</th><th style="text-align:right">Clientes</th><th style="text-align:right">Bruto</th><th style="text-align:right">Ticket</th><th style="text-align:right">Δ ticket</th><th style="text-align:right">Δ bruto</th></tr>
+      ${PARES.map(p=>{const tV=p.vie.bruto/p.vie.txn,tN=p.nue.bruto/p.nue.txn,dT=((tN-tV)/tV*100).toFixed(0),dB=((p.nue.bruto-p.vie.bruto)/p.vie.bruto*100).toFixed(0);return `<tr>
+        <td style="font-weight:600;">${p.dow}</td>
+        <td style="color:var(--txt2);">${p.vie.d}</td><td style="text-align:right;">${p.vie.txn}</td><td style="text-align:right;">₡${fmt(p.vie.bruto)}</td><td style="text-align:right;">₡${fmt(tV)}</td>
+        <td style="color:var(--txt2);">${p.nue.d}</td><td style="text-align:right;">${p.nue.txn}</td><td style="text-align:right;font-weight:600;">₡${fmt(p.nue.bruto)}</td><td style="text-align:right;font-weight:600;">₡${fmt(tN)}</td>
+        <td style="text-align:right;">${chg(tV,tN)}</td><td style="text-align:right;">${chg(p.vie.bruto,p.nue.bruto)}</td>
+      </tr>`;}).join('')}
+    </table>`;
+
+  new Chart(document.getElementById('c-ptkt'),{type:'bar',data:{labels:PARES.map(p=>p.dow),datasets:[{label:'Menú viejo',data:PARES.map(p=>Math.round(p.vie.bruto/p.vie.txn)),backgroundColor:'rgba(239,159,39,.7)',borderRadius:4},{label:'Menú nuevo',data:PARES.map(p=>Math.round(p.nue.bruto/p.nue.txn)),backgroundColor:'#3B8BD4',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)+' por cliente'}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+  new Chart(document.getElementById('c-pbru'),{type:'bar',data:{labels:PARES.map(p=>p.dow),datasets:[{label:'Menú viejo',data:PARES.map(p=>p.vie.bruto),backgroundColor:'rgba(239,159,39,.7)',borderRadius:4},{label:'Menú nuevo',data:PARES.map(p=>p.nue.bruto),backgroundColor:'#3B8BD4',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+}
+
+// ── ADOPCIÓN ─────────────────────────────────────────────────────────────────
+function buildAdopcion(){
+  const el=document.getElementById('panel-adopcion');
+  // Total productos en menú nuevo con ventas registradas
+  const totalMenuNuevo=42;
+  const pct=NUE.map(d=>(d.nv/d.items*100).toFixed(1));
+  const totalNV=NUE.reduce((a,d)=>a+d.nv,0);
+  const totalItems=NUE.reduce((a,d)=>a+d.items,0);
+
+  el.innerHTML=`
+    <div class="nota">
+      <strong>¿Qué mide la adopción?</strong> De cada 100 ítems que se vendieron en un día, cuántos eran productos del menú nuevo.
+      Si el día 1 arrancó en 28% y la semana siguiente sigue subiendo, el cliente está conociendo y eligiendo activamente el nuevo menú.
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.2rem;">
+      <div class="kpi" style="text-align:center;">
+        <div class="num-big" style="color:var(--Btxt);">${(totalNV/totalItems*100).toFixed(1)}%</div>
+        <div class="num-label">adopción promedio<br>en los 7 días del menú nuevo</div>
+      </div>
+      <div class="kpi" style="text-align:center;">
+        <div class="num-big">${totalNV}</div>
+        <div class="num-label">ítems nuevos vendidos<br>de ${totalItems} totales</div>
+      </div>
+      <div class="kpi" style="text-align:center;">
+        <div class="num-big" style="color:var(--Gtxt);">${Math.max(...NUE.map(d=>+(d.nv/d.items*100).toFixed(1)))}%</div>
+        <div class="num-label">pico de adopción<br>${NUE[NUE.map(d=>+(d.nv/d.items*100).toFixed(1)).indexOf(Math.max(...NUE.map(d=>+(d.nv/d.items*100).toFixed(1))))].d}</div>
+      </div>
+    </div>
+
+    <div class="ley"><span><i style="background:#3B8BD4"></i>% de ítems nuevos sobre el total vendido ese día</span></div>
+    <div class="cw" style="height:210px;"><canvas id="c-adop"></canvas></div>
+
+    <div class="sec" style="margin-top:1rem;">Desglose día a día</div>
+    <table class="tbl">
+      <tr>
+        <th>Día</th>
+        <th style="text-align:right">Total ítems vendidos</th>
+        <th style="text-align:right">Ítems del menú nuevo</th>
+        <th style="text-align:right">% adopción</th>
+        <th style="text-align:right">Clientes</th>
+        <th style="text-align:right">Ítems nuevos por cliente</th>
+      </tr>
+      ${NUE.map((d,i)=>`<tr>
+        <td style="font-weight:600;">${d.d}</td>
+        <td style="text-align:right;">${d.items}</td>
+        <td style="text-align:right;font-weight:600;">${d.nv}</td>
+        <td style="text-align:right;"><span class="badge ${parseFloat(pct[i])>=25?'bG':parseFloat(pct[i])>=18?'bB':'bA'}">${pct[i]}%</span></td>
+        <td style="text-align:right;">${d.txn}</td>
+        <td style="text-align:right;">${(d.nv/d.txn).toFixed(1)}</td>
+      </tr>`).join('')}
+      <tr class="ft">
+        <td>Total</td>
+        <td style="text-align:right;">${totalItems}</td>
+        <td style="text-align:right;">${totalNV}</td>
+        <td style="text-align:right;"><span class="badge bB">${(totalNV/totalItems*100).toFixed(1)}%</span></td>
+        <td style="text-align:right;">${nT}</td>
+        <td style="text-align:right;">${(totalNV/nT).toFixed(1)}</td>
+      </tr>
+    </table>`;
+
+  new Chart(document.getElementById('c-adop'),{type:'bar',data:{labels:NUE.map(d=>d.d),datasets:[
+    {label:'% adopción',data:pct.map(v=>parseFloat(v)),backgroundColor:NUE.map((_,i)=>parseFloat(pct[i])>=25?'#1D9E75':parseFloat(pct[i])>=18?'#3B8BD4':'rgba(59,139,212,.5)'),borderRadius:5},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw.toFixed(1)+'% de los ítems vendidos ese día son del menú nuevo'}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},y:{grid:{color:gc},max:35,ticks:{color:tc,font:{size:11},callback:v=>v+'%'},title:{display:true,text:'% de ítems del menú nuevo sobre total del día',color:tc,font:{size:10}}}}}});
+}
+
+// ── PRODUCTOS NUEVOS ─────────────────────────────────────────────────────────
+function buildProductos(){
+  const el=document.getElementById('panel-productos');
+  const iDia=NUE.map(d=>d.items), max=PRODS[0].total;
+  const dias7=['Mié 18','Jue 19','Vie 20','Sáb 21','Dom 22','Lun 23','Mar 24'];
+  const tend=q=>{const s=q.reduce((a,b)=>a+b,0);if(s===0)return '';const i=(q[0]+q[1])/2+.01,f=(q[5]+q[6])/2;return f>i*1.5?'<span class="badge bG">↑ Acelerando</span>':f>i*1.1?'<span class="badge bB">↑ Subiendo</span>':f<i*.6&&i>1?'<span class="badge bR">↓ Bajando</span>':'<span class="badge bA">→ Estable</span>';};
+
+  el.innerHTML=`
+    <div class="nota">Solo se muestran los productos del menú nuevo que tuvieron ventas en los primeros 7 días. Ordenados de mayor a menor venta total.</div>
+    <table class="tbl">
+      <tr>
+        <th style="width:28%">Producto</th><th>Cat.</th>
+        ${dias7.map(c=>`<th style="text-align:right;font-size:9px;">${c}</th>`).join('')}
+        <th style="text-align:right;">Total</th>
+        <th style="width:50px;"></th>
+        <th>Tendencia</th>
+      </tr>
+      ${PRODS.map(p=>`<tr>
+        <td style="font-weight:600;font-size:12px;">${p.n}</td>
+        <td style="font-size:11px;color:var(--txt2);">${p.c}</td>
+        ${p.q.map((v,i)=>`<td style="text-align:right;">${v>0
+          ?`<div style="font-weight:${v>=5?'700':'400'};color:${v>=5?'var(--Gtxt)':'var(--txt)'};">${v}</div>
+             <div style="font-size:9px;color:${(v/iDia[i]*100)>=4?'var(--Gtxt)':'var(--txt3)'};">${(v/iDia[i]*100).toFixed(1)}%</div>`
+          :'<span style="color:var(--txt3);">—</span>'}</td>`).join('')}
+        <td style="text-align:right;font-weight:700;">${p.total}</td>
+        <td><div style="background:rgba(255,255,255,.08);border-radius:4px;height:4px;"><div style="height:4px;border-radius:4px;width:${(p.total/max*100).toFixed(0)}%;background:#3B8BD4;"></div></div></td>
+        <td>${tend(p.q)}</td>
+      </tr>`).join('')}
+      <tr class="ft">
+        <td colspan="2">Total ítems nuevos</td>
+        ${NUE.map(d=>`<td style="text-align:right;">${d.nv}<div style="font-size:9px;font-weight:400;color:var(--txt2);">${(d.nv/d.items*100).toFixed(1)}%</div></td>`).join('')}
+        <td style="text-align:right;">${NUE.reduce((a,d)=>a+d.nv,0)}</td>
+        <td colspan="2"></td>
+      </tr>
+    </table>`;
+}
+
+// ── CONCLUSIONES WOW ─────────────────────────────────────────────────────────
+function buildConclusiones(){
+  const el=document.getElementById('panel-conclusiones');
+  const tktD15=DIAS[5].bruto/DIAS[5].txn, tktD22=DIAS[12].bruto/DIAS[12].txn;
+  const tktL16=DIAS[6].bruto/DIAS[6].txn, tktL23=DIAS[13].bruto/DIAS[13].txn;
+  const totalNV=NUE.reduce((a,d)=>a+d.nv,0), totalIt=NUE.reduce((a,d)=>a+d.items,0);
+  const tostadas=PRODS.find(p=>p.n==='Tostadas Francesas');
+  const ranchera=PRODS.find(p=>p.n==='Cacerola Ranchera');
+  const mango=PRODS.find(p=>p.n==='Mango Matcha');
+
+  el.innerHTML=`
+    <div style="margin-bottom:1rem;">
+      <div style="font-size:13px;color:var(--txt2);line-height:1.7;">
+        Lo que los datos de los primeros 15 días de marzo confirman.
+      </div>
+    </div>
+
+    <div class="ins insG">
+      <div class="it">El ticket bruto subió +${tktD}% por visita — de ₡${fmt(vTkt)} a ₡${fmt(nTkt)}</div>
+      <div class="ic">
+        Cada cliente que entra genera <strong>₡${fmt(nTkt-vTkt)} más</strong> en promedio con el menú nuevo vs el viejo.
+        Esto incluye el efecto combinado del nuevo menú y el ajuste de precios.
+        En 7 días eso representa <strong>₡${fmt(Math.round((nTkt-vTkt)*nT))}</strong> adicionales vs lo que hubiera generado al ticket anterior.
+      </div>
+    </div>
+
+    <div class="ins insG">
+      <div class="it">El domingo 22 rompió el récord del negocio — con 8 clientes menos</div>
+      <div class="ic">
+        Dom 22 (menú nuevo): <strong>₡${fmt(DIAS[12].bruto)}</strong> · ${DIAS[12].txn} clientes · ticket ₡${fmt(tktD22)}.<br>
+        Dom 15 (menú viejo): <strong>₡${fmt(DIAS[5].bruto)}</strong> · ${DIAS[5].txn} clientes · ticket ₡${fmt(tktD15)}.<br>
+        <strong>+${((DIAS[12].bruto-DIAS[5].bruto)/DIAS[5].bruto*100).toFixed(0)}% de bruto</strong> con menos gente adentro. Cada persona que entró ese domingo generó más.
+      </div>
+    </div>
+
+    <div class="ins insG">
+      <div class="it">El bruto promedio por día subió +${pdD}% con el menú nuevo</div>
+      <div class="ic">
+        Menú viejo: <strong>₡${fmt(vPD)}</strong> por día (8 días). Menú nuevo: <strong>₡${fmt(nPD)}</strong> por día (7 días).
+        Con un día menos de datos, el menú nuevo genera más por día en promedio.
+      </div>
+    </div>
+
+    <div class="ins insG">
+      <div class="it">Cocina pasó del 43% al 45.1% del bruto — la cocina gana peso en el negocio</div>
+      <div class="ic">
+        Con el menú viejo, cocina representaba el <strong>43.0%</strong> del bruto total (₡${fmt(VIE.reduce((a,d)=>a+d.cocB,0))}).
+        Con el menú nuevo subió a <strong>45.1%</strong> (₡${fmt(NUE.reduce((a,d)=>a+d.cocB,0))}).
+        Las cacerolas, waffles y tostadas están jalando más peso relativo dentro del negocio.
+      </div>
+    </div>
+
+    <div class="ins insG">
+      <div class="it">Tostadas Francesas y Cacerola Ranchera — los dos productos ancla del menú nuevo</div>
+      <div class="ic">
+        <strong>Tostadas Francesas</strong>: ${tostadas.total} unidades en 7 días, presencia todos los días, pico de 10 el sábado 21.<br>
+        <strong>Cacerola Ranchera</strong>: ${ranchera.total} unidades, cerró el Mar 24 con 6 unidades — acelerando al final de la semana.<br>
+        Son los dos productos con más consistencia y tracción del nuevo menú.
+      </div>
+    </div>
+
+    <div class="ins insG">
+      <div class="it">Mango Matcha — curva de adopción creciente en bebidas</div>
+      <div class="ic">
+        Arrancó lento los primeros días y cerró la semana con 3 y 2 unidades diarias.
+        Con <strong>${mango.total} unidades en 7 días</strong> es el producto nuevo de bebidas con más tracción real.
+      </div>
+    </div>`;
+}
+
+// ── TABS ─────────────────────────────────────────────────────────────────────
+const built={tendencia:false,categorias:false,comparativa:false,adopcion:false,productos:false,conclusiones:false};
+function sw(tab,el){
+  Object.keys(built).forEach(p=>document.getElementById('panel-'+p).style.display=p===tab?'':'none');
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  if(el)el.classList.add('active');
+  if(!built[tab]){
+    ({tendencia:buildTendencia,categorias:buildCategorias,comparativa:buildComparativa,adopcion:buildAdopcion,productos:buildProductos,conclusiones:buildConclusiones})[tab]();
+    built[tab]=true;
+  }
+}
+buildTendencia(); built.tendencia=true;
+</script>
+</body>
+</html>
