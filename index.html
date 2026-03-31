@@ -530,6 +530,7 @@ const DIAS=[
   {d:'Mié 25',dow:'Mié',v:false,txn:53,bruto:593399, neto:488529,items:144,bevU:70,cocU:65,filU:8, bevB:213116,cocB:249207,filB:24878,nv:35},
   {d:'Jue 26', dow:'Jue',v:false,txn:37,bruto:381332, neto:313296,items:95, bevU:45,cocU:39,filU:11,bevB:139684,cocB:140685,filB:32927,nv:22},
   {d:'Vie 27', dow:'Vie',v:false,txn:30,bruto:373217, neto:310848,items:91, bevU:53,cocU:35,filU:3, bevB:181695,cocB:123056,filB:6097, nv:25},
+  {d:'Sáb 28', dow:'Sáb',v:false,txn:86, bruto:1020122,neto:844991, items:249,bevU:125,cocU:110,filU:13,bevB:432616,cocB:375179,filB:37196},
   {d:'Dom 29', dow:'Dom',v:false,txn:98, bruto:1397226,neto:1151775,items:331,bevU:163,cocU:142,filU:26,bevB:515205,cocB:547871,filB:88699},
   {d:'Lun 30', dow:'Lun',v:false,txn:64, bruto:847486, neto:704007, items:204,bevU:106,cocU:89, filU:9, bevB:380061,cocB:295815,filB:28130},
 ];
@@ -561,6 +562,7 @@ const MES=[
   {d:'Mié 25', dow:'Mié', txn:53, bruto:593399, neto:488529},
   {d:'Jue 26', dow:'Jue', txn:37, bruto:381332, neto:313296},
   {d:'Vie 27', dow:'Vie', txn:30, bruto:373217, neto:310848},
+  {d:'Sáb 28', dow:'Sáb', txn:86, bruto:1020122, neto:844991},
   {d:'Dom 29', dow:'Dom', txn:98, bruto:1397226, neto:1151775},
   {d:'Lun 30', dow:'Lun', txn:64, bruto:847486, neto:704007},
 ];
@@ -637,7 +639,7 @@ const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:.9rem;">
       <div>
         <div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;">Presupuesto marzo 2026</div>
-        <div style="font-size:13px;color:var(--txt2);">${MES.length} días registrados al 30 de marzo · 2 días off (Mar 11, Mar 28)</div>
+        <div style="font-size:13px;color:var(--txt2);">${MES.length} días registrados al 30 de marzo · 1 día off (Mar 11)</div>
       </div>
       <div style="text-align:right;">
         <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;">Proyección neta basada en medianas reales</div>
