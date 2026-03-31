@@ -62,6 +62,408 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
 </style>
 </head>
 <body>
+
+<style>
+.nl-section{margin-bottom:1.8rem}
+.nl-title{font-size:10px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin:0 0 .6rem;display:flex;align-items:center;gap:8px}
+.nl-title::after{content:'';flex:1;height:.5px;background:var(--brd2)}
+
+/* FÓRMULA PRINCIPAL */
+.nl-formula{
+  display:flex;align-items:center;gap:0;
+  background:var(--bg2);border:.5px solid var(--brd2);
+  border-radius:var(--radL);overflow:hidden;margin-bottom:1rem;
+}
+.nl-f-block{
+  flex:1;padding:1rem 1.2rem;text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.nl-f-block.nl-f-ventas{background:rgba(29,158,117,.1);border-right:.5px solid rgba(29,158,117,.3)}
+.nl-f-block.nl-f-txn{background:rgba(59,139,212,.08);border-right:none}
+.nl-f-block.nl-f-ticket{background:rgba(239,159,39,.08)}
+.nl-f-op{font-size:22px;font-weight:300;color:var(--txt3);padding:0 .2rem;flex-shrink:0;align-self:center}
+.nl-f-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.nl-f-val{font-size:28px;font-weight:800;line-height:1}
+.nl-f-sub{font-size:11px;margin-top:4px}
+.nl-f-ventas .nl-f-label{color:var(--Gtxt)}
+.nl-f-ventas .nl-f-val{color:var(--Gtxt)}
+.nl-f-ventas .nl-f-sub{color:rgba(79,212,168,.6)}
+.nl-f-txn .nl-f-label{color:var(--Btxt)}
+.nl-f-txn .nl-f-val{color:var(--Btxt)}
+.nl-f-txn .nl-f-sub{color:rgba(125,184,232,.6)}
+.nl-f-ticket .nl-f-label{color:var(--Atxt)}
+.nl-f-ticket .nl-f-val{color:var(--Atxt)}
+.nl-f-ticket .nl-f-sub{color:rgba(245,192,106,.6)}
+
+/* STATUS strip */
+.nl-status{display:flex;gap:8px;margin-bottom:1.2rem;flex-wrap:wrap}
+.nl-status-item{
+  flex:1;min-width:160px;
+  background:var(--bg2);border-radius:var(--rad);
+  padding:.6rem 1rem;border:.5px solid var(--brd);
+  display:flex;align-items:center;gap:10px;
+}
+.nl-status-icon{font-size:18px;flex-shrink:0}
+.nl-status-body{}
+.nl-status-lbl{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em}
+.nl-status-val{font-size:13px;font-weight:700;margin-top:1px}
+.nl-status-sub{font-size:10px;color:var(--txt3);margin-top:1px}
+
+/* TABLA SEMANAL */
+.sw-wrap{overflow-x:auto}
+.sw-tbl{width:100%;font-size:12px;border-collapse:collapse;min-width:900px}
+.sw-tbl th{font-size:10px;font-weight:600;color:var(--txt2);text-align:left;padding:5px 8px 5px 0;border-bottom:.5px solid var(--brd2);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.sw-tbl td{padding:8px 8px 8px 0;border-bottom:.5px solid var(--brd);vertical-align:top}
+.sw-tbl tr:last-child td{border-bottom:none}
+.sw-week{font-weight:600;color:var(--txt);font-size:12px;white-space:nowrap}
+.sw-sub{font-size:10px;color:var(--txt3);margin-top:2px}
+.sw-val{font-weight:600;color:var(--txt);font-size:13px}
+.sw-chg{font-size:10px;margin-top:2px}
+.sw-up{color:var(--Gtxt)}.sw-dn{color:var(--Rtxt)}.sw-neu{color:var(--txt3)}
+.sw-ins{font-size:11px;color:var(--txt2);line-height:1.5;max-width:175px}
+.sw-ins strong{color:var(--txt);font-weight:600}
+.sw-act{font-size:11px;line-height:1.5;max-width:160px}
+.sw-res{font-size:11px;line-height:1.5;max-width:145px;color:var(--txt3)}
+.sw-res strong{color:var(--txt);font-weight:600}
+
+/* FOCO */
+.nl-foco{background:var(--bg2);border:.5px solid rgba(59,139,212,.35);border-radius:var(--radL);padding:1rem 1.2rem;display:flex;gap:1.2rem;align-items:flex-start;flex-wrap:wrap}
+.nl-foco-tag{background:var(--Bbg);color:var(--Btxt);font-size:10px;font-weight:700;padding:2px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;align-self:flex-start;margin-top:2px}
+.nl-foco-body{flex:1;min-width:200px}
+.nl-foco-title{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:4px}
+.nl-foco-desc{font-size:12px;color:var(--txt2);line-height:1.6}
+.nl-foco-desc strong{color:var(--txt)}
+.nl-foco-metas{margin-top:.6rem;display:flex;gap:8px;flex-wrap:wrap}
+.nl-meta{background:var(--bg3);border:.5px solid var(--brd);border-radius:var(--rad);padding:.4rem .8rem;font-size:11px;color:var(--txt2)}
+.nl-meta strong{color:var(--Btxt);font-weight:700}
+.nl-meta-open{border-color:rgba(226,75,74,.4)!important;background:rgba(226,75,74,.08)!important}
+.nl-meta-open strong{color:var(--Rtxt)!important}
+
+/* BADGES */
+.nl-bG{background:var(--Gbg);color:var(--Gtxt)}
+.nl-bR{background:var(--Rbg);color:var(--Rtxt)}
+.nl-bB{background:var(--Bbg);color:var(--Btxt)}
+.nl-bA{background:var(--Abg);color:var(--Atxt)}
+.nl-badge{display:inline-flex;align-items:center;font-size:10px;padding:2px 7px;border-radius:20px;font-weight:600;white-space:nowrap}
+
+.nl-disclaimer{font-size:11px;color:var(--txt3);background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--rad);padding:.55rem .9rem;margin-bottom:1rem;line-height:1.6}
+.nl-disclaimer strong{color:var(--txt2)}
+.nl-divider{height:1px;background:var(--brd2);margin:2rem 0 1.6rem;position:relative}
+.nl-divider::before{content:'· REPORTE MENSUAL DETALLADO ·';position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 10px;font-size:9px;font-weight:700;color:var(--txt3);letter-spacing:.07em;white-space:nowrap}
+@media(max-width:640px){.nl-formula{flex-direction:column}.nl-f-op{transform:rotate(90deg)}.nl-status{flex-direction:column}}
+</style>
+
+<div class="nl-section">
+
+  <!-- ENCABEZADO -->
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:1.1rem;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:var(--txt);">Libertario Coffee Roasters</div>
+      <div style="font-size:12px;color:var(--txt2);margin-top:2px;">Panel de decisión &middot; Semana 30 mar &ndash; 5 abr 2026</div>
+    </div>
+    <span class="nl-badge nl-bG">Menú nuevo activo</span>
+  </div>
+
+  <!-- FÓRMULA CENTRAL -->
+  <div class="nl-title">La fórmula del negocio</div>
+  <div class="nl-formula">
+    <div class="nl-f-block nl-f-ventas">
+      <div class="nl-f-label">Ventas netas</div>
+      <div class="nl-f-val">₡12.3M</div>
+      <div class="nl-f-sub">marzo al 27 &middot; 18 días</div>
+    </div>
+    <div class="nl-f-op">=</div>
+    <div class="nl-f-block nl-f-txn">
+      <div class="nl-f-label">Transacciones</div>
+      <div class="nl-f-val">994</div>
+      <div class="nl-f-sub">órdenes POS &middot; el número más importante</div>
+    </div>
+    <div class="nl-f-op">&times;</div>
+    <div class="nl-f-block nl-f-ticket">
+      <div class="nl-f-label">Ticket promedio</div>
+      <div class="nl-f-val">₡12,374</div>
+      <div class="nl-f-sub">2.7 ítems por orden &middot; ya subió ✔</div>
+    </div>
+  </div>
+
+  <!-- STATUS: qué está resuelto y qué hay que trabajar -->
+  <div class="nl-status">
+    <div class="nl-status-item" style="border-color:rgba(29,158,117,.35);background:rgba(29,158,117,.06);">
+      <div class="nl-status-icon">&#10003;</div>
+      <div class="nl-status-body">
+        <div class="nl-status-lbl" style="color:var(--Gtxt)">Ticket &mdash; resuelto</div>
+        <div class="nl-status-val" style="color:var(--Gtxt)">₡12,374 promedio</div>
+        <div class="nl-status-sub">Subió +23% con el nuevo menú. Mantener.</div>
+      </div>
+    </div>
+    <div class="nl-status-item" style="border-color:rgba(59,139,212,.4);background:rgba(59,139,212,.07);">
+      <div class="nl-status-icon">&#8594;</div>
+      <div class="nl-status-body">
+        <div class="nl-status-lbl" style="color:var(--Btxt)">Transacciones &mdash; el foco ahora</div>
+        <div class="nl-status-val" style="color:var(--Btxt)">55 por día promedio</div>
+        <div class="nl-status-sub">Más transacciones = más ventas. Acá está la palanca.</div>
+      </div>
+    </div>
+    <div class="nl-status-item" style="border-color:rgba(226,75,74,.3);background:rgba(226,75,74,.05);">
+      <div class="nl-status-icon">&#63;</div>
+      <div class="nl-status-body">
+        <div class="nl-status-lbl" style="color:var(--Rtxt)">Viernes 27 &mdash; investigar</div>
+        <div class="nl-status-val" style="color:var(--Rtxt)">30 txn (&minus;41%)</div>
+        <div class="nl-status-sub">Causa desconocida. Monitorear viernes 3 abr.</div>
+      </div>
+    </div>
+    <div class="nl-status-item">
+      <div class="nl-status-icon">&#8635;</div>
+      <div class="nl-status-body">
+        <div class="nl-status-lbl">Recurrencia</div>
+        <div class="nl-status-val">41.5% retornan</div>
+        <div class="nl-status-sub">Más recurrencia = más transacciones. Meta: 45%.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTA METODOLÓGICA -->
+  <div class="nl-disclaimer">
+    <strong>Sobre los datos:</strong> Transacciones POS = el dato más confiable. WiFi (Fiweex) = tendencia de tráfico, no conteo exacto &mdash; no todos los clientes se conectan al WiFi. Usalo para ver si el tráfico sube o baja semana a semana.
+  </div>
+
+  <!-- TABLA SEMANAL -->
+  <div class="nl-title">Semana a Semana &middot; Dato &rarr; Acción &rarr; Resultado</div>
+  <div class="sw-wrap">
+    <table class="sw-tbl">
+      <thead>
+        <tr>
+          <th>Semana</th>
+          <th>Transacciones<br><span style="font-weight:400;color:var(--txt3)">la palanca</span></th>
+          <th>Ticket prom.<br><span style="font-weight:400;color:var(--txt3)">₡ neto</span></th>
+          <th>Ítems/<br>Ticket</th>
+          <th>WiFi<br><span style="font-weight:400;color:var(--txt3)">tendencia</span></th>
+          <th>Recurrentes<br><span style="font-weight:400;color:var(--txt3)">Fiweex</span></th>
+          <th>Insight</th>
+          <th>Acción</th>
+          <th style="color:var(--Gtxt)">Resultado<br><span style="font-weight:400;color:var(--txt3)">¿funcionó?</span></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- SEM 1 -->
+        <tr>
+          <td>
+            <div class="sw-week">Mar 9&ndash;15</div>
+            <div class="sw-sub">Menú anterior &middot; 6 días</div>
+          </td>
+          <td>
+            <div class="sw-val">343</div>
+            <div class="sw-chg sw-neu">&mdash; base &middot; 57/día</div>
+          </td>
+          <td>
+            <div class="sw-val">₡7,940</div>
+            <div class="sw-chg sw-neu">&mdash; base</div>
+          </td>
+          <td>
+            <div class="sw-val">2.6</div>
+            <div class="sw-chg sw-neu">&mdash; base</div>
+          </td>
+          <td>
+            <div class="sw-val">~135</div>
+            <div class="sw-chg sw-neu">estimado</div>
+          </td>
+          <td>
+            <div class="sw-val">~35%</div>
+            <div class="sw-chg sw-neu">estimado</div>
+          </td>
+          <td class="sw-ins">
+            <strong>Línea de base.</strong> Sáb+Dom = 55% de ventas (189 txn). Días entre semana más débiles.
+          </td>
+          <td class="sw-act">
+            <span class="nl-badge nl-bB" style="margin-bottom:4px;">Completada</span><br>
+            Lanzar nuevo menú el mié 18 para subir ticket.
+          </td>
+          <td class="sw-res">
+            <span class="nl-badge nl-bG" style="margin-bottom:4px;">Funcionó</span><br>
+            <strong>Ticket +23%</strong> la semana siguiente. Ítems/ticket subió a 2.8.
+          </td>
+        </tr>
+
+        <!-- SEM 2 -->
+        <tr>
+          <td>
+            <div class="sw-week">Mar 16&ndash;22</div>
+            <div class="sw-sub">Sem 1 menú nuevo &middot; 7 días</div>
+          </td>
+          <td>
+            <div class="sw-val">367</div>
+            <div class="sw-chg sw-up">&#8593; +7% vs sem ant. &middot; 52/día</div>
+          </td>
+          <td>
+            <div class="sw-val">₡9,748</div>
+            <div class="sw-chg sw-up">&#8593; +23% vs sem ant.</div>
+          </td>
+          <td>
+            <div class="sw-val">2.8</div>
+            <div class="sw-chg sw-up">&#8593; +9% vs sem ant.</div>
+          </td>
+          <td>
+            <div class="sw-val">154</div>
+            <div class="sw-chg sw-up">&#8593; +14%</div>
+          </td>
+          <td>
+            <div class="sw-val">~35%</div>
+            <div class="sw-chg sw-neu">&asymp; igual</div>
+          </td>
+          <td class="sw-ins">
+            <strong>El menú funcionó.</strong> Ticket subió pero las transacciones entre semana aún débiles. Dom 22: 83 txn, mejor día del mes.
+          </td>
+          <td class="sw-act">
+            <span class="nl-badge nl-bA" style="margin-bottom:4px;">En tienda</span><br>
+            Sugerencias y combos en mostrador. Meta ítems/ticket: 3.0.
+          </td>
+          <td class="sw-res">
+            <span class="nl-badge" style="background:rgba(255,255,255,.08);color:var(--txt3);margin-bottom:4px;">Pendiente</span><br>
+            ¿Llegaron a 3.0 ítems/ticket? Verificar al cerrar sem 3 con POS.
+          </td>
+        </tr>
+
+        <!-- SEM 3 -->
+        <tr style="background:rgba(255,255,255,.018);">
+          <td>
+            <div class="sw-week">Mar 23&ndash;29</div>
+            <div class="sw-sub">Sem 2 menú nuevo &middot; 5 días POS*</div>
+          </td>
+          <td>
+            <div class="sw-val">235 *</div>
+            <div class="sw-chg sw-neu">sin Sáb/Dom POS &middot; 47/día</div>
+          </td>
+          <td>
+            <div class="sw-val">₡8,932</div>
+            <div class="sw-chg sw-dn">&#8595; &minus;8% (parcial)</div>
+          </td>
+          <td>
+            <div class="sw-val">2.8</div>
+            <div class="sw-chg sw-neu">&rarr; igual</div>
+          </td>
+          <td>
+            <div class="sw-val">140</div>
+            <div class="sw-chg sw-dn">&#8595; &minus;9%</div>
+          </td>
+          <td>
+            <div class="sw-val">41.5%</div>
+            <div class="sw-chg sw-up">&#8593; +6.5pp &mdash; buena señal</div>
+          </td>
+          <td class="sw-ins">
+            <strong>Vie 27 cayó fuerte:</strong> 30 txn y 8 WiFi (&minus;41% vs Vie 20). No es un insight &mdash; es una pregunta sin respuesta todavía.
+          </td>
+          <td class="sw-act">
+            <span class="nl-badge nl-bR" style="margin-bottom:4px;">Investigar</span><br>
+            ¿Menos gente en la zona? ¿Operación? ¿Staff? Hablar con equipo.
+          </td>
+          <td class="sw-res">
+            <span class="nl-badge nl-bR" style="margin-bottom:4px;">Abierto</span><br>
+            Causa sin confirmar. Observar <strong>viernes 3 abr</strong> para comparar.
+          </td>
+        </tr>
+
+        <!-- SEM 4: HOY -->
+        <tr style="background:rgba(59,139,212,.05);outline:.5px solid rgba(59,139,212,.25);outline-offset:-1px;">
+          <td>
+            <div class="sw-week" style="color:var(--Btxt);">Mar 30 &ndash; Abr 5</div>
+            <div class="sw-sub" style="color:var(--Btxt);opacity:.7;">HOY &middot; En curso (día 1)</div>
+          </td>
+          <td>
+            <div class="sw-val">&mdash;</div>
+            <div class="sw-chg sw-neu">pendiente POS hoy</div>
+          </td>
+          <td>
+            <div class="sw-val">&mdash;</div>
+            <div class="sw-chg sw-neu">pendiente</div>
+          </td>
+          <td>
+            <div class="sw-val">&mdash;</div>
+            <div class="sw-chg sw-neu">pendiente</div>
+          </td>
+          <td>
+            <div class="sw-val">31</div>
+            <div class="sw-chg sw-up">&#8593; +24% vs lun 23</div>
+          </td>
+          <td>
+            <div class="sw-val">38.7%</div>
+            <div class="sw-chg sw-neu">12 de 31 ya retornaron</div>
+          </td>
+          <td class="sw-ins">
+            <strong>Lunes arrancó bien.</strong> 31 WiFi, mejor que lun 23. La recurrencia sigue activa. Resta ver txn del POS.
+          </td>
+          <td class="sw-act">
+            <span class="nl-badge nl-bG" style="margin-bottom:4px;">Ejecutar</span><br>
+            1. Equipo invita a volver en caja.<br>
+            2. Fidelidad activa.<br>
+            3. Monitorear vie 3 abr.
+          </td>
+          <td class="sw-res">
+            <span class="nl-badge" style="background:rgba(255,255,255,.08);color:var(--txt3);margin-bottom:4px;">Sem que viene</span><br>
+            Medir: ¿Txn subió? ¿Recurrentes llegaron al 45%? ¿Qué pasó el viernes?
+          </td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="9" style="padding-top:8px;font-size:10px;color:var(--txt3);border-top:.5px solid var(--brd2);">
+            * Sem 3 sin datos POS de Sáb 28 y Dom 29 &rarr; ticket y txn subestimados. WiFi = tendencia de tráfico, no conteo exacto de personas.
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- FOCO DE LA SEMANA -->
+  <div class="nl-title" style="margin-top:1.4rem;">Foco esta semana &middot; 30 Mar &ndash; 5 Abr</div>
+  <div class="nl-foco">
+    <div class="nl-foco-tag">Transacciones</div>
+    <div class="nl-foco-body">
+      <div class="nl-foco-title">Subir la cantidad de órdenes por día</div>
+      <div class="nl-foco-desc">
+        El ticket ya subió &mdash; esa parte está hecha. La palanca ahora es <strong>cuántas veces compra la gente</strong>.
+        Más recurrencia = más transacciones. Más transacciones = más ventas. Así de simple.
+        <br><br>
+        <strong>En práctica esta semana:</strong> el equipo invita a volver en cada caja, activás el programa de fidelidad,
+        y el viernes 3 de abril lo mirás con lupa para entender si el problema del 27 se repite o fue puntual.
+      </div>
+      <div class="nl-foco-metas">
+        <div class="nl-meta">Meta txn/día: <strong>&ge; 60</strong></div>
+        <div class="nl-meta">Meta recurrentes: <strong>&ge; 45%</strong></div>
+        <div class="nl-meta">Mantener ticket: <strong>&ge; ₡9,500</strong></div>
+        <div class="nl-meta nl-meta-open">Abierto: <strong>causa Vie 27</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="nl-title" style="margin-top:1.4rem;">Un foco por semana &middot; Abril 2026</div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;">
+    <div style="background:rgba(59,139,212,.12);border:.5px solid rgba(59,139,212,.35);border-radius:var(--rad);padding:.75rem 1rem;">
+      <div style="font-size:10px;font-weight:700;color:var(--Btxt);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Sem 1 &middot; 30 Mar &larr; HOY</div>
+      <div style="font-size:13px;font-weight:700;color:var(--txt);">Transacciones</div>
+      <div style="font-size:11px;color:var(--txt2);margin-top:4px;">Fidelidad en tienda. Recurrencia &rarr; más órdenes.</div>
+    </div>
+    <div style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--rad);padding:.75rem 1rem;">
+      <div style="font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Sem 2 &middot; 6 Abr</div>
+      <div style="font-size:13px;font-weight:700;color:var(--txt);">Ítems/Ticket</div>
+      <div style="font-size:11px;color:var(--txt2);margin-top:4px;">Combos y sugerencias. Meta: 3.0 ítems.</div>
+    </div>
+    <div style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--rad);padding:.75rem 1rem;">
+      <div style="font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Sem 3 &middot; 13 Abr</div>
+      <div style="font-size:13px;font-weight:700;color:var(--txt);">Días entre semana</div>
+      <div style="font-size:11px;color:var(--txt2);margin-top:4px;">Subir lunes&ndash;jueves. Hoy son los más débiles.</div>
+    </div>
+    <div style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--rad);padding:.75rem 1rem;">
+      <div style="font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Sem 4 &middot; 20 Abr</div>
+      <div style="font-size:13px;font-weight:700;color:var(--txt);">Revisión</div>
+      <div style="font-size:11px;color:var(--txt2);margin-top:4px;">¿Qué movi&oacute; la aguja? Ajustar para mayo.</div>
+    </div>
+  </div>
+
+</div>
+<div class="nl-divider"></div>
 <h1>Libertario Coffee Roasters</h1>
 <p class="sub">Análisis operativo · Marzo 2026 · Nuevo menú lanzado el miércoles 18 de marzo</p>
 <div class="kgrid" id="kg"></div>
@@ -98,27 +500,27 @@ const fk=n=>'₡'+fmt(Math.round(n/1000))+'k';
 // neto  = Tax excluded base (lo tuyo)
 // Nota: algunos días tienen ítems "Not Categorized" (Cajas Mágicas) que van en neto pero no en bev/coc/fil
 const DIAS=[
-  {d:'Lun 9', dow:'Lun',v:true, txn:41,bruto:364320, neto:301807,items:96, bevU:56,cocU:39,filU:1, bevB:107073,cocB:123919,filB:1789, retB:69027},
-  {d:'Mar 10',dow:'Mar',v:true, txn:24,bruto:170700, neto:139644,items:56, bevU:38,cocU:17,filU:1, bevB:78374, cocB:48862, filB:1789, retB:10619},
-  {d:'Jue 12',dow:'Jue',v:true, txn:39,bruto:382600, neto:319576,items:88, bevU:51,cocU:27,filU:10,bevB:84959, cocB:96748, filB:33090,retB:104779},
-  {d:'Vie 13',dow:'Vie',v:true, txn:50,bruto:490360, neto:403084,items:126,bevU:69,cocU:49,filU:8, bevB:120613,cocB:187366,filB:24309,retB:70796},
-  {d:'Sáb 14',dow:'Sáb',v:true, txn:98,bruto:982035, neto:808007,items:264,bevU:131,cocU:116,filU:17,bevB:252277,cocB:394012,filB:43577,retB:118141},
-  {d:'Dom 15',dow:'Dom',v:true, txn:91,bruto:913222, neto:751618,items:249,bevU:124,cocU:111,filU:14,bevB:239025,cocB:363268,filB:41626,retB:107699},
-  {d:'Lun 16',dow:'Lun',v:true, txn:68,bruto:726975, neto:599181,items:185,bevU:109,cocU:66,filU:9, bevB:230813,cocB:238760,filB:29460,retB:100177},
-  {d:'Mar 17',dow:'Mar',v:true, txn:41,bruto:474200, neto:395169,items:115,bevU:65,cocU:38,filU:7, bevB:118374,cocB:142764,filB:15447,retB:111947},
-  {d:'Mié 18',dow:'Mié',v:false,txn:35,bruto:527600, neto:439534,items:112,bevU:54,cocU:53,filU:5, bevB:90338, cocB:200720,filB:18211,retB:130265,nv:32},
-  {d:'Jue 19',dow:'Jue',v:false,txn:29,bruto:331404, neto:271700,items:92, bevU:50,cocU:38,filU:4, bevB:105163,cocB:128255,filB:10407,retB:27876, nv:23},
-  {d:'Vie 20',dow:'Vie',v:false,txn:51,bruto:521451, neto:431722,items:124,bevU:68,cocU:51,filU:5, bevB:136341,cocB:187034,filB:12683,retB:95664, nv:27},
-  {d:'Sáb 21',dow:'Sáb',v:false,txn:61,bruto:709643, neto:582216,items:176,bevU:87,cocU:78,filU:10,bevB:190703,cocB:299533,filB:31626,retB:59027, nv:47},
-  {d:'Dom 22',dow:'Dom',v:false,txn:83,bruto:1038342,neto:863329,items:238,bevU:141,cocU:88,filU:9, bevB:275366,cocB:333650,filB:25260,retB:229053,nv:39},
-  {d:'Lun 23',dow:'Lun',v:false,txn:55,bruto:705330, neto:585163,items:167,bevU:102,cocU:60,filU:2, bevB:192667,cocB:238374,filB:5447, retB:141947,nv:28},
-  {d:'Mar 24',dow:'Mar',v:false,txn:60,bruto:613883, neto:502289,items:161,bevU:84,cocU:71,filU:6, bevB:176659,cocB:269457,filB:17235,retB:38938, nv:25},
-  {d:'Mié 25',dow:'Mié',v:false,txn:53,bruto:593399, neto:488529,items:144,bevU:70,cocU:65,filU:8, bevB:141789,cocB:249207,filB:24878,retB:71327, nv:35},
-  {d:'Jue 26', dow:'Jue',v:false,txn:37,bruto:381332, neto:313296,items:95, bevU:45,cocU:39,filU:11,bevB:99472, cocB:140685,filB:32927,retB:40213, nv:22},
-  {d:'Vie 27', dow:'Vie',v:false,txn:30,bruto:373217, neto:310848,items:91, bevU:53,cocU:35,filU:3, bevB:93253, cocB:123056,filB:6097, retB:88443, nv:25},
+  {d:'Lun 9', dow:'Lun',v:true, txn:41,bruto:364320, neto:301807,items:96, bevU:56,cocU:39,filU:1, bevB:176100,cocB:123919,filB:1789},
+  {d:'Mar 10',dow:'Mar',v:true, txn:24,bruto:170700, neto:139644,items:56, bevU:38,cocU:17,filU:1, bevB:88993, cocB:48862, filB:1789},
+  {d:'Jue 12',dow:'Jue',v:true, txn:39,bruto:382600, neto:319576,items:88, bevU:51,cocU:27,filU:10,bevB:189738,cocB:96748, filB:33090},
+  {d:'Vie 13',dow:'Vie',v:true, txn:50,bruto:490360, neto:403084,items:126,bevU:69,cocU:49,filU:8, bevB:191409,cocB:187366,filB:24309},
+  {d:'Sáb 14',dow:'Sáb',v:true, txn:98,bruto:982035, neto:808007,items:264,bevU:131,cocU:116,filU:17,bevB:370418,cocB:394012,filB:43577},
+  {d:'Dom 15',dow:'Dom',v:true, txn:91,bruto:913222, neto:751618,items:249,bevU:124,cocU:111,filU:14,bevB:346724,cocB:363268,filB:41626},
+  {d:'Lun 16',dow:'Lun',v:true, txn:68,bruto:726975, neto:599181,items:185,bevU:109,cocU:66,filU:9, bevB:330990,cocB:238760,filB:29460},
+  {d:'Mar 17',dow:'Mar',v:true, txn:41,bruto:474200, neto:395169,items:115,bevU:65,cocU:38,filU:7, bevB:230321,cocB:142764,filB:15447},
+  {d:'Mié 18',dow:'Mié',v:false,txn:35,bruto:527600, neto:439534,items:112,bevU:54,cocU:53,filU:5, bevB:220603,cocB:200720,filB:18211,nv:32},
+  {d:'Jue 19',dow:'Jue',v:false,txn:29,bruto:331404, neto:271700,items:92, bevU:50,cocU:38,filU:4, bevB:133039,cocB:128255,filB:10407,nv:23},
+  {d:'Vie 20',dow:'Vie',v:false,txn:51,bruto:521451, neto:431722,items:124,bevU:68,cocU:51,filU:5, bevB:232005,cocB:187034,filB:12683,nv:27},
+  {d:'Sáb 21',dow:'Sáb',v:false,txn:60,bruto:703343, neto:577094,items:174,bevU:87,cocU:77,filU:9, bevB:249730,cocB:296687,filB:29350,nv:47},
+  {d:'Dom 22',dow:'Dom',v:false,txn:83,bruto:1038342,neto:863329,items:238,bevU:141,cocU:88,filU:9, bevB:504419,cocB:333650,filB:25260,nv:39},
+  {d:'Lun 23',dow:'Lun',v:false,txn:55,bruto:705330, neto:585163,items:167,bevU:102,cocU:60,filU:2, bevB:334614,cocB:238374,filB:5447,nv:28},
+  {d:'Mar 24',dow:'Mar',v:false,txn:60,bruto:613883, neto:502289,items:161,bevU:84,cocU:71,filU:6, bevB:215597,cocB:269457,filB:17235,nv:25},
+  {d:'Mié 25',dow:'Mié',v:false,txn:53,bruto:593399, neto:488529,items:144,bevU:70,cocU:65,filU:8, bevB:213116,cocB:249207,filB:24878,nv:35},
+  {d:'Jue 26', dow:'Jue',v:false,txn:37,bruto:381332, neto:313296,items:95, bevU:45,cocU:39,filU:11,bevB:139684,cocB:140685,filB:32927,nv:22},
+  {d:'Vie 27', dow:'Vie',v:false,txn:30,bruto:373217, neto:310848,items:91, bevU:53,cocU:35,filU:3, bevB:181695,cocB:123056,filB:6097, nv:25},
 ];
 
-// Productos nuevos con ventas reales (10 días menú nuevo)
+// Productos nuevos con ventas reales (7 días menú nuevo)
 const PRODS=[
   {n:'Tostadas Francesas',           c:'Cocina', q:[1,2,2,10,2,1,5,3,3,2]},
   {n:'Cacerola Huevos Cremosos',     c:'Cocina', q:[4,1,3,4,2,5,2,2,5,0]},
@@ -306,62 +708,61 @@ function buildTendencia(){
 // ── CATEGORÍAS ───────────────────────────────────────────────────────────────
 function buildCategorias(){
   const el=document.getElementById('panel-categorias');
-  const vbev=VIE.reduce((a,d)=>a+d.bevB,0),vcoc=VIE.reduce((a,d)=>a+d.cocB,0),vfil=VIE.reduce((a,d)=>a+d.filB,0),vret=VIE.reduce((a,d)=>a+d.retB,0);
-  const nbev=NUE.reduce((a,d)=>a+d.bevB,0),ncoc=NUE.reduce((a,d)=>a+d.cocB,0),nfil=NUE.reduce((a,d)=>a+d.filB,0),nret=NUE.reduce((a,d)=>a+d.retB,0);
-  const vT2=vbev+vcoc+vfil+vret, nT2=nbev+ncoc+nfil+nret;
+  const vbev=VIE.reduce((a,d)=>a+d.bevB,0),vcoc=VIE.reduce((a,d)=>a+d.cocB,0),vfil=VIE.reduce((a,d)=>a+d.filB,0);
+  const nbev=NUE.reduce((a,d)=>a+d.bevB,0),ncoc=NUE.reduce((a,d)=>a+d.cocB,0),nfil=NUE.reduce((a,d)=>a+d.filB,0);
+  const vT2=vbev+vcoc+vfil, nT2=nbev+ncoc+nfil;
   const chg=(a,b)=>{const p=((b-a)/a*100).toFixed(0);return `<span class="badge ${b>a?'bG':'bR'}">${p>0?'+':''}${p}%</span>`;};
-  const totB=vbev+nbev,totC=vcoc+ncoc,totF=vfil+nfil,totR=vret+nret,gran=totB+totC+totF+totR;
-  const CR='#9B6DCA',CRbg='rgba(155,109,202,.15)',CRtxt='#c49ee6';
+  const totB=vbev+nbev,totC=vcoc+ncoc,totF=vfil+nfil,gran=totB+totC+totF;
 
   el.innerHTML=`
-    <div class="nota">Bebidas = bebidas calientes, frías y especiales. Cocina = platos, postres y snacks. Filtrado = filtrados preparados. <strong>Retail/Bolsas</strong> = bolsas de café y kits para llevar — antes estaban dentro de Bebidas.</div>
+    <div class="nota">Bebidas incluye todas las bebidas calientes, frías y especiales. Cocina incluye todos los platos, postres y snacks. Filtrado/Retail incluye filtrados preparados y bolsas de café para llevar.</div>
     <div class="g2" style="margin-bottom:1.2rem;">
       <div>
         <div class="sec" style="margin-top:0">Mix de ingresos — 18 días totales</div>
-        <div class="cw" style="height:210px;"><canvas id="c-donut"></canvas></div>
+        <div class="cw" style="height:200px;"><canvas id="c-donut"></canvas></div>
       </div>
       <div>
-        <div class="sec" style="margin-top:0">Bruto neto por categoría — día a día</div>
-        <div class="cw" style="height:210px;"><canvas id="c-cat"></canvas></div>
+        <div class="sec" style="margin-top:0">Ítems vendidos por categoría — día a día</div>
+        <div class="cw" style="height:200px;"><canvas id="c-cat"></canvas></div>
       </div>
     </div>
 
-    <div class="sec">Menú viejo · 9–17 Mar · 8 días</div>
+    <div class="sec">Menú viejo · 9–17 Mar · 8 días (Mar 11 = día de capacitación)</div>
     <table class="tbl" style="margin-bottom:1.4rem;">
-      <tr><th>Categoría</th>${VIE.map(d=>`<th style="text-align:right;font-size:9px;">${d.d}</th>`).join('')}<th style="text-align:right">Bruto total</th><th style="text-align:right">% del período</th></tr>
-      ${[{l:'Bebidas',c:'#3B8BD4',b:VIE.map(d=>d.bevB),tB:vbev},
-         {l:'Cocina', c:'#1D9E75',b:VIE.map(d=>d.cocB),tB:vcoc},
-         {l:'Filtrado',c:'#EF9F27',b:VIE.map(d=>d.filB),tB:vfil},
-         {l:'Retail/Bolsas',c:CR,    b:VIE.map(d=>d.retB),tB:vret},
+      <tr><th>Categoría</th>${VIE.map(d=>`<th style="text-align:right;font-size:9px;">${d.d}</th>`).join('')}<th style="text-align:right">Total uds</th><th style="text-align:right">Bruto total</th><th style="text-align:right">% del período</th></tr>
+      ${[{l:'Bebidas',c:'#3B8BD4',u:VIE.map(d=>d.bevU),b:VIE.map(d=>d.bevB),tU:VIE.reduce((a,d)=>a+d.bevU,0),tB:vbev},
+         {l:'Cocina', c:'#1D9E75',u:VIE.map(d=>d.cocU),b:VIE.map(d=>d.cocB),tU:VIE.reduce((a,d)=>a+d.cocU,0),tB:vcoc},
+         {l:'Filtrado/Retail',c:'#EF9F27',u:VIE.map(d=>d.filU),b:VIE.map(d=>d.filB),tU:VIE.reduce((a,d)=>a+d.filU,0),tB:vfil},
       ].map(r=>`<tr>
         <td><span class="dot" style="background:${r.c}"></span><strong>${r.l}</strong></td>
-        ${r.b.map(v=>`<td style="text-align:right;font-size:11px;">${fk(v)}</td>`).join('')}
+        ${r.u.map((u,i)=>`<td style="text-align:right"><div style="font-weight:500;">${u}</div><div style="font-size:10px;color:var(--txt2);">${fk(r.b[i])}</div></td>`).join('')}
+        <td style="text-align:right;font-weight:600;">${r.tU}</td>
         <td style="text-align:right;font-weight:600;">₡${fmt(r.tB)}</td>
         <td style="text-align:right;">${(r.tB/vT2*100).toFixed(1)}%</td>
       </tr>`).join('')}
-      <tr class="ft"><td>Total</td>${VIE.map(d=>`<td style="text-align:right;font-size:11px;">${fk(d.neto)}</td>`).join('')}<td style="text-align:right">₡${fmt(vT2)}</td><td style="text-align:right">100%</td></tr>
+      <tr class="ft"><td>Total</td>${VIE.map(d=>`<td style="text-align:right"><div>${d.items}</div><div style="font-size:10px;color:var(--txt2);">${fk(d.bruto)}</div></td>`).join('')}<td style="text-align:right">${VIE.reduce((a,d)=>a+d.items,0)}</td><td style="text-align:right">₡${fmt(vT2)}</td><td style="text-align:right">100%</td></tr>
     </table>
 
     <div class="sec">Menú nuevo · 18–27 Mar · 10 días</div>
     <table class="tbl" style="margin-bottom:1.4rem;">
-      <tr><th>Categoría</th>${NUE.map(d=>`<th style="text-align:right;font-size:9px;">${d.d}</th>`).join('')}<th style="text-align:right">Bruto total</th><th style="text-align:right">% del período</th></tr>
-      ${[{l:'Bebidas',c:'#3B8BD4',b:NUE.map(d=>d.bevB),tB:nbev},
-         {l:'Cocina', c:'#1D9E75',b:NUE.map(d=>d.cocB),tB:ncoc},
-         {l:'Filtrado',c:'#EF9F27',b:NUE.map(d=>d.filB),tB:nfil},
-         {l:'Retail/Bolsas',c:CR,    b:NUE.map(d=>d.retB),tB:nret},
+      <tr><th>Categoría</th>${NUE.map(d=>`<th style="text-align:right;font-size:9px;">${d.d}</th>`).join('')}<th style="text-align:right">Total uds</th><th style="text-align:right">Bruto total</th><th style="text-align:right">% del período</th></tr>
+      ${[{l:'Bebidas',c:'#3B8BD4',u:NUE.map(d=>d.bevU),b:NUE.map(d=>d.bevB),tU:NUE.reduce((a,d)=>a+d.bevU,0),tB:nbev},
+         {l:'Cocina', c:'#1D9E75',u:NUE.map(d=>d.cocU),b:NUE.map(d=>d.cocB),tU:NUE.reduce((a,d)=>a+d.cocU,0),tB:ncoc},
+         {l:'Filtrado/Retail',c:'#EF9F27',u:NUE.map(d=>d.filU),b:NUE.map(d=>d.filB),tU:NUE.reduce((a,d)=>a+d.filU,0),tB:nfil},
       ].map(r=>`<tr>
         <td><span class="dot" style="background:${r.c}"></span><strong>${r.l}</strong></td>
-        ${r.b.map(v=>`<td style="text-align:right;font-size:11px;">${fk(v)}</td>`).join('')}
+        ${r.u.map((u,i)=>`<td style="text-align:right"><div style="font-weight:500;">${u}</div><div style="font-size:10px;color:var(--txt2);">${fk(r.b[i])}</div></td>`).join('')}
+        <td style="text-align:right;font-weight:600;">${r.tU}</td>
         <td style="text-align:right;font-weight:600;">₡${fmt(r.tB)}</td>
         <td style="text-align:right;">${(r.tB/nT2*100).toFixed(1)}%</td>
       </tr>`).join('')}
-      <tr class="ft"><td>Total</td>${NUE.map(d=>`<td style="text-align:right;font-size:11px;">${fk(d.neto)}</td>`).join('')}<td style="text-align:right">₡${fmt(nT2)}</td><td style="text-align:right">100%</td></tr>
+      <tr class="ft"><td>Total</td>${NUE.map(d=>`<td style="text-align:right"><div>${d.items}</div><div style="font-size:10px;color:var(--txt2);">${fk(d.bruto)}</div></td>`).join('')}<td style="text-align:right">${NUE.reduce((a,d)=>a+d.items,0)}</td><td style="text-align:right">₡${fmt(nT2)}</td><td style="text-align:right">100%</td></tr>
     </table>
 
     <div class="sec">Cambio entre menús — bruto promedio por día por categoría</div>
     <table class="tbl">
       <tr><th>Categoría</th><th style="text-align:right">Bruto/día — menú viejo</th><th style="text-align:right">Bruto/día — menú nuevo</th><th style="text-align:right">Cambio</th><th style="text-align:right">Mix viejo</th><th style="text-align:right">Mix nuevo</th></tr>
-      ${[{l:'Bebidas',c:'#3B8BD4',vB2:vbev,nB2:nbev},{l:'Cocina',c:'#1D9E75',vB2:vcoc,nB2:ncoc},{l:'Filtrado',c:'#EF9F27',vB2:vfil,nB2:nfil},{l:'Retail/Bolsas',c:CR,vB2:vret,nB2:nret}].map(r=>`<tr>
+      ${[{l:'Bebidas',c:'#3B8BD4',vB2:vbev,nB2:nbev},{l:'Cocina',c:'#1D9E75',vB2:vcoc,nB2:ncoc},{l:'Filtrado/Retail',c:'#EF9F27',vB2:vfil,nB2:nfil}].map(r=>`<tr>
         <td><span class="dot" style="background:${r.c}"></span><strong>${r.l}</strong></td>
         <td style="text-align:right;">₡${fmt(r.vB2/VIE.length)}</td>
         <td style="text-align:right;font-weight:600;">₡${fmt(r.nB2/NUE.length)}</td>
@@ -371,13 +772,12 @@ function buildCategorias(){
       </tr>`).join('')}
     </table>`;
 
-  new Chart(document.getElementById('c-donut'),{type:'doughnut',data:{labels:['Bebidas','Cocina','Filtrado','Retail/Bolsas'],datasets:[{data:[totB,totC,totF,totR],backgroundColor:['#3B8BD4','#1D9E75','#EF9F27',CR],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:11},padding:10,boxWidth:10}},tooltip:{callbacks:{label:c=>'₡'+fmt(c.raw)+' — '+(c.raw/gran*100).toFixed(1)+'%'}}}}});
+  new Chart(document.getElementById('c-donut'),{type:'doughnut',data:{labels:['Bebidas','Cocina','Filtrado/Retail'],datasets:[{data:[totB,totC,totF],backgroundColor:['#3B8BD4','#1D9E75','#EF9F27'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:11},padding:12,boxWidth:10}},tooltip:{callbacks:{label:c=>'₡'+fmt(c.raw)+' — '+(c.raw/gran*100).toFixed(1)+'%'}}}}});
   new Chart(document.getElementById('c-cat'),{type:'bar',data:{labels:DIAS.map(d=>d.d),datasets:[
-    {label:'Bebidas',    data:DIAS.map(d=>d.bevB),backgroundColor:DIAS.map(d=>d.v?'rgba(59,139,212,.35)':'#3B8BD4'),borderRadius:2,stack:'s'},
-    {label:'Cocina',     data:DIAS.map(d=>d.cocB),backgroundColor:DIAS.map(d=>d.v?'rgba(29,158,117,.3)':'#1D9E75'),borderRadius:2,stack:'s'},
-    {label:'Filtrado',   data:DIAS.map(d=>d.filB),backgroundColor:DIAS.map(d=>d.v?'rgba(239,159,39,.3)':'#EF9F27'),borderRadius:2,stack:'s'},
-    {label:'Retail',     data:DIAS.map(d=>d.retB),backgroundColor:DIAS.map(d=>d.v?'rgba(155,109,202,.3)':CR),borderRadius:2,stack:'s'},
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+    {label:'Bebidas', data:DIAS.map(d=>d.bevU),backgroundColor:DIAS.map(d=>d.v?'rgba(59,139,212,.35)':'#3B8BD4'),borderRadius:3,stack:'s'},
+    {label:'Cocina',  data:DIAS.map(d=>d.cocU),backgroundColor:DIAS.map(d=>d.v?'rgba(29,158,117,.3)':'#1D9E75'),borderRadius:3,stack:'s'},
+    {label:'Filtrado',data:DIAS.map(d=>d.filU),backgroundColor:DIAS.map(d=>d.v?'rgba(239,159,39,.3)':'#EF9F27'),borderRadius:3,stack:'s'},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:10}}}}}});
 }
 
 // ── COMPARATIVA ──────────────────────────────────────────────────────────────
