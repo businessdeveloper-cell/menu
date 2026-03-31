@@ -159,7 +159,7 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
   <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:1.1rem;">
     <div>
       <div style="font-size:16px;font-weight:700;color:var(--txt);">Libertario Coffee Roasters</div>
-      <div style="font-size:12px;color:var(--txt2);margin-top:2px;">Panel de decisión &middot; Semana 30 mar &ndash; 5 abr 2026</div>
+      <div style="font-size:12px;color:var(--txt2);margin-top:2px;">Panel de decisión &middot; resumen mensual con montos completos</div>
     </div>
     <span class="nl-badge nl-bG">Menú nuevo activo</span>
   </div>
@@ -169,20 +169,20 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
   <div class="nl-formula">
     <div class="nl-f-block nl-f-ventas">
       <div class="nl-f-label">Ventas netas</div>
-      <div class="nl-f-val">₡12.3M</div>
-      <div class="nl-f-sub">marzo al 27 &middot; 18 días</div>
+      <div class="nl-f-val" id="top-neto">₡0</div>
+      <div class="nl-f-sub" id="top-neto-sub">sin impuestos &middot; monto completo</div>
     </div>
     <div class="nl-f-op">=</div>
     <div class="nl-f-block nl-f-txn">
       <div class="nl-f-label">Transacciones</div>
-      <div class="nl-f-val">994</div>
-      <div class="nl-f-sub">órdenes POS &middot; el número más importante</div>
+      <div class="nl-f-val" id="top-txn">0</div>
+      <div class="nl-f-sub" id="top-txn-sub">órdenes POS &middot; el número más importante</div>
     </div>
     <div class="nl-f-op">&times;</div>
     <div class="nl-f-block nl-f-ticket">
-      <div class="nl-f-label">Ticket promedio</div>
-      <div class="nl-f-val">₡12,374</div>
-      <div class="nl-f-sub">2.7 ítems por orden &middot; ya subió ✔</div>
+      <div class="nl-f-label">Ticket promedio bruto</div>
+      <div class="nl-f-val" id="top-ticket">₡0</div>
+      <div class="nl-f-sub" id="top-ticket-sub">con impuestos &middot; monto completo</div>
     </div>
   </div>
 
@@ -224,7 +224,7 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
 
   <!-- NOTA METODOLÓGICA -->
   <div class="nl-disclaimer">
-    <strong>Sobre los datos:</strong> Transacciones POS = el dato más confiable. WiFi (Fiweex) = tendencia de tráfico, no conteo exacto &mdash; no todos los clientes se conectan al WiFi. Usalo para ver si el tráfico sube o baja semana a semana.
+    <strong>Sobre los datos:</strong> Transacciones POS = el dato más confiable. <strong>Bruto</strong> = lo que entró a caja con impuestos. <strong>Neto</strong> = venta sin impuestos, que es la base correcta para comparar contra el presupuesto. WiFi (Fiweex) = tendencia de tráfico, no conteo exacto &mdash; no todos los clientes se conectan al WiFi. Usalo para ver si el tráfico sube o baja semana a semana.
   </div>
 
   <!-- TABLA SEMANAL -->
@@ -367,19 +367,19 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
         <tr style="background:rgba(59,139,212,.05);outline:.5px solid rgba(59,139,212,.25);outline-offset:-1px;">
           <td>
             <div class="sw-week" style="color:var(--Btxt);">Mar 30 &ndash; Abr 5</div>
-            <div class="sw-sub" style="color:var(--Btxt);opacity:.7;">HOY &middot; En curso (día 1)</div>
+            <div class="sw-sub" style="color:var(--Btxt);opacity:.7;">POS actualizado &middot; día 1</div>
+          </td>
+          <td>
+            <div class="sw-val">64</div>
+            <div class="sw-chg sw-up">&#8593; +16% vs lun 23</div>
+          </td>
+          <td>
+            <div class="sw-val">₡11,000</div>
+            <div class="sw-chg sw-neu">ticket neto aprox.</div>
           </td>
           <td>
             <div class="sw-val">&mdash;</div>
-            <div class="sw-chg sw-neu">pendiente POS hoy</div>
-          </td>
-          <td>
-            <div class="sw-val">&mdash;</div>
-            <div class="sw-chg sw-neu">pendiente</div>
-          </td>
-          <td>
-            <div class="sw-val">&mdash;</div>
-            <div class="sw-chg sw-neu">pendiente</div>
+            <div class="sw-chg sw-neu">sin detalle de ítems aquí</div>
           </td>
           <td>
             <div class="sw-val">31</div>
@@ -390,7 +390,7 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
             <div class="sw-chg sw-neu">12 de 31 ya retornaron</div>
           </td>
           <td class="sw-ins">
-            <strong>Lunes arrancó bien.</strong> 31 WiFi, mejor que lun 23. La recurrencia sigue activa. Resta ver txn del POS.
+            <strong>Lunes cerró bien.</strong> 64 txn y ₡847,486 bruto. WiFi en 31, mejor que lun 23. Buen arranque de semana.
           </td>
           <td class="sw-act">
             <span class="nl-badge nl-bG" style="margin-bottom:4px;">Ejecutar</span><br>
@@ -408,7 +408,7 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
       <tfoot>
         <tr>
           <td colspan="9" style="padding-top:8px;font-size:10px;color:var(--txt3);border-top:.5px solid var(--brd2);">
-            * Sem 3 sin datos POS de Sáb 28 y Dom 29 &rarr; ticket y txn subestimados. WiFi = tendencia de tráfico, no conteo exacto de personas.
+            * POS actualizado hasta lun 30 de marzo. WiFi = tendencia de tráfico, no conteo exacto de personas.
           </td>
         </tr>
       </tfoot>
@@ -493,19 +493,30 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
 <script>
 const gc='rgba(255,255,255,.06)',tc='#a0a09a';
 const fmt=n=>Math.round(n).toLocaleString('es-CR');
-const fk=n=>'₡'+fmt(Math.round(n/1000))+'k';
+const fk=n=>'₡'+fmt(n);
 
 // ── DATOS AUDITADOS ──────────────────────────────────────────────────────────
 // bruto = Session Total (con impuestos)
 // neto  = Tax excluded base (lo tuyo)
 // Nota: algunos días tienen ítems "Not Categorized" (Cajas Mágicas) que van en neto pero no en bev/coc/fil
 const DIAS=[
+  // Semana 1 (1-8 mar)
+  {d:'Dom 1', dow:'Dom',v:true, txn:75, bruto:965845,  neto:796586, items:246,bevU:125,cocU:110,filU:11,bevB:379940,cocB:386565,filB:30081},
+  {d:'Lun 2', dow:'Lun',v:true, txn:40, bruto:407285,  neto:333507, items:109,bevU:52, cocU:46, filU:11,bevB:141243,cocB:156980,filB:35285},
+  {d:'Mar 3', dow:'Mar',v:true, txn:46, bruto:394700,  neto:324585, items:114,bevU:68, cocU:42, filU:4, bevB:174125,cocB:139159,filB:11301},
+  {d:'Mié 4', dow:'Mié',v:true, txn:28, bruto:225105,  neto:183012, items:66, bevU:35, cocU:28, filU:3, bevB:77724, cocB:96102, filB:9187},
+  {d:'Jue 5', dow:'Jue',v:true, txn:26, bruto:344125,  neto:281194, items:86, bevU:44, cocU:39, filU:3, bevB:110523,cocB:161728,filB:8943},
+  {d:'Vie 6', dow:'Vie',v:true, txn:48, bruto:454190,  neto:375815, items:116,bevU:66, cocU:44, filU:6, bevB:205947,cocB:147320,filB:22548},
+  {d:'Sáb 7', dow:'Sáb',v:true, txn:50, bruto:471870,  neto:384627, items:137,bevU:74, cocU:61, filU:2, bevB:172619,cocB:203878,filB:8130},
+  {d:'Dom 8', dow:'Dom',v:true, txn:86, bruto:1047354, neto:864413, items:285,bevU:148,cocU:122,filU:15,bevB:435875,cocB:394717,filB:33821},
+  // Semana 2 (9-15 mar)
   {d:'Lun 9', dow:'Lun',v:true, txn:41,bruto:364320, neto:301807,items:96, bevU:56,cocU:39,filU:1, bevB:176100,cocB:123919,filB:1789},
   {d:'Mar 10',dow:'Mar',v:true, txn:24,bruto:170700, neto:139644,items:56, bevU:38,cocU:17,filU:1, bevB:88993, cocB:48862, filB:1789},
   {d:'Jue 12',dow:'Jue',v:true, txn:39,bruto:382600, neto:319576,items:88, bevU:51,cocU:27,filU:10,bevB:189738,cocB:96748, filB:33090},
   {d:'Vie 13',dow:'Vie',v:true, txn:50,bruto:490360, neto:403084,items:126,bevU:69,cocU:49,filU:8, bevB:191409,cocB:187366,filB:24309},
   {d:'Sáb 14',dow:'Sáb',v:true, txn:98,bruto:982035, neto:808007,items:264,bevU:131,cocU:116,filU:17,bevB:370418,cocB:394012,filB:43577},
   {d:'Dom 15',dow:'Dom',v:true, txn:91,bruto:913222, neto:751618,items:249,bevU:124,cocU:111,filU:14,bevB:346724,cocB:363268,filB:41626},
+  // Semana 3 (16-22 mar)
   {d:'Lun 16',dow:'Lun',v:true, txn:68,bruto:726975, neto:599181,items:185,bevU:109,cocU:66,filU:9, bevB:330990,cocB:238760,filB:29460},
   {d:'Mar 17',dow:'Mar',v:true, txn:41,bruto:474200, neto:395169,items:115,bevU:65,cocU:38,filU:7, bevB:230321,cocB:142764,filB:15447},
   {d:'Mié 18',dow:'Mié',v:false,txn:35,bruto:527600, neto:439534,items:112,bevU:54,cocU:53,filU:5, bevB:220603,cocB:200720,filB:18211,nv:32},
@@ -513,12 +524,58 @@ const DIAS=[
   {d:'Vie 20',dow:'Vie',v:false,txn:51,bruto:521451, neto:431722,items:124,bevU:68,cocU:51,filU:5, bevB:232005,cocB:187034,filB:12683,nv:27},
   {d:'Sáb 21',dow:'Sáb',v:false,txn:60,bruto:703343, neto:577094,items:174,bevU:87,cocU:77,filU:9, bevB:249730,cocB:296687,filB:29350,nv:47},
   {d:'Dom 22',dow:'Dom',v:false,txn:83,bruto:1038342,neto:863329,items:238,bevU:141,cocU:88,filU:9, bevB:504419,cocB:333650,filB:25260,nv:39},
+  // Semana 4 (23-30 mar)
   {d:'Lun 23',dow:'Lun',v:false,txn:55,bruto:705330, neto:585163,items:167,bevU:102,cocU:60,filU:2, bevB:334614,cocB:238374,filB:5447,nv:28},
   {d:'Mar 24',dow:'Mar',v:false,txn:60,bruto:613883, neto:502289,items:161,bevU:84,cocU:71,filU:6, bevB:215597,cocB:269457,filB:17235,nv:25},
   {d:'Mié 25',dow:'Mié',v:false,txn:53,bruto:593399, neto:488529,items:144,bevU:70,cocU:65,filU:8, bevB:213116,cocB:249207,filB:24878,nv:35},
   {d:'Jue 26', dow:'Jue',v:false,txn:37,bruto:381332, neto:313296,items:95, bevU:45,cocU:39,filU:11,bevB:139684,cocB:140685,filB:32927,nv:22},
   {d:'Vie 27', dow:'Vie',v:false,txn:30,bruto:373217, neto:310848,items:91, bevU:53,cocU:35,filU:3, bevB:181695,cocB:123056,filB:6097, nv:25},
+  {d:'Dom 29', dow:'Dom',v:true, txn:98, bruto:1397226,neto:1151775,items:331,bevU:163,cocU:142,filU:26,bevB:515205,cocB:547871,filB:88699},
+  {d:'Lun 30', dow:'Lun',v:true, txn:64, bruto:847486, neto:704007, items:204,bevU:106,cocU:89, filU:9, bevB:380061,cocB:295815,filB:28130},
 ];
+
+const MES=[
+  {d:'Dom 1', dow:'Dom', txn:75, bruto:965845, neto:796586},
+  {d:'Lun 2', dow:'Lun', txn:40, bruto:407285, neto:333507},
+  {d:'Mar 3', dow:'Mar', txn:46, bruto:394700, neto:324585},
+  {d:'Mié 4', dow:'Mié', txn:28, bruto:225105, neto:183012},
+  {d:'Jue 5', dow:'Jue', txn:26, bruto:344125, neto:281194},
+  {d:'Vie 6', dow:'Vie', txn:48, bruto:454190, neto:375815},
+  {d:'Sáb 7', dow:'Sáb', txn:50, bruto:471870, neto:384627},
+  {d:'Dom 8', dow:'Dom', txn:86, bruto:1047354, neto:864413},
+  {d:'Lun 9', dow:'Lun', txn:41, bruto:364320, neto:301807},
+  {d:'Mar 10', dow:'Mar', txn:24, bruto:170700, neto:139644},
+  {d:'Jue 12', dow:'Jue', txn:39, bruto:382600, neto:319576},
+  {d:'Vie 13', dow:'Vie', txn:50, bruto:490360, neto:403084},
+  {d:'Sáb 14', dow:'Sáb', txn:98, bruto:982035, neto:808007},
+  {d:'Dom 15', dow:'Dom', txn:91, bruto:913222, neto:751618},
+  {d:'Lun 16', dow:'Lun', txn:68, bruto:726975, neto:599181},
+  {d:'Mar 17', dow:'Mar', txn:41, bruto:474200, neto:395169},
+  {d:'Mié 18', dow:'Mié', txn:35, bruto:527600, neto:439534},
+  {d:'Jue 19', dow:'Jue', txn:29, bruto:331404, neto:271700},
+  {d:'Vie 20', dow:'Vie', txn:51, bruto:521451, neto:431722},
+  {d:'Sáb 21', dow:'Sáb', txn:60, bruto:703343, neto:577094},
+  {d:'Dom 22', dow:'Dom', txn:83, bruto:1038342, neto:863329},
+  {d:'Lun 23', dow:'Lun', txn:55, bruto:705330, neto:585163},
+  {d:'Mar 24', dow:'Mar', txn:60, bruto:613883, neto:502289},
+  {d:'Mié 25', dow:'Mié', txn:53, bruto:593399, neto:488529},
+  {d:'Jue 26', dow:'Jue', txn:37, bruto:381332, neto:313296},
+  {d:'Vie 27', dow:'Vie', txn:30, bruto:373217, neto:310848},
+  {d:'Dom 29', dow:'Dom', txn:98, bruto:1397226, neto:1151775},
+  {d:'Lun 30', dow:'Lun', txn:64, bruto:847486, neto:704007},
+];
+
+const brutoAcum=MES.reduce((a,d)=>a+d.bruto,0);
+const netoAcumTop=MES.reduce((a,d)=>a+d.neto,0);
+const txnAcum=MES.reduce((a,d)=>a+d.txn,0);
+const ticketBrutoAcum=brutoAcum/txnAcum;
+
+document.getElementById('top-neto').textContent=`₡${fmt(netoAcumTop)}`;
+document.getElementById('top-neto-sub').textContent=`sin impuestos · marzo 1 al 30 (${MES.length} días registrados)`;
+document.getElementById('top-txn').textContent=fmt(txnAcum);
+document.getElementById('top-txn-sub').textContent=`órdenes POS · ${fmt(Math.round(txnAcum/MES.length))} por día promedio`;
+document.getElementById('top-ticket').textContent=`₡${fmt(ticketBrutoAcum)}`;
+document.getElementById('top-ticket-sub').textContent=`con impuestos · promedio por transacción del 1 al 30`;
 
 // Productos nuevos con ventas reales (7 días menú nuevo)
 const PRODS=[
@@ -555,28 +612,23 @@ const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
 // ── PRESUPUESTO DINÁMICO ──────────────────────────────────────────────────────
 (function buildPpto(){
   const PPTO=18000000;
-  const acum=DIAS.reduce((a,d)=>a+d.bruto,0);
-  const netoAcum=DIAS.reduce((a,d)=>a+d.neto,0);
-  const pctAcum=(acum/PPTO*100).toFixed(1);
+  const acum=MES.reduce((a,d)=>a+d.bruto,0);
+  const netoAcum=MES.reduce((a,d)=>a+d.neto,0);
+  const pctAcum=(netoAcum/PPTO*100).toFixed(1);
 
   // Medianas por tipo de día
   const mediana=arr=>{const s=[...arr].sort((a,b)=>a-b);const m=s.length;return m%2===0?(s[m/2-1]+s[m/2])/2:s[Math.floor(m/2)];};
   const EDS=['Lun','Mar','Mié','Jue','Vie'];
-  const medEnt=mediana(DIAS.filter(d=>EDS.includes(d.dow)).map(d=>d.bruto));
-  const medSab=mediana(DIAS.filter(d=>d.dow==='Sáb').map(d=>d.bruto));
-  const medDom=mediana(DIAS.filter(d=>d.dow==='Dom').map(d=>d.bruto));
+  const medEnt=mediana(MES.filter(d=>EDS.includes(d.dow)).map(d=>d.neto));
 
-  // Días restantes: Sáb 28, Dom 29, Lun 30, Mar 31
+  // Día restante del mes
   const restantes=[
-    {d:'Sáb 28',med:medSab, tipo:'Sábado'},
-    {d:'Dom 29',med:medDom, tipo:'Domingo'},
-    {d:'Lun 30',med:medEnt, tipo:'Entre semana'},
     {d:'Mar 31',med:medEnt, tipo:'Entre semana'},
   ];
   const proyRest=restantes.reduce((a,r)=>a+r.med,0);
-  const proyTotal=acum+proyRest;
+  const proyTotal=netoAcum+proyRest;
   const pctProy=(proyTotal/PPTO*100).toFixed(1);
-  const falta=PPTO-acum;
+  const falta=PPTO-netoAcum;
   const esFav=proyTotal>=PPTO;
   const projColor=esFav?'var(--Gtxt)':'var(--Atxt)';
   const projBg=esFav?'var(--Gbg)':'var(--Abg)';
@@ -585,10 +637,10 @@ const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:.9rem;">
       <div>
         <div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;">Presupuesto marzo 2026</div>
-        <div style="font-size:13px;color:var(--txt2);">${DIAS.length} días registrados de 31 · 1 día off (Mar 11)</div>
+        <div style="font-size:13px;color:var(--txt2);">${MES.length} días registrados al 30 de marzo · 2 días off (Mar 11, Mar 28)</div>
       </div>
       <div style="text-align:right;">
-        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;">Proyección basada en medianas reales</div>
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;">Proyección neta basada en medianas reales</div>
         <div style="font-size:20px;font-weight:700;color:${projColor};">₡${fmt(proyTotal)} <span style="font-size:12px;background:${projBg};color:${projColor};padding:2px 8px;border-radius:20px;font-weight:600;">${pctProy}% del ppto</span></div>
       </div>
     </div>
@@ -597,15 +649,15 @@ const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
       <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
         <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Bruto acumulado</div>
         <div style="font-size:17px;font-weight:700;color:var(--txt);">₡${fmt(acum)}</div>
-        <div style="font-size:11px;color:var(--txt3);margin-top:2px;">${pctAcum}% del presupuesto</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px;">con impuestos · referencia operativa</div>
       </div>
       <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
         <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Neto acumulado</div>
         <div style="font-size:17px;font-weight:700;color:var(--txt);">₡${fmt(netoAcum)}</div>
-        <div style="font-size:11px;color:var(--txt3);margin-top:2px;">lo que es del negocio</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px;">sin impuestos · este es el que va contra presupuesto</div>
       </div>
       <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
-        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Falta para el ppto</div>
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Falta para el ppto neto</div>
         <div style="font-size:17px;font-weight:700;color:var(--Atxt);">₡${fmt(falta)}</div>
         <div style="font-size:11px;color:var(--txt3);margin-top:2px;">en ${restantes.length} días restantes</div>
       </div>
@@ -615,16 +667,16 @@ const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
         <div style="height:.5px;background:var(--brd);margin:6px 0;"></div>
         <div style="font-size:11px;color:var(--txt2);margin-bottom:3px;">Días que la cumplieron</div>
         <div style="font-size:14px;font-weight:700;">
-          <span style="color:var(--Gtxt);">${DIAS.filter(d=>d.bruto>=580645).length}</span>
-          <span style="font-size:11px;font-weight:400;color:var(--txt3);"> de ${DIAS.length} días registrados</span>
+          <span style="color:var(--Gtxt);">${MES.filter(d=>d.bruto>=580645).length}</span>
+          <span style="font-size:11px;font-weight:400;color:var(--txt3);"> de ${MES.length} días registrados</span>
         </div>
-        <div style="font-size:10px;color:var(--txt3);margin-top:3px;">4 días restantes · expectativa: ₡${fmt(580645*4)}</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:3px;">${restantes.length} día restante · expectativa: ₡${fmt(580645*restantes.length)}</div>
       </div>
     </div>
 
     <div style="margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;">
       <span style="font-size:11px;color:var(--txt2);">₡0</span>
-      <span style="font-size:11px;font-weight:600;color:var(--txt);">₡${fmt(acum)} <span style="color:var(--txt2);font-weight:400;">acumulado de</span> ₡${fmt(PPTO)}</span>
+      <span style="font-size:11px;font-weight:600;color:var(--txt);">₡${fmt(netoAcum)} <span style="color:var(--txt2);font-weight:400;">neto acumulado de</span> ₡${fmt(PPTO)}</span>
       <span style="font-size:11px;color:var(--txt2);">₡${fmt(PPTO)}</span>
     </div>
     <div style="background:rgba(255,255,255,.08);border-radius:6px;height:10px;overflow:hidden;position:relative;">
@@ -632,7 +684,7 @@ const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
     </div>
     <div style="display:flex;justify-content:space-between;margin-top:5px;">
       <span style="font-size:11px;color:var(--Btxt);font-weight:600;">${pctAcum}% completado</span>
-      <span style="font-size:11px;color:var(--txt2);">Proyección con medianas reales: <strong style="color:${projColor};">₡${fmt(proyTotal)}</strong> — ${esFav?'alcanza el presupuesto ✓':'por debajo del presupuesto'}</span>
+      <span style="font-size:11px;color:var(--txt2);">Proyección neta con medianas reales: <strong style="color:${projColor};">₡${fmt(proyTotal)}</strong> — ${esFav?'alcanza el presupuesto neto ✓':'por debajo del presupuesto neto'}</span>
     </div>`;
 })();
 const vB=VIE.reduce((a,d)=>a+d.bruto,0), nB=NUE.reduce((a,d)=>a+d.bruto,0);
@@ -696,13 +748,13 @@ function buildTendencia(){
   new Chart(document.getElementById('c-bn'),{type:'bar',data:{labels:DIAS.map(d=>d.d),datasets:[
     {label:'Bruto',data:DIAS.map(d=>d.bruto),backgroundColor:DIAS.map(d=>d.v?'rgba(59,139,212,.35)':'#3B8BD4'),borderRadius:4},
     {label:'Neto', data:DIAS.map(d=>d.neto), backgroundColor:DIAS.map(d=>d.v?'rgba(29,158,117,.3)':'#1D9E75'),borderRadius:4},
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
 
   new Chart(document.getElementById('c-tkt'),{type:'line',data:{labels:DIAS.map(d=>d.d),datasets:[
     {label:'Menú viejo',data:[...VIE.map(d=>Math.round(d.bruto/d.txn)),...new Array(NUE.length).fill(null)],borderColor:'rgba(239,159,39,.85)',pointBackgroundColor:'rgba(239,159,39,.85)',pointRadius:5,borderWidth:2,tension:.3,fill:false},
     {label:'Menú nuevo',data:[...new Array(VIE.length).fill(null),...NUE.map(d=>Math.round(d.bruto/d.txn))],borderColor:'#3B8BD4',pointBackgroundColor:'#3B8BD4',pointRadius:5,borderWidth:2,tension:.3,fill:false},
     {label:'Prom. viejo',data:DIAS.map(()=>Math.round(vTkt)),borderColor:'rgba(255,255,255,.15)',borderDash:[5,5],pointRadius:0,borderWidth:1.5,fill:false},
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
 }
 
 // ── CATEGORÍAS ───────────────────────────────────────────────────────────────
@@ -835,8 +887,8 @@ function buildComparativa(){
       </tr>`;}).join('')}
     </table>`;
 
-  new Chart(document.getElementById('c-ptkt'),{type:'bar',data:{labels:PARES.map(p=>p.dow),datasets:[{label:'Menú viejo',data:PARES.map(p=>Math.round(p.vie.bruto/p.vie.txn)),backgroundColor:'rgba(239,159,39,.7)',borderRadius:4},{label:'Menú nuevo',data:PARES.map(p=>Math.round(p.nue.bruto/p.nue.txn)),backgroundColor:'#3B8BD4',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)+' por cliente'}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
-  new Chart(document.getElementById('c-pbru'),{type:'bar',data:{labels:PARES.map(p=>p.dow),datasets:[{label:'Menú viejo',data:PARES.map(p=>p.vie.bruto),backgroundColor:'rgba(239,159,39,.7)',borderRadius:4},{label:'Menú nuevo',data:PARES.map(p=>p.nue.bruto),backgroundColor:'#3B8BD4',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+  new Chart(document.getElementById('c-ptkt'),{type:'bar',data:{labels:PARES.map(p=>p.dow),datasets:[{label:'Menú viejo',data:PARES.map(p=>Math.round(p.vie.bruto/p.vie.txn)),backgroundColor:'rgba(239,159,39,.7)',borderRadius:4},{label:'Menú nuevo',data:PARES.map(p=>Math.round(p.nue.bruto/p.nue.txn)),backgroundColor:'#3B8BD4',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)+' por cliente'}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+  new Chart(document.getElementById('c-pbru'),{type:'bar',data:{labels:PARES.map(p=>p.dow),datasets:[{label:'Menú viejo',data:PARES.map(p=>p.vie.bruto),backgroundColor:'rgba(239,159,39,.7)',borderRadius:4},{label:'Menú nuevo',data:PARES.map(p=>p.nue.bruto),backgroundColor:'#3B8BD4',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
 }
 
 // ── ADOPCIÓN ─────────────────────────────────────────────────────────────────
@@ -1127,7 +1179,7 @@ function buildSemanas(){
       ]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label==='Meta'?'Meta: ₡'+fmt(c.raw):'Bruto: ₡'+fmt(c.raw)}}},
-      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10},maxRotation:0}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10},maxRotation:0}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
 
   new Chart(document.getElementById('c-ev-tkt'),{type:'line',
     data:{labels:NUE.map((d,i)=>`Día ${i+1}`),
@@ -1140,7 +1192,7 @@ function buildSemanas(){
       }]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'₡'+fmt(c.raw)+' por cliente'}}},
-      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
 }
 
 
@@ -1256,7 +1308,7 @@ function buildTipoDias(){
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:11},boxWidth:10}},
         tooltip:{callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},
-      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v/1000)+'k'}}}}});
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
 }
 
 // ── TABS ─────────────────────────────────────────────────────────────────────
