@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Libertario Coffee Roasters — Análisis Marzo 2026</title>
+<title>Libertario Coffee Roasters — Dashboard 2026</title>
 <style>
 :root{
   --bg:#1a1a1a;--bg2:#242424;--bg3:#2e2e2e;
@@ -59,11 +59,10 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
 .num-big{font-size:32px;font-weight:700;color:var(--txt);}
 .num-label{font-size:11px;color:var(--txt2);margin-top:2px;}
 @media(max-width:600px){.kgrid{grid-template-columns:1fr 1fr;}.g2{grid-template-columns:1fr;}}
-</style>
-</head>
-<body>
 
-<style>
+
+/* Newsletter / Plan de acción styles */
+
 .nl-section{margin-bottom:1.8rem}
 .nl-title{font-size:10px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin:0 0 .6rem;display:flex;align-items:center;gap:8px}
 .nl-title::after{content:'';flex:1;height:.5px;background:var(--brd2)}
@@ -151,8 +150,38 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
 .nl-divider{height:1px;background:var(--brd2);margin:2rem 0 1.6rem;position:relative}
 .nl-divider::before{content:'· REPORTE MENSUAL DETALLADO ·';position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 10px;font-size:9px;font-weight:700;color:var(--txt3);letter-spacing:.07em;white-space:nowrap}
 @media(max-width:640px){.nl-formula{flex-direction:column}.nl-f-op{transform:rotate(90deg)}.nl-status{flex-direction:column}}
-</style>
 
+</style>
+</head>
+<body>
+
+<!-- ═══ SELECTOR DE MES ═══════════════════════════════════════════════════ -->
+<div style="display:flex;gap:8px;margin-bottom:1.2rem;align-items:center;flex-wrap:wrap;">
+  <span style="font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em;flex-shrink:0;">MES</span>
+  <button class="tab active" id="mes-btn-marzo" onclick="swMes('marzo')">Marzo 2026</button>
+  <button class="tab" id="mes-btn-abril" onclick="swMes('abril')">Abril 2026 <span style="font-size:9px;opacity:.55;">(1–12 en curso)</span></button>
+  <button class="tab" id="mes-btn-comp" onclick="swMes('comp')">Comparativa ↗</button>
+</div>
+
+<div id="mes-marzo">
+<h1>Libertario Coffee Roasters</h1>
+<p class="sub">Análisis operativo · Marzo 2026 · Nuevo menú lanzado el miércoles 18 de marzo</p>
+<div class="kgrid" id="kg"></div>
+
+<!-- PRESUPUESTO -->
+<div id="bloque-ppto" style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--radL);padding:1.1rem 1.2rem;margin-bottom:1.2rem;"></div>
+<div class="tabs">
+  <button class="tab active" onclick="sw('ventas',this)">Ventas</button>
+  <button class="tab" onclick="sw('productos',this)">Productos ↗</button>
+  <button class="tab" onclick="sw('menu',this)">Menú nuevo</button>
+  <button class="tab" onclick="sw('evolucion',this)">Evolución</button>
+  <button class="tab" onclick="sw('plan',this)">Plan de acción</button>
+</div>
+<div id="panel-ventas"></div>
+<div id="panel-productos" style="display:none;"></div>
+<div id="panel-menu"      style="display:none;"></div>
+<div id="panel-evolucion" style="display:none;"></div>
+<div id="panel-plan" style="display:none;">
 <div class="nl-section">
 
   <!-- ENCABEZADO -->
@@ -463,31 +492,32 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
   </div>
 
 </div>
-<div class="nl-divider"></div>
-<h1>Libertario Coffee Roasters</h1>
-<p class="sub">Análisis operativo · Marzo 2026 · Nuevo menú lanzado el miércoles 18 de marzo</p>
-<div class="kgrid" id="kg"></div>
-
-<!-- PRESUPUESTO -->
-<div id="bloque-ppto" style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--radL);padding:1.1rem 1.2rem;margin-bottom:1.2rem;"></div>
-<div class="tabs">
-  <button class="tab active" onclick="sw('tendencia',this)">Tendencia</button>
-  <button class="tab" onclick="sw('categorias',this)">Categorías</button>
-  <button class="tab" onclick="sw('comparativa',this)">Menú viejo vs nuevo</button>
-  <button class="tab" onclick="sw('adopcion',this)">Adopción</button>
-  <button class="tab" onclick="sw('productos',this)">Productos nuevos</button>
-  <button class="tab" onclick="sw('semanas',this)">Evolución desde lanzamiento</button>
-  <button class="tab" onclick="sw('tipodias',this)">Por tipo de día</button>
-  <button class="tab" onclick="sw('conclusiones',this)">Conclusiones</button>
 </div>
-<div id="panel-tendencia"></div>
-<div id="panel-categorias"  style="display:none;"></div>
-<div id="panel-comparativa" style="display:none;"></div>
-<div id="panel-adopcion"    style="display:none;"></div>
-<div id="panel-productos"   style="display:none;"></div>
-<div id="panel-semanas"     style="display:none;"></div>
-<div id="panel-tipodias"   style="display:none;"></div>
-<div id="panel-conclusiones"style="display:none;"></div>
+
+</div><!-- /mes-marzo -->
+
+<!-- ═══ MES ABRIL ═════════════════════════════════════════════════════════ -->
+<div id="mes-abril" style="display:none;">
+  <h1>Libertario Coffee Roasters</h1>
+  <p class="sub">Análisis operativo · Abril 2026 · Datos del 1 al 12 (mes en curso) &nbsp;·&nbsp; Presupuesto ₡19.200.000 neto</p>
+  <div class="kgrid" id="kg-abril"></div>
+  <div id="bloque-ppto-abril" style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--radL);padding:1.1rem 1.2rem;margin-bottom:1.2rem;"></div>
+  <div class="tabs">
+    <button class="tab active" id="abril-tab-tendencia" onclick="swAbril('tendencia',this)">Ventas</button>
+    <button class="tab" id="abril-tab-productos" onclick="swAbril('productos',this)">Productos ↗</button>
+    <button class="tab" id="abril-tab-tipodias" onclick="swAbril('tipodias',this)">Por tipo de día</button>
+  </div>
+  <div id="abril-panel-tendencia"></div>
+  <div id="abril-panel-productos" style="display:none;"></div>
+  <div id="abril-panel-tipodias" style="display:none;"></div>
+</div><!-- /mes-abril -->
+
+<!-- ═══ COMPARATIVA DE MESES ════════════════════════════════════════════ -->
+<div id="mes-comp" style="display:none;">
+  <h1>Libertario Coffee Roasters</h1>
+  <p class="sub">Análisis Marzo vs Abril 2026 · Operativo &amp; Marketing · En curso</p>
+  <div id="panel-comp-meses"></div>
+</div><!-- /mes-comp -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
@@ -610,6 +640,58 @@ const PRODS=[
 ].map(p=>({...p,total:p.q.reduce((a,b)=>a+b,0)})).sort((a,b)=>b.total-a.total);
 
 const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
+
+// ── DATOS ABRIL (sesiones POS 04206–04218 · 1–12 abril 2026) ─────────────────
+// neto = bruto × 0.826826 (ratio real del mes: 6.052.081 / 7.319.651)
+// items = estimado (bruto × avg items/txn de marzo)
+// bevB/cocB/filB = estimado con proporciones de marzo (50.1%/45.3%/4.7%)
+const ABRIL_DIAS=[
+  {d:'Mié 1', dow:'Mié', txn:57, bruto:697893,  neto:577036,  items:162, bevB:349421, cocB:315927, filB:32545},
+  {d:'Jue 2', dow:'Jue', txn:27, bruto:423080,  neto:349814,  items:77,  bevB:211828, cocB:191523, filB:19729},
+  {d:'Vie 3', dow:'Vie', txn:44, bruto:682822,  neto:564575,  items:125, bevB:341875, cocB:309105, filB:31842},
+  {d:'Sáb 4', dow:'Sáb', txn:54, bruto:658182,  neto:544202,  items:153, bevB:329539, cocB:297951, filB:30692},
+  {d:'Dom 5', dow:'Dom', txn:55, bruto:796022,  neto:658172,  items:156, bevB:398552, cocB:360349, filB:37121},
+  {d:'Lun 6', dow:'Lun', txn:27, bruto:277344,  neto:229315,  items:77,  bevB:138861, cocB:125550, filB:12933},
+  {d:'Mar 7', dow:'Mar', txn:45, bruto:506774,  neto:419014,  items:128, bevB:253732, cocB:229410, filB:23632},
+  {d:'Mié 8', dow:'Mié', txn:41, bruto:412627,  neto:341171,  items:116, bevB:206594, cocB:186791, filB:19242},
+  {d:'Jue 9', dow:'Jue', txn:40, bruto:484220,  neto:400366,  items:114, bevB:242439, cocB:219200, filB:22581},
+  {d:'Vie 10',dow:'Vie', txn:51, bruto:596338,  neto:493068,  items:145, bevB:298574, cocB:269955, filB:27809},
+  {d:'Sáb 11',dow:'Sáb', txn:78, bruto:986590,  neto:815739,  items:221, bevB:493966, cocB:446617, filB:46007},
+  {d:'Dom 12',dow:'Dom', txn:67, bruto:797705,  neto:659609,  items:190, bevB:399395, cocB:361111, filB:37199},
+];
+const META_ABRIL=640000; // 19.200.000 / 30 días = 640.000 neto/día
+
+// ── ABRIL TOP PRODUCTOS (extraídos del PDF POS Detalles de Ventas 48) ─────────
+const ABRIL_PRODS=[
+  {n:'Cappuccino Desl. PUNK',    qty:40, neto:97561,  cat:'bev'},
+  {n:'Jugo de Naranja',          qty:39, neto:69756,  cat:'bev'},
+  {n:'Soda Frutos Rojos',        qty:39, neto:98293,  cat:'bev'},
+  {n:'Tico Bowl',                qty:38, neto:188455, cat:'coc'},
+  {n:'Americano PAZ',            qty:35, neto:56285,  cat:'bev'},
+  {n:'Americano PUNK',           qty:33, neto:61289,  cat:'bev'},
+  {n:'Sandwich Pollo Pesto',     qty:33, neto:206585, cat:'coc'},
+  {n:'Cacerola Ranchera',        qty:31, neto:138618, cat:'coc'},
+  {n:'Tostadas Francesas',       qty:30, neto:134146, cat:'coc'},
+  {n:'Cappuccino Desl. PAZ',     qty:29, neto:66016,  cat:'bev'},
+  {n:'Croissant Jamón Serrano',  qty:28, neto:136585, cat:'coc'},
+  {n:'Croissant Sencillo',       qty:27, neto:43902,  cat:'coc'},
+  {n:'Cacerola H. Benedictinos', qty:26, neto:131057, cat:'coc'},
+  {n:'PAZ 454 G (bolsa)',        qty:25, neto:219027, cat:'fil'},
+  {n:'PUNK 340 G (bolsa)',       qty:25, neto:276549, cat:'fil'},
+  {n:'Cappuccino Entera PAZ',    qty:24, neto:54634,  cat:'bev'},
+  {n:'Queque de Zanahoria',      qty:24, neto:77354,  cat:'coc'},
+  {n:'Tostada de Aguacate',      qty:24, neto:93659,  cat:'coc'},
+  {n:'Cacerola H. Cremosos',     qty:23, neto:108455, cat:'coc'},
+  {n:'Galleta Chispas Choc.',    qty:23, neto:39596,  cat:'coc'},
+  {n:'Croissant de Almendra',    qty:22, neto:55634,  cat:'coc'},
+  {n:'Tostada Salmón Ahumado',   qty:22, neto:110732, cat:'coc'},
+  {n:'Bebida Timo',              qty:20, neto:73171,  cat:'bev'},
+  {n:'Cacerola Libertario',      qty:20, neto:89431,  cat:'coc'},
+  {n:'Sandwich Grill Cheese',    qty:20, neto:118699, cat:'coc'},
+  {n:'Kit Coffee Lovers',        qty:19, neto:259544, cat:'fil'},
+  {n:'Latte Desl. PUNK',         qty:18, neto:46098,  cat:'bev'},
+  {n:'Libre 454 G (bolsa)',      qty:17, neto:156460, cat:'fil'},
+];
 
 // ── PRESUPUESTO DINÁMICO ──────────────────────────────────────────────────────
 (function buildPpto(){
@@ -1432,18 +1514,1020 @@ function buildTipoDias(){
       scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
 }
 
-// ── TABS ─────────────────────────────────────────────────────────────────────
-const built={tendencia:false,categorias:false,comparativa:false,adopcion:false,productos:false,semanas:false,tipodias:false,conclusiones:false};
+
+// ── VENTAS (daily trend + day-type stats combined) ───────────────────────────
+function buildVentas(){
+  const el=document.getElementById('panel-ventas');
+
+  // Day-type stats (inline, no separate panel needed)
+  const EDS=['Lun','Mar','Mié','Jue','Vie'];
+  const ents=DIAS.filter(d=>EDS.includes(d.dow));
+  const sabs=DIAS.filter(d=>d.dow==='Sáb');
+  const doms=DIAS.filter(d=>d.dow==='Dom');
+  const avg=arr=>arr.reduce((a,d)=>a+d.neto,0)/arr.length;
+  const avgE=avg(ents),avgS=avg(sabs),avgD=avg(doms);
+
+  el.innerHTML=`
+    <div class="nota">
+      <strong>Neto</strong> = lo que es del negocio (sin impuestos) &nbsp;·&nbsp;
+      <strong>Bruto</strong> = total en caja (con impuestos) &nbsp;·&nbsp;
+      Barras opacas = menú viejo &nbsp;·&nbsp; Barras sólidas = menú nuevo
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.2rem;">
+      <div class="kpi" style="border-color:rgba(59,139,212,.3);">
+        <div class="kl">Neto promedio · entre semana</div>
+        <div class="kv" style="font-size:16px;color:var(--Btxt);">₡${fmt(avgE)}</div>
+        <div class="ks">${ents.length} días · lun–vie</div>
+      </div>
+      <div class="kpi" style="border-color:rgba(239,159,39,.3);">
+        <div class="kl">Neto promedio · sábados</div>
+        <div class="kv" style="font-size:16px;color:var(--Atxt);">₡${fmt(avgS)}</div>
+        <div class="ks">${sabs.length} sábados registrados</div>
+      </div>
+      <div class="kpi" style="border-color:rgba(29,158,117,.3);">
+        <div class="kl">Neto promedio · domingos</div>
+        <div class="kv" style="font-size:16px;color:var(--Gtxt);">₡${fmt(avgD)}</div>
+        <div class="ks">${doms.length} domingos registrados</div>
+      </div>
+    </div>
+
+    <div class="ley">
+      <span><i style="background:rgba(59,139,212,.35)"></i>Bruto — menú viejo</span>
+      <span><i style="background:#3B8BD4"></i>Bruto — menú nuevo</span>
+      <span><i style="background:rgba(29,158,117,.3)"></i>Neto — menú viejo</span>
+      <span><i style="background:#1D9E75"></i>Neto — menú nuevo</span>
+    </div>
+    <div class="cw" style="height:240px;"><canvas id="c-bn"></canvas></div>
+    <div class="sec" style="margin-top:1.2rem;">Ticket neto por transacción</div>
+    <div class="ley">
+      <span><i style="background:rgba(239,159,39,.8)"></i>Menú viejo</span>
+      <span><i style="background:#3B8BD4"></i>Menú nuevo</span>
+    </div>
+    <div class="cw" style="height:180px;"><canvas id="c-tkt"></canvas></div>
+    <div class="sec" style="margin-top:1.2rem;">Detalle día a día</div>
+    <table class="tbl">
+      <tr>
+        <th>Día</th><th>Menú</th>
+        <th style="text-align:right">Bruto</th>
+        <th style="text-align:right">Neto</th>
+        <th style="text-align:right">Txn</th>
+        <th style="text-align:right">Ticket bruto</th>
+        <th style="text-align:right">Ticket neto</th>
+      </tr>
+      ${DIAS.map(d=>`<tr>
+        <td style="font-weight:600;">${d.d}</td>
+        <td>${d.v?'<span class="badge bA">Viejo</span>':'<span class="badge bB">Nuevo</span>'}</td>
+        <td style="text-align:right;font-weight:600;">₡${fmt(d.bruto)}</td>
+        <td style="text-align:right;">₡${fmt(d.neto)}</td>
+        <td style="text-align:right;">${d.txn}</td>
+        <td style="text-align:right;">₡${fmt(Math.round(d.bruto/d.txn))}</td>
+        <td style="text-align:right;color:var(--Gtxt);">₡${fmt(Math.round(d.neto/d.txn))}</td>
+      </tr>`).join('')}
+    </table>`;
+
+  new Chart(document.getElementById('c-bn'),{type:'bar',data:{labels:DIAS.map(d=>d.d),datasets:[
+    {label:'Bruto',data:DIAS.map(d=>d.bruto),backgroundColor:DIAS.map(d=>d.v?'rgba(59,139,212,.35)':'#3B8BD4'),borderRadius:4},
+    {label:'Neto', data:DIAS.map(d=>d.neto), backgroundColor:DIAS.map(d=>d.v?'rgba(29,158,117,.3)':'#1D9E75'),borderRadius:4},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+
+  new Chart(document.getElementById('c-tkt'),{type:'line',data:{labels:DIAS.map(d=>d.d),datasets:[
+    {label:'Menú viejo',data:[...VIE.map(d=>Math.round(d.neto/d.txn)),...new Array(NUE.length).fill(null)],borderColor:'rgba(239,159,39,.85)',pointBackgroundColor:'rgba(239,159,39,.85)',pointRadius:5,borderWidth:2,tension:.3,fill:false},
+    {label:'Menú nuevo',data:[...new Array(VIE.length).fill(null),...NUE.map(d=>Math.round(d.neto/d.txn))],borderColor:'#3B8BD4',pointBackgroundColor:'#3B8BD4',pointRadius:5,borderWidth:2,tension:.3,fill:false},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+}
+
+// ── PRODUCTOS (categorías + ranking + tendencia) ──────────────────────────────
+function buildProductosMkt(){
+  const el=document.getElementById('panel-productos');
+
+  // Category totals for new menu period (NUE = Mar 18-30)
+  const bevTot=NUE.reduce((a,d)=>a+d.bevB,0);
+  const cocTot=NUE.reduce((a,d)=>a+d.cocB,0);
+  const filTot=NUE.reduce((a,d)=>a+d.filB,0);
+  const grandTot=bevTot+cocTot+filTot;
+
+  // Category units
+  const bevU=NUE.reduce((a,d)=>a+d.bevU,0);
+  const cocU=NUE.reduce((a,d)=>a+d.cocU,0);
+  const filU=NUE.reduce((a,d)=>a+d.filU,0);
+
+  // Product trends: compare first half vs second half of 10-day period
+  const half=5;
+  const prodWithTrend=PRODS.map(p=>{
+    const q1=p.q.slice(0,half).reduce((a,b)=>a+b,0);
+    const q2=p.q.slice(half).reduce((a,b)=>a+b,0);
+    const avg1=q1/half, avg2=q2/half;
+    const trend=avg1===0?(avg2>0?100:0):((avg2-avg1)/avg1*100);
+    let status='estable', statusColor='var(--txt3)', statusBg='rgba(255,255,255,.06)';
+    if(trend>15){status='Subiendo';statusColor='var(--Gtxt)';statusBg='var(--Gbg)';}
+    else if(trend<-15){status='Bajando';statusColor='var(--Rtxt)';statusBg='var(--Rbg)';}
+    return {...p, q1, q2, trend, status, statusColor, statusBg};
+  });
+
+  const catColor={Bebidas:'#3B8BD4',Cocina:'#EF9F27',Filtrado:'#1D9E75'};
+
+  el.innerHTML=`
+    <div class="sec">Ventas por categoría · menú nuevo (18–30 mar)</div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem;">
+      <div class="kpi" style="border-color:rgba(59,139,212,.35);">
+        <div class="kl" style="color:var(--Btxt);">☕ Bebidas</div>
+        <div class="kv" style="color:var(--Btxt);">₡${fmt(bevTot)}</div>
+        <div class="ks">${(bevTot/grandTot*100).toFixed(0)}% del total · ${bevU} unidades</div>
+      </div>
+      <div class="kpi" style="border-color:rgba(239,159,39,.35);">
+        <div class="kl" style="color:var(--Atxt);">🍽 Cocina</div>
+        <div class="kv" style="color:var(--Atxt);">₡${fmt(cocTot)}</div>
+        <div class="ks">${(cocTot/grandTot*100).toFixed(0)}% del total · ${cocU} unidades</div>
+      </div>
+      <div class="kpi" style="border-color:rgba(29,158,117,.35);">
+        <div class="kl" style="color:var(--Gtxt);">🫗 Filtrado</div>
+        <div class="kv" style="color:var(--Gtxt);">₡${fmt(filTot)}</div>
+        <div class="ks">${(filTot/grandTot*100).toFixed(0)}% del total · ${filU} unidades</div>
+      </div>
+    </div>
+
+    <div class="sec">Evolución de categorías · día a día (mar 18–30)</div>
+    <div class="ley">
+      <span><i style="background:#3B8BD4"></i>Bebidas</span>
+      <span><i style="background:#EF9F27"></i>Cocina</span>
+      <span><i style="background:#1D9E75"></i>Filtrado</span>
+    </div>
+    <div class="cw" style="height:220px;"><canvas id="c-cat-evol"></canvas></div>
+
+    <div class="sec" style="margin-top:1.4rem;">Ranking productos nuevos · 10 días (mar 18–27)</div>
+    <div class="nota" style="margin-bottom:.8rem;">
+      <strong>Subiendo</strong> = creció +15% o más en los últimos 5 días vs los primeros 5 &nbsp;·&nbsp;
+      <strong>Bajando</strong> = cayó -15% o más &nbsp;·&nbsp;
+      <strong>Estable</strong> = sin cambio significativo
+    </div>
+    <table class="tbl">
+      <tr>
+        <th>Producto</th>
+        <th>Cat.</th>
+        <th style="text-align:right">Total (10 días)</th>
+        <th style="text-align:right">Días 1–5</th>
+        <th style="text-align:right">Días 6–10</th>
+        <th style="text-align:right">Tendencia</th>
+        <th style="text-align:right">Estado</th>
+      </tr>
+      ${prodWithTrend.map(p=>`<tr>
+        <td style="font-weight:600;">${p.n}</td>
+        <td><span style="font-size:10px;color:${catColor[p.c]||'var(--txt2)'};">${p.c}</span></td>
+        <td style="text-align:right;font-weight:700;font-size:14px;">${p.total}</td>
+        <td style="text-align:right;color:var(--txt2);">${p.q1}</td>
+        <td style="text-align:right;color:var(--txt2);">${p.q2}</td>
+        <td style="text-align:right;font-size:11px;color:${p.trend>=0?'var(--Gtxt)':'var(--Rtxt)'};">${p.trend>=0?'+':''}${p.trend.toFixed(0)}%</td>
+        <td style="text-align:right;"><span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${p.statusBg};color:${p.statusColor};">${p.status}</span></td>
+      </tr>`).join('')}
+    </table>
+
+    <div class="sec" style="margin-top:1.4rem;">Evolución semanal de los top 8 productos</div>
+    <div class="cw" style="height:240px;"><canvas id="c-prod-evol"></canvas></div>`;
+
+  // Category evolution chart (stacked bar)
+  new Chart(document.getElementById('c-cat-evol'),{type:'bar',
+    data:{
+      labels:NUE.map(d=>d.d),
+      datasets:[
+        {label:'Bebidas',data:NUE.map(d=>d.bevB),backgroundColor:'#3B8BD4',borderRadius:2,stack:'s'},
+        {label:'Cocina', data:NUE.map(d=>d.cocB),backgroundColor:'#EF9F27',borderRadius:2,stack:'s'},
+        {label:'Filtrado',data:NUE.map(d=>d.filB),backgroundColor:'#1D9E75',borderRadius:2,stack:'s'},
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:11},boxWidth:10}},
+        tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},
+              y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+
+  // Top 8 products evolution line chart
+  const top8=prodWithTrend.slice(0,8);
+  const colors=['#3B8BD4','#EF9F27','#1D9E75','#E24B4A','#a78bfa','#f472b6','#34d399','#fbbf24'];
+  const nvDays=NUE.filter(d=>d.nv!==undefined);
+  new Chart(document.getElementById('c-prod-evol'),{type:'line',
+    data:{
+      labels:nvDays.map(d=>d.d),
+      datasets:top8.map((p,i)=>({
+        label:p.n.split(' ').slice(0,2).join(' '),
+        data:p.q,
+        borderColor:colors[i],
+        pointBackgroundColor:colors[i],
+        pointRadius:4,
+        borderWidth:2,
+        tension:.3,
+        fill:false,
+      }))},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:10},boxWidth:8,padding:8}},
+        tooltip:{mode:'index',intersect:false}},
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},
+              y:{grid:{color:gc},ticks:{color:tc,font:{size:10}},beginAtZero:true}}}});
+}
+
+// ── MENÚ NUEVO (comparativa días + adopción WiFi) ─────────────────────────────
+function buildMenuNuevo(){
+  const el=document.getElementById('panel-menu');
+
+  // Build comparativa (PARES logic from buildComparativa)
+  const DOWS=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const PARES=DOWS.map(dow=>{
+    const vie=VIE.filter(d=>d.dow===dow);
+    const nue=NUE.filter(d=>d.dow===dow);
+    if(!vie.length||!nue.length)return null;
+    const avgV=d=>vie.reduce((a,x)=>a+x[d],0)/vie.length;
+    const avgN=d=>nue.reduce((a,x)=>a+x[d],0)/nue.length;
+    return {dow,vie:{bruto:Math.round(avgV('bruto')),neto:Math.round(avgV('neto')),txn:Math.round(avgV('txn'))},
+                  nue:{bruto:Math.round(avgN('bruto')),neto:Math.round(avgN('neto')),txn:Math.round(avgN('txn'))}};
+  }).filter(Boolean);
+
+  // WiFi adoption
+  const nvDays=NUE.filter(d=>d.nv!==undefined);
+  const totalNV=nvDays.reduce((a,d)=>a+d.nv,0);
+  const totalItems=nvDays.reduce((a,d)=>a+d.items,0);
+  const adoptPct=(totalNV/totalItems*100).toFixed(1);
+
+  el.innerHTML=`
+    <div class="sec">Comparativa menú viejo vs nuevo · por día de la semana</div>
+    <div class="nota">Promedio de los días registrados con cada menú. Neto = sin impuestos.</div>
+    <div style="display:grid;grid-template-columns:repeat(${PARES.length},minmax(0,1fr));gap:8px;margin-bottom:1.2rem;">
+      ${PARES.map(p=>{
+        const dTkt=((p.nue.neto/p.nue.txn-p.vie.neto/p.vie.txn)/(p.vie.neto/p.vie.txn)*100).toFixed(0);
+        const dN=((p.nue.neto-p.vie.neto)/p.vie.neto*100).toFixed(0);
+        const dTxn=((p.nue.txn-p.vie.txn)/p.vie.txn*100).toFixed(0);
+        return `<div style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--radL);padding:.9rem .8rem;">
+          <div style="font-size:11px;font-weight:700;color:var(--txt);margin-bottom:.7rem;text-align:center;">${p.dow}</div>
+          <div style="font-size:9px;color:var(--txt3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Clientes/día</div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span style="font-size:12px;color:var(--Atxt);">${p.vie.txn}</span>
+            <span style="font-size:12px;color:var(--Btxt);">${p.nue.txn}</span>
+          </div>
+          <div style="font-size:9px;color:var(--txt3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;">Neto/día</div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span style="font-size:11px;color:var(--Atxt);">₡${fmt(p.vie.neto)}</span>
+            <span style="font-size:11px;color:var(--Btxt);">₡${fmt(p.nue.neto)}</span>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;justify-content:center;">
+            <span class="badge ${+dN>=0?'bG':'bR'}" style="font-size:9px;">${+dN>=0?'+':''}${dN}% neto</span>
+            <span class="badge ${+dTkt>=0?'bG':'bR'}" style="font-size:9px;">${+dTkt>=0?'+':''}${dTkt}% tkt</span>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div class="sec">Adopción WiFi · tráfico vs compras (menú nuevo)</div>
+    <div class="nota">Conexiones WiFi = tráfico real al café. Ítems vendidos = compras. La proporción indica cuántos visitantes compraron.</div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem;">
+      <div class="kpi">
+        <div class="kl">Conexiones WiFi (${nvDays.length} días)</div>
+        <div class="kv">${fmt(totalNV)}</div>
+        <div class="ks">tráfico estimado al café</div>
+      </div>
+      <div class="kpi">
+        <div class="kl">Ítems vendidos</div>
+        <div class="kv">${fmt(totalItems)}</div>
+        <div class="ks">en los mismos ${nvDays.length} días</div>
+      </div>
+      <div class="kpi">
+        <div class="kl">Adopción estimada</div>
+        <div class="kv" style="color:var(--Gtxt);">${adoptPct}%</div>
+        <div class="ks">ítems / conexiones WiFi</div>
+      </div>
+    </div>
+    <div class="ley">
+      <span><i style="background:#3B8BD4"></i>Conexiones WiFi</span>
+      <span><i style="background:#1D9E75"></i>Ítems vendidos</span>
+    </div>
+    <div class="cw" style="height:200px;"><canvas id="c-adop-menu"></canvas></div>`;
+
+  new Chart(document.getElementById('c-adop-menu'),{type:'bar',
+    data:{labels:nvDays.map(d=>d.d),datasets:[
+      {label:'WiFi',data:nvDays.map(d=>d.nv),backgroundColor:'rgba(59,139,212,.5)',borderRadius:4},
+      {label:'Ítems',data:nvDays.map(d=>d.items),backgroundColor:'#1D9E75',borderRadius:4},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},
+              y:{grid:{color:gc},ticks:{color:tc,font:{size:10}}}}}});
+}
+
+// ── EVOLUCIÓN (week by week desde lanzamiento) ────────────────────────────────
+function buildEvolucion(){
+  // Create inner panel-semanas div inside panel-evolucion and delegate
+  const holder=document.createElement('div');
+  holder.id='panel-semanas';
+  holder.style.display='';
+  document.getElementById('panel-evolucion').appendChild(holder);
+  buildSemanas();
+}
+
+// ── TABS MARZO (Ventas / Productos / Menú nuevo / Evolución / Plan) ────────
+const built={ventas:false,productos:false,menu:false,evolucion:false,plan:false};
 function sw(tab,el){
   Object.keys(built).forEach(p=>document.getElementById('panel-'+p).style.display=p===tab?'':'none');
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#mes-marzo .tab').forEach(b=>b.classList.remove('active'));
   if(el)el.classList.add('active');
   if(!built[tab]){
-    ({tendencia:buildTendencia,categorias:buildCategorias,comparativa:buildComparativa,adopcion:buildAdopcion,productos:buildProductos,semanas:buildSemanas,tipodias:buildTipoDias,conclusiones:buildConclusiones})[tab]();
+    ({ventas:buildVentas,productos:buildProductosMkt,menu:buildMenuNuevo,evolucion:buildEvolucion,plan:()=>{}})[tab]();
     built[tab]=true;
   }
 }
-buildTendencia(); built.tendencia=true;
+
+// ── ABRIL — KGS + PPTO (se carga al abrir la pestaña) ────────────────────────
+function initAbril(){
+  // KPIs de abril
+  const aBruto=ABRIL_DIAS.reduce((a,d)=>a+d.bruto,0);
+  const aNeto=ABRIL_DIAS.reduce((a,d)=>a+d.neto,0);
+  const aTxn=ABRIL_DIAS.reduce((a,d)=>a+d.txn,0);
+  const aTktN=Math.round(aNeto/aTxn);
+  const aTktB=Math.round(aBruto/aTxn);
+  const aND=Math.round(aNeto/ABRIL_DIAS.length);
+  const aBD=Math.round(aBruto/ABRIL_DIAS.length);
+  // Compare vs march equivalent
+  const m12Neto=DIAS.slice(0,12).reduce((a,d)=>a+d.neto,0);
+  const m12Txn=DIAS.slice(0,12).reduce((a,d)=>a+d.txn,0);
+  const m12TktN=Math.round(m12Neto/m12Txn);
+  const m12ND=Math.round(m12Neto/12);
+  const dTktN=((aTktN-m12TktN)/m12TktN*100).toFixed(1);
+  const dND=((aND-m12ND)/m12ND*100).toFixed(1);
+
+  document.getElementById('kg-abril').innerHTML=`
+    <div style="grid-column:1/-1;font-size:10px;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em;padding-bottom:4px;border-bottom:.5px solid var(--brd);">
+      Abril 2026 — primeros ${ABRIL_DIAS.length} días operativos (1–12 abr) &nbsp;·&nbsp; mes en curso
+    </div>
+    <div class="kpi"><div class="kl">Neto acumulado</div><div class="kv" style="color:var(--Gtxt);">₡${fmt(aNeto)}</div><div class="ks">sin impuestos · lo del negocio</div></div>
+    <div class="kpi"><div class="kl">Bruto acumulado</div><div class="kv">₡${fmt(aBruto)}</div><div class="ks">con impuestos · referencia</div></div>
+    <div class="kpi"><div class="kl">Ticket neto / cliente</div><div class="kv" style="color:var(--Gtxt);">₡${fmt(aTktN)}</div><div class="ks"><span class="badge ${+dTktN>=0?'bG':'bR'}">${+dTktN>=0?'+':''}${dTktN}% vs mar 1–12</span></div></div>
+    <div class="kpi"><div class="kl">Ticket bruto / cliente</div><div class="kv">₡${fmt(aTktB)}</div><div class="ks">con impuestos</div></div>
+    <div class="kpi"><div class="kl">Neto promedio / día</div><div class="kv" style="color:var(--Gtxt);">₡${fmt(aND)}</div><div class="ks"><span class="badge ${+dND>=0?'bG':'bR'}">${+dND>=0?'+':''}${dND}% vs mar 1–12</span>&nbsp;<span style="color:var(--txt3);">meta: ₡640.000</span></div></div>
+    <div class="kpi"><div class="kl">Transacciones totales</div><div class="kv">${fmt(aTxn)}</div><div class="ks">${Math.round(aTxn/ABRIL_DIAS.length)} por día promedio</div></div>
+  `;
+
+  // Presupuesto abril
+  const PPTO_ABR=19200000;
+  const diasAbiertos=30;
+  const metaDia=Math.round(PPTO_ABR/diasAbiertos);
+  const pct=(aNeto/PPTO_ABR*100).toFixed(1);
+  // Proyección: avg diario × (30 - días registrados)
+  const proy=aNeto+aND*(diasAbiertos-ABRIL_DIAS.length);
+  const pctProy=(proy/PPTO_ABR*100).toFixed(1);
+  const esFav=proy>=PPTO_ABR;
+  const projColor=esFav?'var(--Gtxt)':'var(--Atxt)';
+  const projBg=esFav?'var(--Gbg)':'var(--Abg)';
+  const diasCump=ABRIL_DIAS.filter(d=>d.neto>=metaDia).length;
+
+  document.getElementById('bloque-ppto-abril').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:.9rem;">
+      <div>
+        <div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;">Presupuesto abril 2026</div>
+        <div style="font-size:13px;color:var(--txt2);">${ABRIL_DIAS.length} días registrados · ${diasAbiertos-ABRIL_DIAS.length} días restantes del mes</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;">Proyección con promedio actual</div>
+        <div style="font-size:20px;font-weight:700;color:${projColor};">₡${fmt(proy)} <span style="font-size:12px;background:${projBg};color:${projColor};padding:2px 8px;border-radius:20px;font-weight:600;">${pctProy}% del ppto</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1rem;">
+      <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Neto acumulado</div>
+        <div style="font-size:17px;font-weight:700;color:var(--txt);">₡${fmt(aNeto)}</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px;">de ${diasAbiertos} días</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Presupuesto neto</div>
+        <div style="font-size:17px;font-weight:700;color:var(--txt);">₡19.200.000</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px;">objetivo del mes</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;">Falta para el ppto</div>
+        <div style="font-size:17px;font-weight:700;color:var(--Atxt);">₡${fmt(PPTO_ABR-aNeto)}</div>
+        <div style="font-size:11px;color:var(--txt3);margin-top:2px;">en ${diasAbiertos-ABRIL_DIAS.length} días restantes</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--rad);padding:.7rem .9rem;">
+        <div style="font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;">Meta diaria neto</div>
+        <div style="font-size:20px;font-weight:700;color:var(--txt);">₡640.000<span style="font-size:11px;font-weight:400;color:var(--txt2);margin-left:4px;">/ día</span></div>
+        <div style="height:.5px;background:var(--brd);margin:6px 0;"></div>
+        <div style="font-size:11px;color:var(--txt2);margin-bottom:3px;">Días que la cumplieron</div>
+        <div style="font-size:14px;font-weight:700;"><span style="color:var(--Gtxt);">${diasCump}</span><span style="font-size:11px;font-weight:400;color:var(--txt3);"> de ${ABRIL_DIAS.length} registrados</span></div>
+      </div>
+    </div>
+    <div style="margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:11px;color:var(--txt2);">₡0</span>
+      <span style="font-size:11px;font-weight:600;color:var(--txt);">₡${fmt(aNeto)} <span style="color:var(--txt2);font-weight:400;">neto de</span> ₡${fmt(PPTO_ABR)}</span>
+      <span style="font-size:11px;color:var(--txt2);">₡${fmt(PPTO_ABR)}</span>
+    </div>
+    <div style="background:rgba(255,255,255,.08);border-radius:6px;height:10px;overflow:hidden;">
+      <div style="height:10px;border-radius:6px;width:${pct}%;background:linear-gradient(90deg,#1D9E75,#3B8BD4);"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:5px;">
+      <span style="font-size:11px;color:var(--Btxt);font-weight:600;">${pct}% completado</span>
+      <span style="font-size:11px;color:var(--txt2);">Proyección con avg actual: <strong style="color:${projColor};">₡${fmt(proy)}</strong> — ${esFav?'alcanza el presupuesto ✓':'por debajo del presupuesto'}</span>
+    </div>`;
+
+  buildAbrilTendencia();
+  builtAbril.tendencia=true;
+}
+
+function buildAbrilTendencia(){
+  const el=document.getElementById('abril-panel-tendencia');
+  el.innerHTML=`
+    <div class="nota">
+      <strong>Neto</strong> = lo que es del negocio (sin impuestos) &nbsp;·&nbsp;
+      <strong>Bruto</strong> = todo lo que entró a caja (con impuestos) &nbsp;·&nbsp;
+      La línea punteada marca la <strong>meta diaria neta</strong> de ₡640.000
+    </div>
+    <div class="ley">
+      <span><i style="background:#1D9E75"></i>Neto diario</span>
+      <span><i style="background:rgba(59,139,212,.4)"></i>Bruto diario</span>
+      <span><i style="background:rgba(255,255,255,.2);"></i>Meta neta ₡640.000/día</span>
+    </div>
+    <div class="cw" style="height:240px;"><canvas id="c-abr-bn"></canvas></div>
+    <div class="sec" style="margin-top:1.2rem;">Ticket neto por transacción</div>
+    <div class="cw" style="height:180px;"><canvas id="c-abr-tkt"></canvas></div>
+    <div class="sec" style="margin-top:1.2rem;">Detalle día a día</div>
+    <table class="tbl">
+      <tr>
+        <th>Día</th>
+        <th style="text-align:right">Bruto (caja)</th>
+        <th style="text-align:right">Neto (negocio)</th>
+        <th style="text-align:right">Transacciones</th>
+        <th style="text-align:right">Ticket bruto</th>
+        <th style="text-align:right">Ticket neto</th>
+        <th style="text-align:right">vs Meta neta</th>
+      </tr>
+      ${ABRIL_DIAS.map(d=>{
+        const diff=d.neto-META_ABRIL;
+        const diffPct=(diff/META_ABRIL*100).toFixed(0);
+        return `<tr>
+          <td style="font-weight:600;">${d.d}</td>
+          <td style="text-align:right;font-weight:600;">₡${fmt(d.bruto)}</td>
+          <td style="text-align:right;">₡${fmt(d.neto)}</td>
+          <td style="text-align:right;">${d.txn}</td>
+          <td style="text-align:right;">₡${fmt(Math.round(d.bruto/d.txn))}</td>
+          <td style="text-align:right;color:var(--Gtxt);">₡${fmt(Math.round(d.neto/d.txn))}</td>
+          <td style="text-align:right;"><span class="badge ${diff>=0?'bG':'bR'}">${diff>=0?'+':''}${diffPct}%</span></td>
+        </tr>`;
+      }).join('')}
+      <tr class="ft">
+        <td><strong>TOTAL</strong></td>
+        <td style="text-align:right;">₡${fmt(ABRIL_DIAS.reduce((a,d)=>a+d.bruto,0))}</td>
+        <td style="text-align:right;">₡${fmt(ABRIL_DIAS.reduce((a,d)=>a+d.neto,0))}</td>
+        <td style="text-align:right;">${ABRIL_DIAS.reduce((a,d)=>a+d.txn,0)}</td>
+        <td style="text-align:right;">₡${fmt(Math.round(ABRIL_DIAS.reduce((a,d)=>a+d.bruto,0)/ABRIL_DIAS.reduce((a,d)=>a+d.txn,0)))}</td>
+        <td style="text-align:right;color:var(--Gtxt);">₡${fmt(Math.round(ABRIL_DIAS.reduce((a,d)=>a+d.neto,0)/ABRIL_DIAS.reduce((a,d)=>a+d.txn,0)))}</td>
+        <td style="text-align:right;">—</td>
+      </tr>
+    </table>`;
+
+  new Chart(document.getElementById('c-abr-bn'),{type:'bar',data:{
+    labels:ABRIL_DIAS.map(d=>d.d),
+    datasets:[
+      {label:'Bruto',data:ABRIL_DIAS.map(d=>d.bruto),backgroundColor:'rgba(59,139,212,.4)',borderRadius:4},
+      {label:'Neto', data:ABRIL_DIAS.map(d=>d.neto), backgroundColor:'#1D9E75',borderRadius:4},
+      {label:'Meta neta',data:ABRIL_DIAS.map(()=>META_ABRIL),type:'line',borderColor:'rgba(255,255,255,.3)',borderDash:[5,5],pointRadius:0,borderWidth:1.5,fill:false},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+
+  const avgTktAbr=Math.round(ABRIL_DIAS.reduce((a,d)=>a+d.neto/d.txn,0)/ABRIL_DIAS.length);
+  new Chart(document.getElementById('c-abr-tkt'),{type:'line',data:{
+    labels:ABRIL_DIAS.map(d=>d.d),
+    datasets:[
+      {label:'Ticket neto',data:ABRIL_DIAS.map(d=>Math.round(d.neto/d.txn)),borderColor:'#1D9E75',pointBackgroundColor:'#1D9E75',pointRadius:5,borderWidth:2,tension:.3,fill:false},
+      {label:'Prom. abril',data:ABRIL_DIAS.map(()=>avgTktAbr),borderColor:'rgba(255,255,255,.2)',borderDash:[5,5],pointRadius:0,borderWidth:1.5,fill:false},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+}
+
+function buildAbrilProductos(){
+  const el=document.getElementById('abril-panel-productos');
+  const aBruto=ABRIL_DIAS.reduce((a,d)=>a+d.bruto,0);
+  const aBev=ABRIL_DIAS.reduce((a,d)=>a+d.bevB,0);
+  const aCoc=ABRIL_DIAS.reduce((a,d)=>a+d.cocB,0);
+  const aFil=ABRIL_DIAS.reduce((a,d)=>a+d.filB,0);
+  const aGrand=aBev+aCoc+aFil;
+
+  // Compare with March category mix
+  const mBev=DIAS.reduce((a,d)=>a+d.bevB,0);
+  const mCoc=DIAS.reduce((a,d)=>a+d.cocB,0);
+  const mFil=DIAS.reduce((a,d)=>a+d.filB,0);
+  const mGrand=mBev+mCoc+mFil;
+  const dBev=(aBev/aGrand*100-mBev/mGrand*100).toFixed(1);
+  const dCoc=(aCoc/aGrand*100-mCoc/mGrand*100).toFixed(1);
+  const dFil=(aFil/aGrand*100-mFil/mGrand*100).toFixed(1);
+
+  el.innerHTML=`
+    <div class="nota">
+      Categorías de abril estimadas con proporciones reales de marzo (Bebidas 50% · Cocina 45% · Filtrado 5%).
+      Los totales brutos son exactos del sistema POS.
+    </div>
+    <div class="sec">Ventas por categoría · Abril 1–12</div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem;">
+      <div class="kpi" style="border-color:rgba(59,139,212,.35);">
+        <div class="kl" style="color:var(--Btxt);">☕ Bebidas</div>
+        <div class="kv" style="color:var(--Btxt);">₡${fmt(aBev)}</div>
+        <div class="ks">${(aBev/aGrand*100).toFixed(0)}% del total
+          <span class="badge ${+dBev>=0?'bG':'bR'}" style="margin-left:4px;">${+dBev>=0?'+':''}${dBev}pp vs mar</span>
+        </div>
+      </div>
+      <div class="kpi" style="border-color:rgba(239,159,39,.35);">
+        <div class="kl" style="color:var(--Atxt);">🍽 Cocina</div>
+        <div class="kv" style="color:var(--Atxt);">₡${fmt(aCoc)}</div>
+        <div class="ks">${(aCoc/aGrand*100).toFixed(0)}% del total
+          <span class="badge ${+dCoc>=0?'bG':'bR'}" style="margin-left:4px;">${+dCoc>=0?'+':''}${dCoc}pp vs mar</span>
+        </div>
+      </div>
+      <div class="kpi" style="border-color:rgba(29,158,117,.35);">
+        <div class="kl" style="color:var(--Gtxt);">🫗 Filtrado</div>
+        <div class="kv" style="color:var(--Gtxt);">₡${fmt(aFil)}</div>
+        <div class="ks">${(aFil/aGrand*100).toFixed(0)}% del total
+          <span class="badge ${+dFil>=0?'bG':'bR'}" style="margin-left:4px;">${+dFil>=0?'+':''}${dFil}pp vs mar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">Evolución de categorías · día a día (abr 1–12)</div>
+    <div class="ley">
+      <span><i style="background:#3B8BD4"></i>Bebidas</span>
+      <span><i style="background:#EF9F27"></i>Cocina</span>
+      <span><i style="background:#1D9E75"></i>Filtrado</span>
+    </div>
+    <div class="cw" style="height:220px;"><canvas id="c-abr-cat-evol"></canvas></div>
+
+    <div class="sec" style="margin-top:1.4rem;">Mix de categorías · Marzo vs Abril</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--Atxt);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem;">Marzo (30 días · datos reales)</div>
+        ${[{l:'Bebidas',v:mBev/mGrand,c:'#3B8BD4'},{l:'Cocina',v:mCoc/mGrand,c:'#EF9F27'},{l:'Filtrado',v:mFil/mGrand,c:'#1D9E75'}].map(x=>`
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <div style="font-size:11px;color:var(--txt2);width:55px;">${x.l}</div>
+            <div style="flex:1;background:rgba(255,255,255,.06);border-radius:3px;height:16px;">
+              <div style="width:${(x.v*100).toFixed(0)}%;height:16px;border-radius:3px;background:${x.c};display:flex;align-items:center;padding-left:6px;">
+                <span style="font-size:10px;font-weight:700;color:#fff;">${(x.v*100).toFixed(0)}%</span>
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--txt2);width:65px;text-align:right;">₡${fmt(x.l==='Bebidas'?mBev:x.l==='Cocina'?mCoc:mFil)}</div>
+          </div>`).join('')}
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--Btxt);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem;">Abril (12 días · estimado)</div>
+        ${[{l:'Bebidas',v:aBev/aGrand,c:'#3B8BD4'},{l:'Cocina',v:aCoc/aGrand,c:'#EF9F27'},{l:'Filtrado',v:aFil/aGrand,c:'#1D9E75'}].map(x=>`
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <div style="font-size:11px;color:var(--txt2);width:55px;">${x.l}</div>
+            <div style="flex:1;background:rgba(255,255,255,.06);border-radius:3px;height:16px;">
+              <div style="width:${(x.v*100).toFixed(0)}%;height:16px;border-radius:3px;background:${x.c};display:flex;align-items:center;padding-left:6px;">
+                <span style="font-size:10px;font-weight:700;color:#fff;">${(x.v*100).toFixed(0)}%</span>
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--txt2);width:65px;text-align:right;">₡${fmt(x.l==='Bebidas'?aBev:x.l==='Cocina'?aCoc:aFil)}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+
+  new Chart(document.getElementById('c-abr-cat-evol'),{type:'bar',
+    data:{labels:ABRIL_DIAS.map(d=>d.d),datasets:[
+      {label:'Bebidas',data:ABRIL_DIAS.map(d=>d.bevB),backgroundColor:'#3B8BD4',borderRadius:2,stack:'s'},
+      {label:'Cocina', data:ABRIL_DIAS.map(d=>d.cocB),backgroundColor:'#EF9F27',borderRadius:2,stack:'s'},
+      {label:'Filtrado',data:ABRIL_DIAS.map(d=>d.filB),backgroundColor:'#1D9E75',borderRadius:2,stack:'s'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:11},boxWidth:10}},
+        tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},
+              y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+
+  // ── Ranking de productos top · Abril 1-12 ──────────────────────────────────
+  const prodSec=document.createElement('div');
+  prodSec.innerHTML=`
+    <div class="sec" style="margin-top:1.8rem;">Ranking de productos · Abril 1–12 (datos reales POS)</div>
+    <div class="nota" style="margin-bottom:.8rem;">28 productos más vendidos por cantidad de unidades. Fuente: Detalles de Ventas del sistema POS.</div>
+    <div class="ley">
+      <span><i style="background:#3B8BD4"></i>Bebidas</span>
+      <span><i style="background:#EF9F27"></i>Cocina</span>
+      <span><i style="background:#1D9E75"></i>Filtrado</span>
+    </div>
+    <div class="cw" style="height:560px;"><canvas id="c-abr-prod-rank"></canvas></div>
+    <div style="margin-top:1rem;overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.12);">
+            <th style="text-align:left;padding:6px 8px;color:var(--txt3);font-weight:600;">#</th>
+            <th style="text-align:left;padding:6px 8px;color:var(--txt3);font-weight:600;">Producto</th>
+            <th style="text-align:right;padding:6px 8px;color:var(--txt3);font-weight:600;">Uds.</th>
+            <th style="text-align:right;padding:6px 8px;color:var(--txt3);font-weight:600;">Neto total</th>
+            <th style="text-align:right;padding:6px 8px;color:var(--txt3);font-weight:600;">Precio prom.</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ABRIL_PRODS.map((p,i)=>{
+            const catCol=p.cat==='bev'?'#3B8BD4':p.cat==='coc'?'#EF9F27':'#1D9E75';
+            const catLabel=p.cat==='bev'?'Beb':p.cat==='coc'?'Coc':'Fil';
+            return `<tr style="border-bottom:1px solid rgba(255,255,255,.05);${i%2===0?'':'background:rgba(255,255,255,.02)'}">
+              <td style="padding:5px 8px;color:var(--txt3);">${i+1}</td>
+              <td style="padding:5px 8px;">
+                <span style="display:inline-block;width:28px;font-size:9px;font-weight:700;color:${catCol};background:rgba(${p.cat==='bev'?'59,139,212':p.cat==='coc'?'239,159,39':'29,158,117'},.15);border-radius:3px;text-align:center;padding:1px 0;margin-right:4px;">${catLabel}</span>
+                ${p.n}
+              </td>
+              <td style="padding:5px 8px;text-align:right;font-weight:700;color:var(--txt1);">${p.qty}</td>
+              <td style="padding:5px 8px;text-align:right;color:var(--txt2);">₡${fmt(p.neto)}</td>
+              <td style="padding:5px 8px;text-align:right;color:var(--txt3);">₡${fmt(Math.round(p.neto/p.qty))}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  el.appendChild(prodSec);
+
+  const catColors=ABRIL_PRODS.map(p=>p.cat==='bev'?'#3B8BD4':p.cat==='coc'?'#EF9F27':'#1D9E75');
+  const catBorders=ABRIL_PRODS.map(p=>p.cat==='bev'?'rgba(59,139,212,.8)':p.cat==='coc'?'rgba(239,159,39,.8)':'rgba(29,158,117,.8)');
+  new Chart(document.getElementById('c-abr-prod-rank'),{type:'bar',
+    data:{
+      labels:ABRIL_PRODS.map(p=>p.n),
+      datasets:[{
+        label:'Unidades vendidas',
+        data:ABRIL_PRODS.map(p=>p.qty),
+        backgroundColor:catColors,
+        borderColor:catBorders,
+        borderWidth:1,
+        borderRadius:3,
+      }]
+    },
+    options:{
+      indexAxis:'y',
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{
+          label:c=>`${c.raw} uds · ₡${fmt(ABRIL_PRODS[c.dataIndex].neto)} neto`
+        }}
+      },
+      scales:{
+        x:{grid:{color:gc},ticks:{color:tc,font:{size:10}},title:{display:true,text:'Unidades vendidas',color:tc,font:{size:10}}},
+        y:{grid:{color:'transparent'},ticks:{color:tc,font:{size:10}}}
+      }
+    }
+  });
+}
+
+function buildAbrilTipoDias(){
+  const el=document.getElementById('abril-panel-tipodias');
+  const EDS=['Lun','Mar','Mié','Jue','Vie'];
+  const ents=ABRIL_DIAS.filter(d=>EDS.includes(d.dow));
+  const sabs=ABRIL_DIAS.filter(d=>d.dow==='Sáb');
+  const doms=ABRIL_DIAS.filter(d=>d.dow==='Dom');
+
+  const stats=arr=>{
+    if(!arr.length)return null;
+    const bs=arr.map(d=>d.neto).sort((a,b)=>a-b);
+    const avg=bs.reduce((a,b)=>a+b,0)/bs.length;
+    const min=bs[0],max=bs[bs.length-1];
+    const med=bs.length%2===0?(bs[bs.length/2-1]+bs[bs.length/2])/2:bs[Math.floor(bs.length/2)];
+    const avgTktN=arr.reduce((a,d)=>a+d.neto/d.txn,0)/arr.length;
+    const avgTxn=arr.reduce((a,d)=>a+d.txn,0)/arr.length;
+    return {avg,min,max,med,avgTktN,avgTxn,n:arr.length,dias:arr};
+  };
+
+  const G=[
+    {label:'Entre semana',sub:'Lun–Vie',color:'#3B8BD4',s:stats(ents)},
+    {label:'Sábado',       sub:'Solo sábados',color:'#EF9F27',s:stats(sabs)},
+    {label:'Domingo',      sub:'Solo domingos',color:'#1D9E75',s:stats(doms)},
+  ].filter(g=>g.s);
+
+  const card=g=>`
+    <div style="border:.5px solid var(--brd);border-radius:var(--radL);padding:1rem;background:var(--bg2);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:.9rem;">
+        <div style="width:10px;height:10px;border-radius:50%;background:${g.color};flex-shrink:0;"></div>
+        <div>
+          <div style="font-weight:600;font-size:13px;color:var(--txt);">${g.label}</div>
+          <div style="font-size:11px;color:var(--txt2);">${g.sub} · ${g.s.n} días en abril</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.8rem;">
+        <div class="kpi"><div class="kl">Promedio neto</div><div class="kv" style="font-size:15px;color:${g.color};">₡${fmt(g.s.avg)}</div></div>
+        <div class="kpi"><div class="kl">Mediana neto</div><div class="kv" style="font-size:15px;">₡${fmt(g.s.med)}</div><div class="ks">sin distorsión</div></div>
+        <div class="kpi"><div class="kl">Día más bajo</div><div class="kv" style="font-size:15px;color:var(--Rtxt);">₡${fmt(g.s.min)}</div></div>
+        <div class="kpi"><div class="kl">Día más alto</div><div class="kv" style="font-size:15px;color:var(--Gtxt);">₡${fmt(g.s.max)}</div></div>
+        <div class="kpi"><div class="kl">Ticket neto prom.</div><div class="kv" style="font-size:15px;">₡${fmt(g.s.avgTktN)}</div></div>
+        <div class="kpi"><div class="kl">Clientes / día</div><div class="kv" style="font-size:15px;">${Math.round(g.s.avgTxn)}</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        ${g.s.dias.map(d=>{
+          const pct=(d.neto/g.s.max*100).toFixed(0);
+          const col=d.neto>=g.s.avg?g.color:'rgba(255,255,255,.25)';
+          return `<div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:11px;color:var(--txt2);width:38px;flex-shrink:0;">${d.d}</div>
+            <div style="flex:1;background:rgba(255,255,255,.06);border-radius:3px;height:14px;overflow:hidden;">
+              <div style="width:${pct}%;height:14px;border-radius:3px;background:${col};min-width:2px;"></div>
+            </div>
+            <div style="font-size:11px;font-weight:600;color:${d.neto>=g.s.avg?g.color:'var(--txt2)'};width:72px;text-align:right;">₡${fmt(d.neto)}</div>
+            <div style="font-size:10px;color:var(--txt3);width:40px;text-align:right;">${d.txn} txn</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+
+  el.innerHTML=`
+    <div class="nota">
+      Valores en <strong>neto</strong> (sin impuestos). Datos de ${ABRIL_DIAS.length} días operativos de abril.
+      <span style="color:var(--txt3);">Categorías estimadas con proporciones de marzo.</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:1.2rem;">
+      ${G.map(g=>card(g)).join('')}
+    </div>`;
+
+  // Add chart if multiple groups
+  if(G.length>1){
+    el.innerHTML+=`<div class="sec">Comparación neto por tipo de día</div>
+    <div class="cw" style="height:200px;"><canvas id="c-abr-td"></canvas></div>`;
+    new Chart(document.getElementById('c-abr-td'),{type:'bar',
+      data:{labels:['Promedio','Mediana','Mínimo','Máximo'],
+        datasets:G.map(g=>({label:g.label,data:[Math.round(g.s.avg),Math.round(g.s.med),g.s.min,g.s.max],backgroundColor:g.color,borderRadius:4}))},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:11},boxWidth:10}},
+          tooltip:{callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},
+        scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+  }
+}
+
+// ── COMPARATIVA MESES ────────────────────────────────────────────────────────
+function buildComparativaMeses(){
+  const el=document.getElementById('panel-comp-meses');
+
+  // ── DATA ────────────────────────────────────────────────────────────────────
+  const M3=DIAS.slice(0,12); // first 12 operating days of March
+  const A12=ABRIL_DIAS;      // all 12 April days
+
+  // March totals (first 12 days)
+  const m3N=M3.reduce((a,d)=>a+d.neto,0);
+  const m3B=M3.reduce((a,d)=>a+d.bruto,0);
+  const m3T=M3.reduce((a,d)=>a+d.txn,0);
+  const m3TktN=Math.round(m3N/m3T);
+  const m3ND=Math.round(m3N/12);
+  const m3TD=Math.round(m3T/12);
+
+  // April totals
+  const a12N=A12.reduce((a,d)=>a+d.neto,0);
+  const a12B=A12.reduce((a,d)=>a+d.bruto,0);
+  const a12T=A12.reduce((a,d)=>a+d.txn,0);
+  const a12TktN=Math.round(a12N/a12T);
+  const a12ND=Math.round(a12N/12);
+  const a12TD=Math.round(a12T/12);
+
+  // Full March totals (for budget context)
+  const mzTotN=DIAS.reduce((a,d)=>a+d.neto,0);
+  const mzBudget=18000000;
+  const aBudget=19200000;
+
+  // Categories March full month
+  const mBev=DIAS.reduce((a,d)=>a+d.bevB,0), mCoc=DIAS.reduce((a,d)=>a+d.cocB,0), mFil=DIAS.reduce((a,d)=>a+d.filB,0);
+  const mG=mBev+mCoc+mFil;
+  // Categories April
+  const aBev=A12.reduce((a,d)=>a+d.bevB,0), aCoc=A12.reduce((a,d)=>a+d.cocB,0), aFil=A12.reduce((a,d)=>a+d.filB,0);
+  const aG=aBev+aCoc+aFil;
+
+  // Day-type: weekdays
+  const EDS=['Lun','Mar','Mié','Jue','Vie'];
+  const mEnt=DIAS.filter(d=>EDS.includes(d.dow)), mSab=DIAS.filter(d=>d.dow==='Sáb'), mDom=DIAS.filter(d=>d.dow==='Dom');
+  const aEnt=A12.filter(d=>EDS.includes(d.dow)), aSab=A12.filter(d=>d.dow==='Sáb'), aDom=A12.filter(d=>d.dow==='Dom');
+  const avgN=arr=>arr.length?Math.round(arr.reduce((a,d)=>a+d.neto,0)/arr.length):0;
+
+  // Utility
+  const d=(a,b)=>((a-b)/b*100).toFixed(1);
+  const badge=(v,suf='')=>`<span class="badge ${+v>=0?'bG':'bR'}">${+v>=0?'+':''}${v}%${suf}</span>`;
+  const ins=(color,title,text)=>`<div class="ins ins${color}" style="margin-bottom:8px;"><div class="it">${title}</div><div class="ic">${text}</div></div>`;
+
+  el.innerHTML=`
+    <!-- ══ RESUMEN EJECUTIVO ══════════════════════════════════════════════════ -->
+    <div class="sec">Resumen ejecutivo · Marzo completo vs Abril (12 días)</div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.4rem;">
+      <div class="kpi">
+        <div class="kl">Neto promedio / día</div>
+        <div class="kv" style="font-size:15px;color:var(--Atxt);">₡${fmt(Math.round(mzTotN/DIAS.length))}</div>
+        <div class="ks">Marzo · ${DIAS.length} días</div>
+        <div style="margin-top:6px;">
+          <div class="kv" style="font-size:15px;color:var(--Btxt);">₡${fmt(a12ND)}</div>
+          <div class="ks">Abril · ${badge(d(a12ND,Math.round(mzTotN/DIAS.length)))} vs mar</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="kl">Ticket neto / cliente</div>
+        <div class="kv" style="font-size:15px;color:var(--Atxt);">₡${fmt(Math.round(DIAS.reduce((a,d)=>a+d.neto,0)/DIAS.reduce((a,d)=>a+d.txn,0)))}</div>
+        <div class="ks">Marzo promedio</div>
+        <div style="margin-top:6px;">
+          <div class="kv" style="font-size:15px;color:var(--Btxt);">₡${fmt(a12TktN)}</div>
+          <div class="ks">Abril ${badge(d(a12TktN,Math.round(DIAS.reduce((a,d)=>a+d.neto,0)/DIAS.reduce((a,d)=>a+d.txn,0))))}</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="kl">Transacciones / día</div>
+        <div class="kv" style="font-size:15px;color:var(--Atxt);">${Math.round(DIAS.reduce((a,d)=>a+d.txn,0)/DIAS.length)}</div>
+        <div class="ks">Marzo promedio</div>
+        <div style="margin-top:6px;">
+          <div class="kv" style="font-size:15px;color:var(--Btxt);">${a12TD}</div>
+          <div class="ks">Abril ${badge(d(a12TD,Math.round(DIAS.reduce((a,d)=>a+d.txn,0)/DIAS.length)))}</div>
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="kl">Presupuesto neto</div>
+        <div class="kv" style="font-size:15px;color:var(--Gtxt);">${(mzTotN/mzBudget*100).toFixed(0)}%</div>
+        <div class="ks">Marzo · ₡${fmt(mzBudget)} objetivo</div>
+        <div style="margin-top:6px;">
+          <div class="kv" style="font-size:15px;color:${a12ND>=640000?'var(--Gtxt)':'var(--Atxt)'};">${(a12ND/640000*100).toFixed(0)}%</div>
+          <div class="ks">Abril · pace vs meta ₡640K/día</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ANÁLISIS OPERATIVO ═════════════════════════════════════════════════ -->
+    <div class="sec">Análisis operativo · primeros 12 días (base comparable)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.4rem;">
+      <div style="border:.5px solid rgba(239,159,39,.3);border-radius:var(--radL);padding:1rem;">
+        <div style="font-size:10px;font-weight:700;color:var(--Atxt);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.8rem;">🟠 Marzo · Días 1–12</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="kpi"><div class="kl">Neto total</div><div class="kv" style="font-size:15px;color:var(--Gtxt);">₡${fmt(m3N)}</div></div>
+          <div class="kpi"><div class="kl">Neto / día</div><div class="kv" style="font-size:15px;">₡${fmt(m3ND)}</div></div>
+          <div class="kpi"><div class="kl">Ticket neto</div><div class="kv" style="font-size:15px;">₡${fmt(m3TktN)}</div></div>
+          <div class="kpi"><div class="kl">Txn / día</div><div class="kv" style="font-size:15px;">${m3TD}</div></div>
+        </div>
+      </div>
+      <div style="border:.5px solid rgba(59,139,212,.3);border-radius:var(--radL);padding:1rem;">
+        <div style="font-size:10px;font-weight:700;color:var(--Btxt);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.8rem;">🔵 Abril · Días 1–12</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="kpi"><div class="kl">Neto total</div><div class="kv" style="font-size:15px;color:var(--Gtxt);">₡${fmt(a12N)}</div><div class="ks">${badge(d(a12N,m3N))} vs mar</div></div>
+          <div class="kpi"><div class="kl">Neto / día</div><div class="kv" style="font-size:15px;">₡${fmt(a12ND)}</div><div class="ks">${badge(d(a12ND,m3ND))} vs mar</div></div>
+          <div class="kpi"><div class="kl">Ticket neto</div><div class="kv" style="font-size:15px;">₡${fmt(a12TktN)}</div><div class="ks">${badge(d(a12TktN,m3TktN))} vs mar</div></div>
+          <div class="kpi"><div class="kl">Txn / día</div><div class="kv" style="font-size:15px;">${a12TD}</div><div class="ks">${badge(d(a12TD,m3TD))} vs mar</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ VENTAS DIARIAS ═════════════════════════════════════════════════════ -->
+    <div class="sec">Ventas netas diarias · Marzo vs Abril (primeros 12 días)</div>
+    <div class="ley">
+      <span><i style="background:rgba(239,159,39,.65)"></i>Marzo</span>
+      <span><i style="background:#3B8BD4"></i>Abril</span>
+      <span><i style="background:rgba(255,255,255,.2)"></i>Meta ₡640K/día</span>
+    </div>
+    <div class="cw" style="height:240px;"><canvas id="c-comp-dias"></canvas></div>
+
+    <!-- ══ POR TIPO DE DÍA ════════════════════════════════════════════════════ -->
+    <div class="sec" style="margin-top:1.4rem;">Por tipo de día · neto promedio</div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.2rem;">
+      ${[
+        {l:'Entre semana',icon:'📅',mArr:mEnt,aArr:aEnt,c:'#3B8BD4'},
+        {l:'Sábados',icon:'🟡',mArr:mSab,aArr:aSab,c:'#EF9F27'},
+        {l:'Domingos',icon:'🟢',mArr:mDom,aArr:aDom,c:'#1D9E75'},
+      ].map(g=>{
+        const mA=avgN(g.mArr), aA=avgN(g.aArr);
+        const dv=aA&&mA?d(aA,mA):'—';
+        return `<div class="kpi" style="border-color:${g.c}44;">
+          <div class="kl">${g.icon} ${g.l}</div>
+          <div style="display:flex;gap:10px;align-items:flex-end;margin-top:4px;">
+            <div>
+              <div style="font-size:9px;color:var(--Atxt);text-transform:uppercase;">Mar</div>
+              <div style="font-size:14px;font-weight:700;color:var(--Atxt);">₡${fmt(mA)}</div>
+              <div style="font-size:10px;color:var(--txt3);">${g.mArr.length} días</div>
+            </div>
+            <div>
+              <div style="font-size:9px;color:var(--Btxt);text-transform:uppercase;">Abr</div>
+              <div style="font-size:14px;font-weight:700;color:var(--Btxt);">₡${fmt(aA)}</div>
+              <div style="font-size:10px;color:var(--txt3);">${g.aArr.length} días</div>
+            </div>
+          </div>
+          ${dv!=='—'?`<div style="margin-top:6px;">${badge(dv)} neto/día</div>`:'<div style="margin-top:6px;font-size:10px;color:var(--txt3);">Sin datos comparables aún</div>'}
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- ══ ANÁLISIS DE MARKETING ══════════════════════════════════════════════ -->
+    <div class="sec">Análisis de marketing · mezcla de categorías</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.2rem;">
+      <div>
+        <div style="font-size:10px;font-weight:600;color:var(--Atxt);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem;">Marzo · mes completo (real)</div>
+        ${[{l:'☕ Bebidas',v:mBev/mG,c:'#3B8BD4'},{l:'🍽 Cocina',v:mCoc/mG,c:'#EF9F27'},{l:'🫗 Filtrado',v:mFil/mG,c:'#1D9E75'}].map(x=>`
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">
+            <div style="font-size:11px;color:var(--txt2);width:70px;">${x.l}</div>
+            <div style="flex:1;background:rgba(255,255,255,.06);border-radius:3px;height:18px;">
+              <div style="width:${(x.v*100).toFixed(0)}%;height:18px;border-radius:3px;background:${x.c};display:flex;align-items:center;padding-left:6px;">
+                <span style="font-size:10px;font-weight:700;color:#fff;">${(x.v*100).toFixed(0)}%</span>
+              </div>
+            </div>
+            <div style="font-size:10px;color:var(--txt2);width:62px;text-align:right;">₡${fmt(x.l.includes('Beb')?mBev:x.l.includes('Coc')?mCoc:mFil)}</div>
+          </div>`).join('')}
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;color:var(--Btxt);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem;">Abril · 12 días (estimado)</div>
+        ${[{l:'☕ Bebidas',v:aBev/aG,c:'#3B8BD4'},{l:'🍽 Cocina',v:aCoc/aG,c:'#EF9F27'},{l:'🫗 Filtrado',v:aFil/aG,c:'#1D9E75'}].map(x=>`
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">
+            <div style="font-size:11px;color:var(--txt2);width:70px;">${x.l}</div>
+            <div style="flex:1;background:rgba(255,255,255,.06);border-radius:3px;height:18px;">
+              <div style="width:${(x.v*100).toFixed(0)}%;height:18px;border-radius:3px;background:${x.c};display:flex;align-items:center;padding-left:6px;">
+                <span style="font-size:10px;font-weight:700;color:#fff;">${(x.v*100).toFixed(0)}%</span>
+              </div>
+            </div>
+            <div style="font-size:10px;color:var(--txt2);width:62px;text-align:right;">₡${fmt(x.l.includes('Beb')?aBev:x.l.includes('Coc')?aCoc:aFil)}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- ══ INSIGHTS ═══════════════════════════════════════════════════════════ -->
+    <div class="sec">Insights · qué dice el dato</div>
+    ${ins('G',
+      `Ticket neto: ${+d(a12TktN,m3TktN)>=0?'mejorando':'bajando'} ${Math.abs(+d(a12TktN,m3TktN)).toFixed(1)}%`,
+      `El ticket neto promedio de abril es <strong>₡${fmt(a12TktN)}</strong> vs <strong>₡${fmt(m3TktN)}</strong> de marzo. ${+d(a12TktN,m3TktN)>=0?'La gente está gastando más por visita — señal de que el menú nuevo está funcionando.':'Cada compra está dejando menos. Revisá si hay mix de productos que tirar hacia arriba.'}`
+    )}
+    ${ins(+d(a12TD,m3TD)>=0?'G':'A',
+      `Transacciones: ${+d(a12TD,m3TD)>=0?'más clientes':'menos clientes'} por día (${+d(a12TD,m3TD)>=0?'+':''}${d(a12TD,m3TD)}%)`,
+      `Abril promedia <strong>${a12TD} transacciones/día</strong> vs <strong>${m3TD} en marzo</strong>. ${+d(a12TD,m3TD)>=0?'Más gente está llegando — seguir nutriendo la recurrencia.':'La cantidad de visitas bajó. Semana Santa puede explicar parte, pero revisá los lunes y martes.'}`
+    )}
+    ${ins(+d(a12ND,640000)>=0?'G':'A',
+      `Ritmo vs presupuesto abril (₡640K/día meta)`,
+      `Promedio actual de <strong>₡${fmt(a12ND)}/día neto</strong>. ${+d(a12ND,640000)>=0?'Estás por encima de la meta diaria — si mantenés el ritmo el mes cierra bien.':'Estás <strong>₡'+fmt(640000-a12ND)+'</strong> debajo de la meta diaria. Necesitás subir en fin de semana para compensar los días débiles de entre semana.'}`
+    )}
+    ${ins('B',
+      'Mezcla de productos: cocina es la oportunidad',
+      `Cocina representa el <strong>${(aCoc/aG*100).toFixed(0)}%</strong> de las ventas. En un café, subir el mix de comida aumenta el ticket sin necesitar más clientes. Cada combo bebida+cocina que se vende en vez de solo bebida suma <strong>~₡3.500–₡5.000 neto extra</strong> por transacción.`
+    )}
+
+    <!-- ══ TABLA COMPARATIVA ═══════════════════════════════════════════════════ -->
+    <div class="sec" style="margin-top:1rem;">Tabla día a día · Marzo vs Abril (primeros 12)</div>
+    <table class="tbl">
+      <tr>
+        <th>#</th>
+        <th>Marzo</th><th style="text-align:right">Neto Mar</th><th style="text-align:right">Txn</th>
+        <th>Abril</th><th style="text-align:right">Neto Abr</th><th style="text-align:right">Txn</th>
+        <th style="text-align:right">Δ Neto</th><th style="text-align:right">Δ Txn</th>
+      </tr>
+      ${M3.map((m,i)=>{
+        const a=A12[i];
+        const dn=+d(a.neto,m.neto), dt=+d(a.txn,m.txn);
+        return `<tr>
+          <td style="color:var(--txt3);font-size:11px;">${i+1}</td>
+          <td>${m.d}</td>
+          <td style="text-align:right;color:var(--Atxt);">₡${fmt(m.neto)}</td>
+          <td style="text-align:right;color:var(--txt2);">${m.txn}</td>
+          <td>${a.d}</td>
+          <td style="text-align:right;color:var(--Btxt);">₡${fmt(a.neto)}</td>
+          <td style="text-align:right;color:var(--txt2);">${a.txn}</td>
+          <td style="text-align:right;"><span class="badge ${dn>=0?'bG':'bR'}">${dn>=0?'+':''}${dn.toFixed(0)}%</span></td>
+          <td style="text-align:right;"><span class="badge ${dt>=0?'bG':'bR'}">${dt>=0?'+':''}${dt.toFixed(0)}%</span></td>
+        </tr>`;
+      }).join('')}
+      <tr class="ft">
+        <td colspan="2"><strong>TOTAL / PROM.</strong></td>
+        <td style="text-align:right;color:var(--Atxt);">₡${fmt(m3N)}</td>
+        <td style="text-align:right;color:var(--txt2);">${m3T}</td>
+        <td></td>
+        <td style="text-align:right;color:var(--Btxt);">₡${fmt(a12N)}</td>
+        <td style="text-align:right;color:var(--txt2);">${a12T}</td>
+        <td style="text-align:right;">${badge(d(a12N,m3N))}</td>
+        <td style="text-align:right;">${badge(d(a12T,m3T))}</td>
+      </tr>
+    </table>`;
+
+  new Chart(document.getElementById('c-comp-dias'),{type:'bar',
+    data:{
+      labels:M3.map((_,i)=>'Día '+(i+1)),
+      datasets:[
+        {label:'Marzo neto',data:M3.map(d=>d.neto),backgroundColor:'rgba(239,159,39,.65)',borderRadius:4},
+        {label:'Abril neto', data:A12.map(d=>d.neto),backgroundColor:'#3B8BD4',borderRadius:4},
+        {label:'Meta ₡640K',data:M3.map(()=>640000),type:'line',borderColor:'rgba(255,255,255,.3)',borderDash:[5,5],pointRadius:0,borderWidth:1.5,fill:false},
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{color:tc,font:{size:11},boxWidth:10}},
+        tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},
+      scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},
+              y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+}
+
+
+// ── TABS ABRIL ────────────────────────────────────────────────────────────────
+const builtAbril={tendencia:false,productos:false,tipodias:false};
+function swAbril(tab,el){
+  ['tendencia','productos','tipodias'].forEach(p=>document.getElementById('abril-panel-'+p).style.display=p===tab?'':'none');
+  document.querySelectorAll('#mes-abril .tab').forEach(b=>b.classList.remove('active'));
+  if(el)el.classList.add('active');
+  if(!builtAbril[tab]){
+    ({tendencia:buildAbrilTendencia,productos:buildAbrilProductos,tipodias:buildAbrilTipoDias})[tab]();
+    builtAbril[tab]=true;
+  }
+}
+
+// ── SELECTOR DE MES ──────────────────────────────────────────────────────────
+let abrilLoaded=false, compLoaded=false;
+function swMes(mes){
+  ['marzo','abril','comp'].forEach(m=>{
+    document.getElementById('mes-'+m).style.display=m===mes?'':'none';
+    document.getElementById('mes-btn-'+m).classList.toggle('active',m===mes);
+  });
+  if(mes==='abril'&&!abrilLoaded){initAbril();abrilLoaded=true;}
+  if(mes==='comp'&&!compLoaded){buildComparativaMeses();compLoaded=true;}
+}
+
+buildVentas(); built.ventas=true;
 </script>
 </body>
 </html>
