@@ -1899,6 +1899,35 @@ function buildEvolucion(){
 }
 
 // ── TABS MARZO (Ventas / Productos / Menú nuevo / Evolución / Plan) ────────
+const builtAbril={tendencia:false,productos:false,tipodias:false,mercadeo:false};
+let abrilInited=false, compBuilt=false;
+
+function swMes(mes){
+  ['marzo','abril','comp'].forEach(m=>{
+    var el=document.getElementById('mes-'+m);
+    if(el) el.style.display=m===mes?'':'none';
+  });
+  ['marzo','abril','comp'].forEach(m=>{
+    var btn=document.getElementById('mes-btn-'+m);
+    if(btn) btn.classList.toggle('active', m===mes);
+  });
+  if(mes==='abril'&&!abrilInited){ initAbril(); abrilInited=true; }
+  if(mes==='comp'&&!compBuilt){ buildComparativaMeses(); compBuilt=true; }
+}
+
+function swAbril(tab,el){
+  ['tendencia','productos','tipodias','mercadeo'].forEach(p=>{
+    var pn=document.getElementById('abril-panel-'+p);
+    if(pn) pn.style.display=p===tab?'':'none';
+  });
+  document.querySelectorAll('#mes-abril .tab').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  if(!builtAbril[tab]){
+    ({tendencia:buildAbrilTendencia,productos:buildAbrilProductos,tipodias:buildAbrilTipoDias,mercadeo:buildAbrilMercadeo})[tab]();
+    builtAbril[tab]=true;
+  }
+}
+
 const built={ventas:false,productos:false,menu:false,evolucion:false,plan:false,mercadeo:false};
 function sw(tab,el){
   Object.keys(built).forEach(p=>document.getElementById('panel-'+p).style.display=p===tab?'':'none');
@@ -2100,6 +2129,13 @@ function buildMercadeo(){
   const estable  = prodsConTendencia.filter(p=>p.trend>=-15&&p.trend<=15).sort((a,b)=>b.tot-a.tot);
   const topPop   = [...prodsConTendencia].sort((a,b)=>b.tot-a.tot).slice(0,8);
 
+  // ── Resumen del mes ────
+  const mNeto=DIAS.reduce((a,d)=>a+d.neto,0);
+  const mBruto=DIAS.reduce((a,d)=>a+d.bruto,0);
+  const mTxn=DIAS.reduce((a,d)=>a+d.txn,0);
+  const mTktN=Math.round(mNeto/mTxn);
+  const mPctPpto=(mNeto/18000000*100).toFixed(1);
+
   el.innerHTML=`
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:1.6rem;">
     <div>
@@ -2107,6 +2143,36 @@ function buildMercadeo(){
       <div style="font-size:11px;color:var(--txt3);margin-top:3px;">Audiencia WiFi · Recepción del menú nuevo · Plan de fidelización</div>
     </div>
     <button onclick="printMercadeo()" style="background:var(--acc);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;">⬇ Exportar para comité</button>
+  </div>
+
+  <!-- ═══ 0. RESUMEN DEL MES ══════════════════════════════════════════════ -->
+  <div class="sec">Marzo 2026 · Resumen del mes</div>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.4rem;">
+    <div class="kpi" style="border-color:rgba(29,158,117,.35);">
+      <div class="kl" style="color:var(--Gtxt);">💰 Neto total del mes</div>
+      <div class="kv" style="color:var(--Gtxt);">₡${fk(mNeto)}</div>
+      <div class="ks">sin impuestos · lo del negocio</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">🧾 Bruto total</div>
+      <div class="kv">₡${fk(mBruto)}</div>
+      <div class="ks">con impuestos · lo que entró a caja</div>
+    </div>
+    <div class="kpi" style="border-color:rgba(59,139,212,.35);">
+      <div class="kl" style="color:var(--Btxt);">🔁 Transacciones</div>
+      <div class="kv" style="color:var(--Btxt);">${mTxn}</div>
+      <div class="ks">órdenes en el mes</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">🎫 Ticket promedio neto</div>
+      <div class="kv">₡${fmt(mTktN)}</div>
+      <div class="ks">por cliente · sin impuestos</div>
+    </div>
+    <div class="kpi" style="border-color:rgba(${+mPctPpto>=100?'29,158,117':'239,159,39'},.35);">
+      <div class="kl" style="color:var(--${+mPctPpto>=100?'G':'A'}txt);">📊 Vs presupuesto</div>
+      <div class="kv" style="color:var(--${+mPctPpto>=100?'G':'A'}txt);">${mPctPpto}%</div>
+      <div class="ks">meta ₡18.000.000 neto</div>
+    </div>
   </div>
 
   <!-- ═══ 1. TU AUDIENCIA ══════════════════════════════════════════════════ -->
