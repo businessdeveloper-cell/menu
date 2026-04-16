@@ -176,11 +176,13 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
   <button class="tab" onclick="sw('menu',this)">Menú nuevo</button>
   <button class="tab" onclick="sw('evolucion',this)">Evolución</button>
   <button class="tab" onclick="sw('plan',this)">Plan de acción</button>
+  <button class="tab" onclick="sw('mercadeo',this)">Mercadeo ↗</button>
 </div>
 <div id="panel-ventas"></div>
 <div id="panel-productos" style="display:none;"></div>
 <div id="panel-menu"      style="display:none;"></div>
 <div id="panel-evolucion" style="display:none;"></div>
+<div id="panel-mercadeo" style="display:none;"></div>
 <div id="panel-plan" style="display:none;">
 <div class="nl-section">
 
@@ -492,8 +494,67 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
   </div>
 
 </div>
-</div>
 
+<!-- ═══ CONCLUSIONES DE MERCADEO · WiFi + CRM + Ventas ═══════════════════ -->
+<div style="margin-top:1.6rem;">
+  <div class="sec" style="margin-bottom:.8rem;margin-top:0;">Audiencia WiFi · Panorama general</div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.2rem;">
+    <div class="kpi"><div class="kl">📶 Conexiones totales</div><div class="kv">1.523</div><div class="ks">desde inicio del WiFi</div></div>
+    <div class="kpi"><div class="kl">👤 Clientes únicos</div><div class="kv">954</div><div class="ks">en base de datos</div></div>
+    <div class="kpi" style="border-color:rgba(59,139,212,.35);"><div class="kl" style="color:var(--Btxt);">🔄 Recurrentes</div><div class="kv" style="color:var(--Btxt);">180</div><div class="ks">18.87% · 2+ visitas</div></div>
+    <div class="kpi" style="border-color:rgba(239,159,39,.35);"><div class="kl" style="color:var(--Atxt);">❤️ Fans del WiFi</div><div class="kv" style="color:var(--Atxt);">19</div><div class="ks">máxima frecuencia</div></div>
+  </div>
+
+  <div class="sec" style="margin-bottom:.8rem;">Fidelización · Período reciente</div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.2rem;">
+    <div class="kpi" style="border-color:rgba(29,158,117,.35);"><div class="kl" style="color:var(--Gtxt);">🆕 Nuevos miembros</div><div class="kv" style="color:var(--Gtxt);">37</div><div class="ks"><span class="badge bG">+105.6%</span></div></div>
+    <div class="kpi" style="border-color:rgba(29,158,117,.35);"><div class="kl" style="color:var(--Gtxt);">🔁 Recurrentes fid.</div><div class="kv" style="color:var(--Gtxt);">30</div><div class="ks"><span class="badge bG">+328.6%</span></div></div>
+    <div class="kpi"><div class="kl">🎫 Conv. tarjeta</div><div class="kv">71%</div><div class="ks">27 clientes</div></div>
+    <div class="kpi" style="border-color:rgba(239,95,67,.35);"><div class="kl" style="color:var(--Rtxt);">🎟 Cupones sin canjear</div><div class="kv" style="color:var(--Rtxt);">38/38</div><div class="ks">0% redimidos</div></div>
+  </div>
+
+  <div class="sec" style="margin-bottom:.8rem;">Conclusiones &amp; prioridades de mercadeo · Mar–Abr 2026</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1rem;">
+
+    <div style="background:rgba(239,95,67,.08);border:1px solid rgba(239,95,67,.25);border-radius:10px;padding:14px 16px;display:flex;gap:12px;">
+      <div style="font-size:20px;flex-shrink:0;">🚨</div>
+      <div><div style="font-size:12px;font-weight:700;color:var(--Rtxt);margin-bottom:4px;">URGENTE · Activar los 38 cupones sin canjear</div>
+      <div style="font-size:11px;color:var(--txt2);line-height:1.5;">Se emitieron 38 cupones y ninguno se ha redimido. Enviar una campaña masiva esta semana con recordatorio y fecha límite. Es ingreso directo que se pierde si expiran.</div></div>
+    </div>
+
+    <div style="background:rgba(29,158,117,.08);border:1px solid rgba(29,158,117,.25);border-radius:10px;padding:14px 16px;display:flex;gap:12px;">
+      <div style="font-size:20px;flex-shrink:0;">🎁</div>
+      <div><div style="font-size:12px;font-weight:700;color:var(--Gtxt);margin-bottom:4px;">ALTA PRIORIDAD · Kit Coffee Lovers para Día de la Madre</div>
+      <div style="font-size:11px;color:var(--txt2);line-height:1.5;">El Kit es el producto de mayor ticket (₡13.660/ud). Con 954 correos capturados y solo 1 campaña masiva enviada en toda la historia, hay una ventana enorme. En Costa Rica el Día de la Madre es el 15 de agosto — hay tiempo para preparar una campaña bien hecha dirigida primero a los 180 recurrentes.</div></div>
+    </div>
+
+    <div style="background:rgba(59,139,212,.08);border:1px solid rgba(59,139,212,.25);border-radius:10px;padding:14px 16px;display:flex;gap:12px;">
+      <div style="font-size:20px;flex-shrink:0;">☕</div>
+      <div><div style="font-size:12px;font-weight:700;color:var(--Btxt);margin-bottom:4px;">OPORTUNIDAD · Upsell del Americano a bebidas premium</div>
+      <div style="font-size:11px;color:var(--txt2);line-height:1.5;">Americano PAZ + PUNK = 68 uds en 12 días, el más vendido en bebidas pero solo ₡1.600/ud. Cada conversión a Latte, Affogato o Cappuccino dobla ese ingreso. Contenido mostrando la diferencia de experiencia puede activar ese cambio de hábito.</div></div>
+    </div>
+
+    <div style="background:rgba(239,159,39,.08);border:1px solid rgba(239,159,39,.25);border-radius:10px;padding:14px 16px;display:flex;gap:12px;">
+      <div style="font-size:20px;flex-shrink:0;">📦</div>
+      <div><div style="font-size:12px;font-weight:700;color:var(--Atxt);margin-bottom:4px;">RETENCIÓN · Bolsas de café como vínculo con la marca</div>
+      <div style="font-size:11px;color:var(--txt2);line-height:1.5;">PAZ + PUNK + LIBRE = 67 bolsas en 12 días · ₡651K neto. Quien lleva una bolsa a casa convierte a Libertario en su rutina diaria. Vale explorar un "club de bolsas" o descuento por recurrencia para anclar ese hábito.</div></div>
+    </div>
+
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 16px;display:flex;gap:12px;">
+      <div style="font-size:20px;flex-shrink:0;">📱</div>
+      <div><div style="font-size:12px;font-weight:700;color:var(--txt1);margin-bottom:4px;">BASE SUBUTILIZADA · 954 clientes, 1 sola campaña enviada</div>
+      <div style="font-size:11px;color:var(--txt2);line-height:1.5;">La base tiene 954 correos capturados por WiFi y solo se ha enviado 1 campaña masiva (106 personas, feb 2026). El programa de cumpleaños funciona perfectamente (28/29 felicitados). La siguiente prioridad: 1 campaña temática mensual mínimo, dirigida primero a los 180 recurrentes.</div></div>
+    </div>
+
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 16px;display:flex;gap:12px;">
+      <div style="font-size:20px;flex-shrink:0;">🍽</div>
+      <div><div style="font-size:12px;font-weight:700;color:var(--txt1);margin-bottom:4px;">MENÚ NUEVO · Dar visibilidad a los platos con menor tracción</div>
+      <div style="font-size:11px;color:var(--txt2);line-height:1.5;">Del menú nuevo lanzado el 18 de marzo, el Sandwich de Pollo al Pesto (33 uds · ₡207K en abril) y las Cacerolas lideran. Sin embargo, Waffles, Chia Pudding, Bowl de Falafel y Profiterol tienen ventas bajas — posiblemente por falta de visibilidad. Son platos con ticket atractivo y potencial visual fuerte para redes. Prioridad: 1 reel o foto por semana de los productos con menor rotación del menú nuevo.</div></div>
+    </div>
+
+  </div>
+</div>
+</div>
 </div><!-- /mes-marzo -->
 
 <!-- ═══ MES ABRIL ═════════════════════════════════════════════════════════ -->
@@ -693,6 +754,21 @@ const ABRIL_PRODS=[
   {n:'Libre 454 G (bolsa)',      qty:17, neto:156460, cat:'fil'},
 ];
 
+// ── DATOS WIFI & CRM (capturados del panel 15-abr-2026) ──────────────────────
+const WIFI={
+  totalConex:1523, clientesUnicos:954, fanClientes:19,
+  clientesRecurrentes:180, pctRecurrentes:18.87,
+  conexRecurrentes:569, promedioDaily:31,
+  topDias:[
+    {d:'Lun 30 mar',c:31},{d:'Lun 13 abr',c:30},{d:'Lun 16 mar',c:30},
+    {d:'Jue 9 abr', c:28},{d:'Dom 29 mar',c:27},{d:'Mié 8 abr', c:26},
+    {d:'Sáb 11 abr',c:26},{d:'Dom 22 mar',c:25},{d:'Lun 23 mar',c:25},{d:'Mié 25 mar',c:25}
+  ],
+  nuevosMiembros:37, nuevosMiembrosPct:105.6,
+  recurrentesFid:30, recurrentesFidPct:328.6,
+  cuponesEmitidos:38, cuponesCanjeados:0,
+  conversionTarjeta:71, clientesConvertidos:27,
+};
 // ── PRESUPUESTO DINÁMICO ──────────────────────────────────────────────────────
 (function buildPpto(){
   const PPTO=18000000;
@@ -1821,13 +1897,13 @@ function buildEvolucion(){
 }
 
 // ── TABS MARZO (Ventas / Productos / Menú nuevo / Evolución / Plan) ────────
-const built={ventas:false,productos:false,menu:false,evolucion:false,plan:false};
+const built={ventas:false,productos:false,menu:false,evolucion:false,plan:false,mercadeo:false};
 function sw(tab,el){
   Object.keys(built).forEach(p=>document.getElementById('panel-'+p).style.display=p===tab?'':'none');
   document.querySelectorAll('#mes-marzo .tab').forEach(b=>b.classList.remove('active'));
   if(el)el.classList.add('active');
   if(!built[tab]){
-    ({ventas:buildVentas,productos:buildProductosMkt,menu:buildMenuNuevo,evolucion:buildEvolucion,plan:()=>{}})[tab]();
+    ({ventas:buildVentas,productos:buildProductosMkt,menu:buildMenuNuevo,evolucion:buildEvolucion,plan:()=>{},mercadeo:buildMercadeo})[tab]();
     built[tab]=true;
   }
 }
@@ -1999,6 +2075,221 @@ function buildAbrilTendencia(){
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>c.dataset.label+': ₡'+fmt(c.raw)}}},
       scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
+}
+
+// ── MERCADEO ─────────────────────────────────────────────────────────────────
+function buildMercadeo(){
+  const el=document.getElementById('panel-mercadeo');
+
+  // ── Low-selling new-menu products (from PRODS data)
+  const lowProds=PRODS
+    .map(p=>({...p,tot:p.q.reduce((a,b)=>a+b,0)}))
+    .filter(p=>p.tot<12)
+    .sort((a,b)=>a.tot-b.tot)
+    .slice(0,6);
+
+  // ── Top-ticket April products (bolsas + kits)
+  const ticketProds=ABRIL_PRODS.filter(p=>p.neto/p.qty>4000).sort((a,b)=>(b.neto/b.qty)-(a.neto/a.qty)).slice(0,6);
+
+  el.innerHTML=`
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:1.4rem;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:var(--txt);">Panel de Mercadeo</div>
+      <div style="font-size:11px;color:var(--txt3);margin-top:3px;">Libertario Coffee Roasters · Marzo–Abril 2026</div>
+    </div>
+    <button id="btn-print-mkt" onclick="printMercadeo()" style="background:var(--acc);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.04em;">⬇ Exportar para comité</button>
+  </div>
+
+  <!-- ═══ AUDIENCIA WiFi & CRM ══════════════════════════════════════════════ -->
+  <div class="sec">Audiencia WiFi &amp; CRM</div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:.8rem;">
+    <div class="kpi">
+      <div class="kl">📶 Conexiones totales</div>
+      <div class="kv">1.523</div>
+      <div class="ks">acumuladas WiFi</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">👤 Clientes únicos</div>
+      <div class="kv">954</div>
+      <div class="ks">en base de datos</div>
+    </div>
+    <div class="kpi" style="border-color:rgba(59,139,212,.35);">
+      <div class="kl" style="color:var(--Btxt);">🔄 Con 2+ visitas</div>
+      <div class="kv" style="color:var(--Btxt);">180</div>
+      <div class="ks">18.9% de la base</div>
+    </div>
+    <div class="kpi" style="border-color:rgba(239,159,39,.35);">
+      <div class="kl" style="color:var(--Atxt);">❤️ Fans del WiFi</div>
+      <div class="kv" style="color:var(--Atxt);">19</div>
+      <div class="ks">mayor frecuencia</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.4rem;">
+    <div class="kpi" style="border-color:rgba(29,158,117,.35);">
+      <div class="kl" style="color:var(--Gtxt);">🆕 Nuevos miembros</div>
+      <div class="kv" style="color:var(--Gtxt);">37</div>
+      <div class="ks"><span class="badge bG">+105.6%</span> vs período ant.</div>
+    </div>
+    <div class="kpi" style="border-color:rgba(29,158,117,.35);">
+      <div class="kl" style="color:var(--Gtxt);">🔁 Recurrentes (fid.)</div>
+      <div class="kv" style="color:var(--Gtxt);">30</div>
+      <div class="ks"><span class="badge bG">+328.6%</span> vs período ant.</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">🎫 Conv. tarjeta fideliz.</div>
+      <div class="kv">71%</div>
+      <div class="ks">27 de 38 clientes</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:.5rem;font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.06em;">Top días de conexión · último mes</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:1.6rem;">
+    ${WIFI.topDias.map((x,i)=>`
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px 10px;">
+        <div style="font-size:9px;color:var(--txt3);">#${i+1}</div>
+        <div style="font-size:13px;font-weight:800;color:${i<3?'var(--acc)':'var(--txt1)'};">${x.c}</div>
+        <div style="font-size:9px;color:var(--txt2);margin-top:2px;">${x.d}</div>
+      </div>`).join('')}
+  </div>
+  <div class="nota" style="margin-bottom:1.6rem;">Los <strong>lunes</strong> aparecen 3 veces en el top 10 de conexiones. Existe una brecha entre tráfico WiFi y volumen de ventas en ese día — oportunidad concreta de activar compras con una acción puntual los lunes.</div>
+
+  <!-- ═══ PRODUCTOS PARA IMPULSAR ════════════════════════════════════════════ -->
+  <div class="sec">Productos para impulsar</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.4rem;">
+
+    <!-- Alto ticket -->
+    <div style="background:rgba(29,158,117,.06);border:1px solid rgba(29,158,117,.2);border-radius:10px;padding:14px;">
+      <div style="font-size:10px;font-weight:700;color:var(--Gtxt);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">🎁 Alto ticket · Ideales para regalo</div>
+      ${ticketProds.map(p=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+          <div style="font-size:11px;color:var(--txt1);">${p.n}</div>
+          <div style="text-align:right;flex-shrink:0;margin-left:8px;">
+            <div style="font-size:12px;font-weight:700;color:var(--Gtxt);">₡${fmt(Math.round(p.neto/p.qty))}</div>
+            <div style="font-size:9px;color:var(--txt3);">por unidad</div>
+          </div>
+        </div>`).join('')}
+      <div style="font-size:10px;color:var(--txt3);margin-top:8px;">Campaña email Día de la Madre (15 ago) · Kit + bolsas como regalo experiencial.</div>
+    </div>
+
+    <!-- Upsell -->
+    <div style="background:rgba(59,139,212,.06);border:1px solid rgba(59,139,212,.2);border-radius:10px;padding:14px;">
+      <div style="font-size:10px;font-weight:700;color:var(--Btxt);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">☕ Oportunidad de upsell</div>
+      <div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <div style="font-size:11px;font-weight:700;color:var(--txt1);">Americano PAZ + PUNK</div>
+        <div style="font-size:10px;color:var(--txt3);margin:3px 0;">68 uds en 12 días · ₡1.608 promedio</div>
+        <div style="font-size:10px;color:var(--Btxt);">→ Convertir a Cappuccino, Latte o Affogato (₡2.500–₡4.000) dobla el ingreso por visita</div>
+      </div>
+      <div style="padding:8px 0;">
+        <div style="font-size:11px;font-weight:700;color:var(--txt1);">Croissant Sencillo</div>
+        <div style="font-size:10px;color:var(--txt3);margin:3px 0;">27 uds · ₡1.626 promedio</div>
+        <div style="font-size:10px;color:var(--Btxt);">→ Acompañar con Croissant de Almendra o Jamón Serrano (₡4.800–₡6.000)</div>
+      </div>
+      <div style="font-size:10px;color:var(--txt3);margin-top:8px;">Entrenamiento al personal + menú visual en barra para guiar el upsell naturalmente.</div>
+    </div>
+
+  </div>
+
+  <!-- Menú nuevo · baja rotación -->
+  <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px;margin-bottom:1.6rem;">
+    <div style="font-size:10px;font-weight:700;color:var(--Atxt);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">📸 Menú nuevo · Platos con potencial visual y baja rotación</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+      ${lowProds.map(p=>`
+        <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-size:11px;color:var(--txt1);font-weight:600;">${p.n}</div>
+            <div style="font-size:10px;color:var(--txt3);">${p.c}</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;margin-left:8px;">
+            <div style="font-size:14px;font-weight:800;color:var(--Rtxt);">${p.tot}</div>
+            <div style="font-size:9px;color:var(--txt3);">uds mar</div>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div style="font-size:10px;color:var(--txt3);margin-top:10px;">Estos platos son parte del menú nuevo pero tienen poca visibilidad. Una foto o reel por semana de cada uno puede hacer la diferencia sin costo adicional.</div>
+  </div>
+
+  <!-- ═══ CAMPAÑAS & ACCIONES ════════════════════════════════════════════════ -->
+  <div class="sec">Campañas &amp; próximas acciones</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.2rem;">
+    <div class="kpi" style="border-color:rgba(239,95,67,.35);">
+      <div class="kl" style="color:var(--Rtxt);">🎟 Cupones sin canjear</div>
+      <div class="kv" style="color:var(--Rtxt);">38</div>
+      <div class="ks">0 redimidos · acción urgente</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">📧 Campañas enviadas</div>
+      <div class="kv">1</div>
+      <div class="ks">de 954 clientes disponibles</div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1.2rem;">
+
+    <div style="display:flex;gap:12px;align-items:flex-start;background:rgba(239,95,67,.07);border:1px solid rgba(239,95,67,.25);border-radius:10px;padding:12px 14px;">
+      <div style="background:var(--Rtxt);color:#fff;border-radius:6px;padding:3px 8px;font-size:9px;font-weight:800;flex-shrink:0;margin-top:1px;">ESTA SEMANA</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--Rtxt);margin-bottom:3px;">Activar los 38 cupones sin canjear</div>
+        <div style="font-size:11px;color:var(--txt2);">Email a los 38 clientes con un recordatorio claro del beneficio y fecha límite. Canal: Email MKT · Base: WiFi (Segmentado). Es ingreso directo que se pierde si expiran.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:flex-start;background:rgba(59,139,212,.07);border:1px solid rgba(59,139,212,.2);border-radius:10px;padding:12px 14px;">
+      <div style="background:var(--Btxt);color:#fff;border-radius:6px;padding:3px 8px;font-size:9px;font-weight:800;flex-shrink:0;margin-top:1px;">PRÓXIMO MES</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--Btxt);margin-bottom:3px;">Campaña de recurrentes · contenido de menú nuevo</div>
+        <div style="font-size:11px;color:var(--txt2);">Email segmentado a los 180 clientes con 2+ visitas. Mostrar los platos del menú nuevo con menor rotación. Objetivo: aumentar ticket promedio y rotación de esos platos.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:flex-start;background:rgba(29,158,117,.07);border:1px solid rgba(29,158,117,.2);border-radius:10px;padding:12px 14px;">
+      <div style="background:var(--Gtxt);color:#fff;border-radius:6px;padding:3px 8px;font-size:9px;font-weight:800;flex-shrink:0;margin-top:1px;">15 AGO</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--Gtxt);margin-bottom:3px;">Día de la Madre · Kit Coffee Lovers + bolsas</div>
+        <div style="font-size:11px;color:var(--txt2);">Campaña masiva a los 954 clientes. Kit Coffee Lovers (₡13.660/ud) + bolsas PAZ/PUNK/LIBRE como regalo experiencial. Anticipar con contenido en redes desde agosto 1.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;">
+      <div style="background:rgba(255,255,255,.15);color:var(--txt1);border-radius:6px;padding:3px 8px;font-size:9px;font-weight:800;flex-shrink:0;margin-top:1px;">CADENCIA</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--txt1);margin-bottom:3px;">1 campaña temática por mes mínimo</div>
+        <div style="font-size:11px;color:var(--txt2);">La base de 954 emails está subutilizada con 1 sola campaña masiva enviada. El programa de cumpleaños funciona (28/29 felicitados). Establecer cadencia mensual es el cambio de mayor impacto a costo casi cero.</div>
+      </div>
+    </div>
+
+  </div>`;
+
+  // ── Print / export function ──────────────────────────────────────────────
+  window.printMercadeo=function(){
+    const content=document.getElementById('panel-mercadeo').innerHTML;
+    const win=window.open('','_blank');
+    win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8">
+      <title>Comité de Mercadeo · Libertario Coffee Roasters</title>
+      <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#111;padding:32px 40px;max-width:900px;margin:0 auto;}
+        .sec{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#666;border-bottom:2px solid #111;padding-bottom:4px;margin:28px 0 14px;}
+        .kpi{border:1px solid #e5e5e5;border-radius:8px;padding:12px;background:#fafafa;}
+        .kv{font-size:22px;font-weight:800;margin:4px 0;}
+        .kl{font-size:10px;color:#666;font-weight:600;}
+        .ks{font-size:10px;color:#888;margin-top:2px;}
+        .nota{font-size:11px;color:#555;background:#f5f5f5;border-radius:6px;padding:10px 12px;margin:8px 0;}
+        .badge{display:inline-block;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:700;}
+        .bG{background:#d1fae5;color:#065f46;}
+        .bR{background:#fee2e2;color:#991b1b;}
+        h1{font-size:22px;font-weight:800;margin-bottom:4px;}
+        h2{font-size:13px;font-weight:600;color:#444;margin-bottom:24px;}
+        @media print{body{padding:20px}}
+      </style></head><body>
+      <h1>Comité de Mercadeo</h1>
+      <h2>Libertario Coffee Roasters · Marzo–Abril 2026 · Generado ${new Date().toLocaleDateString('es-CR',{day:'2-digit',month:'long',year:'numeric'})}</h2>
+      ${content}
+      <script>window.print();window.close();<\/script>
+    </body></html>`);
+    win.document.close();
+  };
 }
 
 function buildAbrilProductos(){
