@@ -159,7 +159,7 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
 <div style="display:flex;gap:8px;margin-bottom:1.2rem;align-items:center;flex-wrap:wrap;">
   <span style="font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em;flex-shrink:0;">MES</span>
   <button class="tab active" id="mes-btn-marzo" onclick="swMes('marzo')">Marzo 2026</button>
-  <button class="tab" id="mes-btn-abril" onclick="swMes('abril')">Abril 2026 <span style="font-size:9px;opacity:.55;">(1–12 en curso)</span></button>
+  <button class="tab" id="mes-btn-abril" onclick="swMes('abril')">Abril 2026 <span style="font-size:9px;opacity:.55;">(1–26 · 26 días)</span></button>
   <button class="tab" id="mes-btn-comp" onclick="swMes('comp')">Comparativa ↗</button>
 </div>
 
@@ -560,7 +560,7 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
 <!-- ═══ MES ABRIL ═════════════════════════════════════════════════════════ -->
 <div id="mes-abril" style="display:none;">
   <h1>Libertario Coffee Roasters</h1>
-  <p class="sub">Análisis operativo · Abril 2026 · Datos del 1 al 12 (mes en curso) &nbsp;·&nbsp; Presupuesto ₡19.200.000 neto</p>
+  <p class="sub">Análisis operativo · Abril 2026 · Datos del 1 al 26 · 26 días registrados &nbsp;·&nbsp; Presupuesto ₡19.200.000 neto</p>
   <div class="kgrid" id="kg-abril"></div>
   <div id="bloque-ppto-abril" style="background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--radL);padding:1.1rem 1.2rem;margin-bottom:1.2rem;"></div>
   <div class="tabs">
@@ -582,7 +582,9 @@ h1{font-size:17px;font-weight:600;margin-bottom:3px;}
   <div id="panel-comp-meses"></div>
 </div><!-- /mes-comp -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" 
+  onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js'">
+</script>
 <script>
 const gc='rgba(255,255,255,.06)',tc='#a0a09a';
 const fmt=n=>Math.round(n).toLocaleString('es-CR');
@@ -704,7 +706,7 @@ const PRODS=[
 
 const VIE=DIAS.filter(d=>d.v), NUE=DIAS.filter(d=>!d.v);
 
-// ── DATOS ABRIL (sesiones POS 04206–04218 · 1–12 abril 2026) ─────────────────
+// ── DATOS ABRIL (sesiones POS 04206–04218 · 1–26 abril 2026) ─────────────────
 // neto = bruto × 0.826826 (ratio real del mes: 6.052.081 / 7.319.651)
 // items = estimado (bruto × avg items/txn de marzo)
 // bevB/cocB/filB = estimado con proporciones de marzo (50.1%/45.3%/4.7%)
@@ -721,39 +723,61 @@ const ABRIL_DIAS=[
   {d:'Vie 10',dow:'Vie', txn:51, bruto:596338,  neto:493068,  items:145, bevB:298574, cocB:269955, filB:27809},
   {d:'Sáb 11',dow:'Sáb', txn:78, bruto:986590,  neto:815739,  items:221, bevB:493966, cocB:446617, filB:46007},
   {d:'Dom 12',dow:'Dom', txn:67, bruto:797705,  neto:659609,  items:190, bevB:399395, cocB:361111, filB:37199},
+  {d:'Lun 13', dow:'Lun', txn:36, bruto:448238,  neto:370617,  items:102, bevB:224424, cocB:202913, filB:20901},
+  {d:'Mar 14', dow:'Mar', txn:40, bruto:501689,  neto:414812,  items:114, bevB:251186, cocB:227110, filB:23393},
+  {d:'Mié 15', dow:'Mié', txn:24, bruto:300218,  neto:248229,  items:68, bevB:150313, cocB:135906, filB:13999},
+  {d:'Jue 16', dow:'Jue', txn:18, bruto:230888,  neto:190905,  items:51, bevB:115601, cocB:104521, filB:10766},
+  {d:'Vie 17', dow:'Vie', txn:35, bruto:436208,  neto:360670,  items:99, bevB:218401, cocB:197467, filB:20340},
+  {d:'Sáb 18', dow:'Sáb', txn:70, bruto:870103,  neto:719427,  items:199, bevB:435643, cocB:393887, filB:40573},
+  {d:'Dom 19', dow:'Dom', txn:72, bruto:902275,  neto:746028,  items:204, bevB:451751, cocB:408451, filB:42073},
+  {d:'Lun 20', dow:'Lun', txn:28, bruto:356180,  neto:294500,  items:80, bevB:178332, cocB:161239, filB:16609},
+  {d:'Mar 21', dow:'Mar', txn:46, bruto:569004,  neto:470470,  items:131, bevB:284889, cocB:257582, filB:26533},
+  {d:'Mié 22', dow:'Mié', txn:24, bruto:304383,  neto:251673,  items:68, bevB:152398, cocB:137791, filB:14194},
+  {d:'Jue 23', dow:'Jue', txn:28, bruto:354342,  neto:292981,  items:80, bevB:177412, cocB:160407, filB:16523},
+  {d:'Vie 24', dow:'Vie', txn:17, bruto:217928,  neto:180189,  items:48, bevB:109112, cocB:98654, filB:10162},
+  {d:'Sáb 25', dow:'Sáb', txn:60, bruto:754340,  neto:623711,  items:170, bevB:377683, cocB:341482, filB:35175},
+  {d:'Dom 26', dow:'Dom', txn:81, bruto:1013023,  neto:837598,  items:230, bevB:507200, cocB:458585, filB:47238},
 ];
 const META_ABRIL=640000; // 19.200.000 / 30 días = 640.000 neto/día
 
 // ── ABRIL TOP PRODUCTOS (extraídos del PDF POS Detalles de Ventas 48) ─────────
 const ABRIL_PRODS=[
-  {n:'Cappuccino Desl. PUNK',    qty:40, neto:97561,  cat:'bev'},
-  {n:'Jugo de Naranja',          qty:39, neto:69756,  cat:'bev'},
-  {n:'Soda Frutos Rojos',        qty:39, neto:98293,  cat:'bev'},
-  {n:'Tico Bowl',                qty:38, neto:188455, cat:'coc'},
-  {n:'Americano PAZ',            qty:35, neto:56285,  cat:'bev'},
-  {n:'Americano PUNK',           qty:33, neto:61289,  cat:'bev'},
-  {n:'Sandwich Pollo Pesto',     qty:33, neto:206585, cat:'coc'},
-  {n:'Cacerola Ranchera',        qty:31, neto:138618, cat:'coc'},
-  {n:'Tostadas Francesas',       qty:30, neto:134146, cat:'coc'},
-  {n:'Cappuccino Desl. PAZ',     qty:29, neto:66016,  cat:'bev'},
-  {n:'Croissant Jamón Serrano',  qty:28, neto:136585, cat:'coc'},
-  {n:'Croissant Sencillo',       qty:27, neto:43902,  cat:'coc'},
-  {n:'Cacerola H. Benedictinos', qty:26, neto:131057, cat:'coc'},
-  {n:'PAZ 454 G (bolsa)',        qty:25, neto:219027, cat:'fil'},
-  {n:'PUNK 340 G (bolsa)',       qty:25, neto:276549, cat:'fil'},
-  {n:'Cappuccino Entera PAZ',    qty:24, neto:54634,  cat:'bev'},
-  {n:'Queque de Zanahoria',      qty:24, neto:77354,  cat:'coc'},
-  {n:'Tostada de Aguacate',      qty:24, neto:93659,  cat:'coc'},
-  {n:'Cacerola H. Cremosos',     qty:23, neto:108455, cat:'coc'},
-  {n:'Galleta Chispas Choc.',    qty:23, neto:39596,  cat:'coc'},
-  {n:'Croissant de Almendra',    qty:22, neto:55634,  cat:'coc'},
-  {n:'Tostada Salmón Ahumado',   qty:22, neto:110732, cat:'coc'},
-  {n:'Bebida Timo',              qty:20, neto:73171,  cat:'bev'},
-  {n:'Cacerola Libertario',      qty:20, neto:89431,  cat:'coc'},
-  {n:'Sandwich Grill Cheese',    qty:20, neto:118699, cat:'coc'},
-  {n:'Kit Coffee Lovers',        qty:19, neto:259544, cat:'fil'},
-  {n:'Latte Desl. PUNK',         qty:18, neto:46098,  cat:'bev'},
-  {n:'Libre 454 G (bolsa)',      qty:17, neto:156460, cat:'fil'},
+  // Abril 1–26 · Detalles de Ventas (51) · 26 días operativos
+  {n:'Cappuccino Caliente Desl. - Punk', qty:79,  neto:191674, cat:'bev'},
+  {n:'Tico Bowl',                         qty:78,  neto:383975, cat:'coc'},
+  {n:'Jugo de Naranja',                   qty:76,  neto:135934, cat:'coc'},
+  {n:'Soda de Frutos Rojos',              qty:75,  neto:187991, cat:'coc'},
+  {n:'Americano - Paz',                   qty:72,  neto:116134, cat:'bev'},
+  {n:'Americano - Punk',                  qty:72,  neto:133378, cat:'bev'},
+  {n:'Cappuccino Caliente Desl. - Paz',  qty:65,  neto:145569, cat:'bev'},
+  {n:'Croissant de Jamón Serrano',        qty:65,  neto:317073, cat:'coc'},
+  {n:'Tostadas Francesas',               qty:62,  neto:277235, cat:'coc'},
+  {n:'Cac. Huevos Benedictinos',         qty:56,  neto:282276, cat:'coc'},
+  {n:'Cac. Huevos Cremosos c/ Jamón',    qty:56,  neto:264065, cat:'coc'},
+  {n:'Cacerola Ranchera',                qty:55,  neto:245934, cat:'coc'},
+  {n:'Sandwich Grill Cheese',            qty:53,  neto:314552, cat:'coc'},
+  {n:'Sandwich Pollo al Pesto + Papas',  qty:51,  neto:319268, cat:'coc'},
+  {n:'Tostada de Aguacate',              qty:50,  neto:194329, cat:'coc'},
+  {n:'Almojábana',                       qty:49,  neto:107361, cat:'coc'},
+  {n:'Croissant de Desayuno',            qty:47,  neto:171951, cat:'coc'},
+  {n:'Cappuccino Caliente Entera - Paz', qty:45,  neto:102439, cat:'bev'},
+  {n:'Punk 340 G (bolsa)',               qty:44,  neto:486725, cat:'fil'},
+  {n:'Croissant de Almendra',            qty:44,  neto:108439, cat:'coc'},
+  {n:'Queque de Zanahoria',              qty:42,  neto:135195, cat:'coc'},
+  {n:'Paz 454 G (bolsa)',                qty:41,  neto:359203, cat:'fil'},
+  {n:'Cacerola Libertario',              qty:41,  neto:183333, cat:'coc'},
+  {n:'Croissant de Crumble de Manzana',  qty:39,  neto:110975, cat:'coc'},
+  {n:'Rollo de Canela',                  qty:38,  neto:92682,  cat:'coc'},
+  {n:'Tostada de Salmón Ahumado',        qty:38,  neto:191707, cat:'coc'},
+  {n:'Torta Chilena',                    qty:36,  neto:117073, cat:'coc'},
+  {n:'Latte Caliente Desl. - Paz',      qty:34,  neto:79317,  cat:'bev'},
+  {n:'Croissant Sencillo',               qty:34,  neto:54520,  cat:'coc'},
+  {n:'Americano - Libre',                qty:32,  neto:51719,  cat:'bev'},
+  {n:'Libre 454 G (bolsa)',              qty:31,  neto:285309, cat:'fil'},
+  {n:'Galleta de Chispas de Chocolate',  qty:31,  neto:53367,  cat:'coc'},
+  {n:'Filtrado Punk Origami - 1 Taza',   qty:31,  neto:69130,  cat:'fil'},
+  {n:'Affogato - Paz',                   qty:30,  neto:57451,  cat:'bev'},
+  {n:'Cold Brew',                        qty:30,  neto:70731,  cat:'bev'},
 ];
 
 // ── DATOS WIFI & CRM (capturados del panel 15-abr-2026) ──────────────────────
@@ -1959,7 +1983,7 @@ function initAbril(){
 
   document.getElementById('kg-abril').innerHTML=`
     <div style="grid-column:1/-1;font-size:10px;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em;padding-bottom:4px;border-bottom:.5px solid var(--brd);">
-      Abril 2026 — primeros ${ABRIL_DIAS.length} días operativos (1–12 abr) &nbsp;·&nbsp; mes en curso
+      Abril 2026 — ${ABRIL_DIAS.length} días registrados · abril 2026
     </div>
     <div class="kpi"><div class="kl">Neto acumulado</div><div class="kv" style="color:var(--Gtxt);">₡${fmt(aNeto)}</div><div class="ks">sin impuestos · lo del negocio</div></div>
     <div class="kpi"><div class="kl">Bruto acumulado</div><div class="kv">₡${fmt(aBruto)}</div><div class="ks">con impuestos · referencia</div></div>
@@ -2515,7 +2539,7 @@ function buildAbrilProductos(){
   const dFil=(aFil/aGrand*100-mFil/mGrand*100).toFixed(1);
   el.innerHTML=`
     <div class="nota">Categorías de abril estimadas con proporciones reales de marzo (Bebidas 50% · Cocina 45% · Filtrado 5%). Los totales brutos son exactos del sistema POS.</div>
-    <div class="sec">Ventas por categoría · Abril 1–12</div>
+    <div class="sec">Ventas por categoría · Abril 1–26</div>
     <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1rem;">
       <div class="kpi" style="border-color:rgba(59,139,212,.35);">
         <div class="kl" style="color:var(--Btxt);">☕ Bebidas</div>
@@ -2533,7 +2557,7 @@ function buildAbrilProductos(){
         <div class="ks">${(aFil/aGrand*100).toFixed(0)}% del total <span class="badge ${+dFil>=0?'bG':'bR'}" style="margin-left:4px;">${+dFil>=0?'+':''}${dFil}pp vs mar</span></div>
       </div>
     </div>
-    <div class="sec">Evolución de categorías · día a día (abr 1–12)</div>
+    <div class="sec">Evolución de categorías · día a día (abr 1–26)</div>
     <div class="ley"><span><i style="background:#3B8BD4"></i>Bebidas</span><span><i style="background:#EF9F27"></i>Cocina</span><span><i style="background:#1D9E75"></i>Filtrado</span></div>
     <div class="cw" style="height:220px;"><canvas id="c-abr-cat-evol"></canvas></div>
     <div class="sec" style="margin-top:1.4rem;">Mix de categorías · Marzo vs Abril</div>
@@ -2557,7 +2581,7 @@ function buildAbrilProductos(){
           </div>`).join('')}
       </div>
     </div>
-    <div class="sec" style="margin-top:1.8rem;">Ranking de productos · Abril 1–12 (datos reales POS)</div>
+    <div class="sec" style="margin-top:1.8rem;">Ranking de productos · Abril 1–26 (datos reales POS)</div>
     <div class="nota" style="margin-bottom:.8rem;">28 productos más vendidos por cantidad de unidades. Fuente: Detalles de Ventas del sistema POS.</div>
     <div class="ley"><span><i style="background:#3B8BD4"></i>Bebidas</span><span><i style="background:#EF9F27"></i>Cocina</span><span><i style="background:#1D9E75"></i>Filtrado</span></div>
     <div class="cw" style="height:560px;"><canvas id="c-abr-prod-rank"></canvas></div>
@@ -2681,10 +2705,10 @@ function buildComparativaMeses(){
   const d=(a,b)=>((a-b)/b*100).toFixed(1);
   const badge=(v)=>`<span class="badge ${+v>=0?'bG':'bR'}">${+v>=0?'+':''}${v}%</span>`;
   el.innerHTML=`
-    <div class="nota">Comparando los <strong>primeros 12 días operativos</strong> de cada mes. Abril: días 1–12. Las categorías de abril son estimadas.</div>
+    <div class="nota">Comparando los <strong>primeros 12 días operativos</strong> de cada mes. Abril: días 1–12 (data diaria) · productos 1–26. Las categorías de abril son estimadas.</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.2rem;">
       <div style="border:.5px solid rgba(239,159,39,.3);border-radius:var(--radL);padding:1rem;">
-        <div style="font-size:10px;font-weight:700;color:var(--Atxt);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8rem;">Marzo 2026 · Días 1–12</div>
+        <div style="font-size:10px;font-weight:700;color:var(--Atxt);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8rem;">Marzo 2026 · Días 1–26</div>
         <div class="kgrid" style="grid-template-columns:1fr 1fr;">
           <div class="kpi"><div class="kl">Neto 12 días</div><div class="kv" style="color:var(--Gtxt);font-size:16px;">₡${fmt(m3Neto)}</div></div>
           <div class="kpi"><div class="kl">Ticket neto</div><div class="kv" style="font-size:16px;">₡${fmt(m3TktN)}</div></div>
@@ -2731,7 +2755,13 @@ function buildComparativaMeses(){
       scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'₡'+fmt(v)}}}}});
 }
 
-buildVentas(); built.ventas=true;
+(function(){
+  if(typeof Chart==='undefined'){
+    document.body.insertAdjacentHTML('afterbegin','<div style="background:#c0392b;color:#fff;padding:12px 16px;font-size:13px;font-weight:600;">⚠ No se pudo cargar Chart.js. Verifica tu conexión a internet y recarga la página.</div>');
+    return;
+  }
+  buildVentas(); built.ventas=true;
+}());
 </script>
 </body>
 </html>
